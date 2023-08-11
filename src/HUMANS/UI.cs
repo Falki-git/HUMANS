@@ -177,7 +177,7 @@ namespace Humans
 
         private void FillUI(int _)
         {
-            var presets = SkinController.Instance.Presets;
+            var presets = Presets.Instance.SkinColors;
             var kerbal = _kerbals[_kerbalIndex];
             var preset = presets[_presetIndex];
 
@@ -257,7 +257,7 @@ namespace Humans
             GUI.DragWindow(new Rect(0, 0, Screen.width, Screen.height));
         }
 
-        private void ApplyPreset(KerbalInfo kerbal, HumanSkinColor color)
+        private void ApplyPreset(KerbalInfo kerbal, SkinColorPreset color)
         {
             var variety = new VarietyPreloadInfo((Color)color.Color, typeof(Color), "");
 

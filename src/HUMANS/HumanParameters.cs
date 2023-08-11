@@ -290,6 +290,4 @@ namespace Humans
             AttachToName = null;
         }
     }
-
-
 }

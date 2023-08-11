@@ -16,7 +16,14 @@ namespace Humans
         NormalAndTan,
         Natural,
         Asian,
-        Black
+        Black,
+        Kerbal
+    }
+
+    public enum HairColorType
+    {
+        Human,
+        Kerbal
     }
 
     public enum Culture
@@ -40,5 +47,7 @@ namespace Humans
     // TODO loading screens
     // TODO first names and surnames for each nationality
     // TODO hair color, facial hair color
+
+    // TODO TeamColor1, TeamColor2 ?
 
 }
