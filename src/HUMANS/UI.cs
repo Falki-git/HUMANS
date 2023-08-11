@@ -22,7 +22,8 @@ namespace Humans
 
         private int _kerbalIndexDebug;
         private int _kerbalIndex;
-        private int _presetIndex;
+        private int _skinColorPresetIndex;
+        private int _hairColorPresetIndex;
 
         internal static UI Instance
         {
@@ -177,9 +178,11 @@ namespace Humans
 
         private void FillUI(int _)
         {
-            var presets = Presets.Instance.SkinColors;
+            var skinColorPresets = Presets.Instance.SkinColors;
+            var hairColorPresets = Presets.Instance.HairColors;
             var kerbal = _kerbals[_kerbalIndex];
-            var preset = presets[_presetIndex];
+            var skinColorPreset = skinColorPresets[_skinColorPresetIndex];
+            var hairColorPreset = hairColorPresets[_hairColorPresetIndex];
 
             GUILayout.BeginHorizontal();
             {
@@ -211,42 +214,76 @@ namespace Humans
                     GUILayout.Space(spaceAdjuster);
                     GUILayout.Label($"Name= {kerbal.NameKey}");
 
-                    GUILayout.Label($"Presets:");
+                    GUILayout.Label($"Skin color presets:");
+                    
+                    GUILayout.BeginHorizontal();
                     {
-                        GUILayout.BeginHorizontal();
+                        if (GUILayout.Button("<"))
                         {
-                            if (GUILayout.Button("<"))
+                            if (_skinColorPresetIndex > 0)
                             {
-                                if (_presetIndex > 0)
-                                {
-                                    _presetIndex--;
-                                    ApplyPreset(kerbal, presets[_presetIndex]);
-                                }
+                                _skinColorPresetIndex--;
+                                ApplySkinColor(kerbal, skinColorPresets[_skinColorPresetIndex]);
                             }
-
-                            GUILayout.Label($"{_presetIndex}", _styleCentered);
-
-                            if (GUILayout.Button(">"))
-                            {
-                                if (_presetIndex < presets.Count - 1)
-                                {
-                                    _presetIndex++;
-                                    ApplyPreset(kerbal, presets[_presetIndex]);
-                                }
-                            }
-
-                            GUILayout.EndHorizontal();
                         }
 
-                        GUILayout.Label($"Type= {preset.Type}");
-                        GUILayout.Space(spaceAdjuster);
-                        GUILayout.Label($"Name= {preset.Name}");
-                        GUILayout.Space(spaceAdjuster);
-                        GUILayout.Label($"Color= {preset.Color}");
+                        GUILayout.Label($"{_skinColorPresetIndex}", _styleCentered);
 
-                        //if (GUILayout.Button("Apply"))
-                        //    ApplyPreset(kerbal, preset);
+                        if (GUILayout.Button(">"))
+                        {
+                            if (_skinColorPresetIndex < skinColorPresets.Count - 1)
+                            {
+                                _skinColorPresetIndex++;
+                                ApplySkinColor(kerbal, skinColorPresets[_skinColorPresetIndex]);
+                            }
+                        }
+
+                        GUILayout.EndHorizontal();
                     }
+
+                    GUILayout.Label($"Type= {skinColorPreset.Type}");
+                    GUILayout.Space(spaceAdjuster);
+                    GUILayout.Label($"Name= {skinColorPreset.Name}");
+                    GUILayout.Space(spaceAdjuster);
+                    GUILayout.Label($"Color= {skinColorPreset.Color}");
+
+                    GUILayout.Label($"Hair color presets:");
+                    GUILayout.BeginHorizontal();
+                    {
+
+                        if (GUILayout.Button("<"))
+                        {
+                            if (_hairColorPresetIndex > 0)
+                            {
+                                _hairColorPresetIndex--;
+                                ApplyHairColor(kerbal, hairColorPresets[_hairColorPresetIndex]);
+                            }
+                        }
+
+                        GUILayout.Label($"{_hairColorPresetIndex}", _styleCentered);
+
+                        if (GUILayout.Button(">"))
+                        {
+                            if (_hairColorPresetIndex < hairColorPresets.Count - 1)
+                            {
+                                _hairColorPresetIndex++;
+                                ApplyHairColor(kerbal, hairColorPresets[_hairColorPresetIndex]);
+                            }
+                        }
+
+                        GUILayout.EndHorizontal();
+                    }
+
+                    GUILayout.Label($"Type= {hairColorPreset.Type}");
+                    GUILayout.Space(spaceAdjuster);
+                    GUILayout.Label($"Name= {hairColorPreset.Name}");
+                    GUILayout.Space(spaceAdjuster);
+                    GUILayout.Label($"Color= {hairColorPreset.Color}");
+                    GUILayout.Space(spaceAdjuster);
+                    GUILayout.Label($"Weight= {hairColorPreset.Weight}");
+
+                    //if (GUILayout.Button("Apply"))
+                    //    ApplyPreset(kerbal, preset);
 
                     GUILayout.EndVertical();
                 }
@@ -257,25 +294,26 @@ namespace Humans
             GUI.DragWindow(new Rect(0, 0, Screen.width, Screen.height));
         }
 
-        private void ApplyPreset(KerbalInfo kerbal, SkinColorPreset color)
+        private void ApplySkinColor(KerbalInfo kerbal, SkinColorPreset color)
         {
-            var variety = new VarietyPreloadInfo((Color)color.Color, typeof(Color), "");
+            var skin = new SkinColor();
+            skin.Value = (Color)color.Color;
 
-            kerbal.Attributes.SetAttribute("SKINCOLOR", variety);
+            //var variety = new VarietyPreloadInfo((Color)color.Color, typeof(Color), "");
+            //var variety = new VarietyPreloadInfo(skin.Value, skin.ValueType, skin.AttachToName);
+
+            //kerbal.Attributes.SetAttribute("SKINCOLOR", variety);
+            kerbal.Attributes.SetAttribute(skin.Key, skin.Variety);
 
             Manager.Instance.Roster._portraitRenderer.TakeKerbalPortrait(kerbal);
+        }
 
-            /*
-            selectedKerbal.Attributes.SetAttribute
-                ("SKINCOLOR",
-                new VarietyPreloadInfo(
-                    (Color)new Color32(
-                        (byte)CheatMenuKerbalOptions_SKINCOLORR_Input.value,
-                        (byte)CheatMenuKerbalOptions_SKINCOLORG_Input.value,
-                        (byte)CheatMenuKerbalOptions_SKINCOLORB_Input.value, 255
-                        ),
-                    typeof(Color), ""));
-            */
+        private void ApplyHairColor(KerbalInfo kerbal, HairColorPreset color)
+        {
+            var hair = new HairColor();
+            hair.Value = (Color)color.Color;
+            kerbal.Attributes.SetAttribute(hair.Key, hair.Variety);
+            Manager.Instance.Roster._portraitRenderer.TakeKerbalPortrait(kerbal);
         }
     }
 }

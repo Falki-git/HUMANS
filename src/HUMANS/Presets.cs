@@ -31,9 +31,7 @@ namespace Humans
             InitializeBodies();
             InitializeHeads();
             InitializeFacePaints();
-        }
-
-        
+        }        
 
         public static Presets Instance
         {
@@ -45,7 +43,6 @@ namespace Humans
                 return _instance;
             }
         }
-
         
 
         private void InitializeSkinColors()

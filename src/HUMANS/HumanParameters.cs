@@ -1,4 +1,5 @@
-﻿using KSP.Sim;
+﻿using KSP.Game;
+using KSP.Sim;
 using UnityEngine;
 
 namespace Humans
@@ -9,6 +10,7 @@ namespace Humans
         public T Value { get; set; }
         public Type ValueType { get; set; }
         public string AttachToName { get; set; }
+        public VarietyPreloadInfo Variety => new VarietyPreloadInfo(Value, ValueType, AttachToName);
     }
 
     public class Name : HumanParameters<string>
