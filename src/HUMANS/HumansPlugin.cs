@@ -21,8 +21,10 @@ public class HumansPlugin : BaseSpaceWarpPlugin
     [PublicAPI] public const string ModName = MyPluginInfo.PLUGIN_NAME;
     [PublicAPI] public const string ModVer = MyPluginInfo.PLUGIN_VERSION;
 
+    private bool _isDebugWindowOpen;
     private bool _isWindowOpen;
-    private const string ToolbarFlightButtonID = "BTN-Humans";
+    private const string ToolbarDebugButtonID = "BTN-Humans-debug";
+    private const string ToolbarButtonID = "BTN-Humans";
 
     public static HumansPlugin Instance { get; set; }
 
@@ -32,13 +34,24 @@ public class HumansPlugin : BaseSpaceWarpPlugin
         Instance = this;
 
         Appbar.RegisterAppButton(
+            "Humans debug",
+            ToolbarDebugButtonID,
+            AssetManager.GetAsset<Texture2D>($"{SpaceWarpMetadata.ModID}/images/icon.png"),
+            isOpen =>
+            {
+                _isDebugWindowOpen = isOpen;
+                GameObject.Find(ToolbarDebugButtonID)?.GetComponent<UIValue_WriteBool_Toggle>()?.SetValue(isOpen);
+            }
+        );
+
+        Appbar.RegisterAppButton(
             "Humans",
-            ToolbarFlightButtonID,
+            ToolbarButtonID,
             AssetManager.GetAsset<Texture2D>($"{SpaceWarpMetadata.ModID}/images/icon.png"),
             isOpen =>
             {
                 _isWindowOpen = isOpen;
-                GameObject.Find(ToolbarFlightButtonID)?.GetComponent<UIValue_WriteBool_Toggle>()?.SetValue(isOpen);
+                GameObject.Find(ToolbarButtonID)?.GetComponent<UIValue_WriteBool_Toggle>()?.SetValue(isOpen);
             }
         );
     }
@@ -48,40 +61,23 @@ public class HumansPlugin : BaseSpaceWarpPlugin
         if (Manager.Instance.Roster == null)
             return;
 
+        #pragma warning disable CS0618 // Type or member is obsolete
         GUI.skin = Skins.ConsoleSkin;
+        #pragma warning restore CS0618 // Type or member is obsolete
+
+        if (_isDebugWindowOpen)
+            UI.Instance.DrawDebugUI();
 
         if (_isWindowOpen)
             UI.Instance.DrawUI();
     }
 
-    VesselComponent activeVessel;
-    GameManager gameManager;
-    SessionManager sessionManager;
-    KerbalRosterManager roster;
-    List<KerbalInfo> allKerbals;
-    List<KerbalInfo> kerbalsInVessel;
-    KerbalVarietySystem varietySystem;
-    double ivaMass;
-    DictionaryValueList<IGGuid, KerbalInfo> kerbals;
-    KerbalPhotoBooth portraitRenderer;
-
     private void Update()
     {
-        /*
-        activeVessel = GameManager.Instance.Game.ViewController.GetActiveVehicle().GetSimVessel();
-        gameManager = GameManager.Instance;
-        sessionManager = GameManager.Instance.Game.SessionManager;
-        roster = GameManager.Instance.Game.SessionManager.KerbalRosterManager;
-        allKerbals = roster.GetAllKerbals();
-        kerbalsInVessel = roster.GetAllKerbalsInVessel(activeVessel.GlobalId);
-        varietySystem = roster.VarietySystem;
-        ivaMass = roster._kerbalIVAMass;
-        kerbals = roster._kerbals;
-        portraitRenderer = roster._portraitRenderer;
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.H))
+            _isDebugWindowOpen = !_isDebugWindowOpen;
 
-        var x = allKerbals[0].Attributes.Attributes;
-        */
-
-        return;
+        if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKeyDown(KeyCode.H))
+            _isWindowOpen = !_isWindowOpen;
     }
 }
