@@ -26,20 +26,27 @@ namespace Humans
         Kerbal
     }
 
-    public enum Culture
+    public enum CultureName
     {
         American,
         European,
         Asian
     }
 
-    public enum Nation
+    public enum NationName
     {
         USA,
         Canada,
         Germany,
         France,
         // ...
+    }
+
+    public enum Gender
+    {
+        Male,
+        Female,
+        Other
     }
 
     // TODO Culture -> has % of skin types

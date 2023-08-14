@@ -1,4 +1,8 @@
-﻿using KSP.Game;
+﻿using IGUtils;
+using KSP.Game;
+using KSP.Messages;
+using KSP.Sim;
+using KSP.Sim.impl;
 using KSP.UI.Binding;
 using Newtonsoft.Json.Serialization;
 using SpaceWarp.API.UI;
@@ -68,6 +72,40 @@ namespace Humans
 
         private void FillDebugUI(int _)
         {
+            var kerbal = _kerbals[_kerbalIndexDebug];
+
+            if (GUILayout.Button("button1"))
+            {
+                //kerbal.SetLocation(kerbal.Id, IGGuid.Empty, 0);
+
+                UniverseModel universeModel = GameManager.Instance.Game.UniverseModel;
+                var x = universeModel._allKerbals;
+                //KerbalComponent kerbalComponent = universeModel.FindKerbalComponent(kerbal.Id);
+                KerbalComponent kerbalComponent = universeModel._allKerbals[new IGGuid(new Guid(_value))];
+                if (kerbalComponent != null)
+                {
+                    kerbalComponent.EVAStartLocationId = IGGuid.Empty;
+                    SimulationObjectModel simulationObject = kerbalComponent.SimulationObject;
+                    VesselComponent vessel = simulationObject.Vessel;
+                    IGAssert.IsNotNull(vessel, "SimObject 'kerbalSimObject' must have a VesselComponent since all Kerbals are also Vessels.");
+                    vessel.IsKerbalEVA = false;
+                    GameManager.Instance.Game.Messages.Publish<EVALeftMessage>();
+                    simulationObject.Destroy();
+                }
+            }
+            if (GUILayout.Button("button2"))
+            {
+                var sim = GameManager.Instance.Game.ViewController.GetActiveVehicle().GetSimulationObject();
+                var roster = Manager.Instance.Roster;
+                roster.SetKerbalLocation(kerbal, sim, 0);
+
+                var x = new KSP.Modding.Variety.KerbalVarietyAttributeRule();
+
+            }
+
+
+
+
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("<"))
             {
@@ -82,9 +120,7 @@ namespace Humans
                     _kerbalIndexDebug++;
             }
             GUILayout.EndHorizontal();
-
-            var kerbal = _kerbals[_kerbalIndexDebug];
-
+            
             GUILayout.Label($"kerbal.Id={kerbal.Id}", _styleSmall);
             GUILayout.Space(spaceAdjuster);
             GUILayout.Label($"kerbal.NameKey={kerbal.NameKey}");

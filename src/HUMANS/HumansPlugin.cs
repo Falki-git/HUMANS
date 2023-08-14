@@ -9,6 +9,12 @@ using SpaceWarp.API.Assets;
 using SpaceWarp.API.UI;
 using SpaceWarp.API.UI.Appbar;
 using UnityEngine;
+using HarmonyLib;
+using KSP.Game.Flow;
+using Newtonsoft.Json.Linq;
+using static Mono.Math.BigInteger;
+using UnityEngine.InputSystem;
+using BepInEx.Logging;
 
 namespace Humans;
 
@@ -25,6 +31,7 @@ public class HumansPlugin : BaseSpaceWarpPlugin
     private bool _isWindowOpen;
     private const string ToolbarDebugButtonID = "BTN-Humans-debug";
     private const string ToolbarButtonID = "BTN-Humans";
+    private static readonly ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("Humans");
 
     public static HumansPlugin Instance { get; set; }
 
@@ -32,6 +39,8 @@ public class HumansPlugin : BaseSpaceWarpPlugin
     {
         base.OnInitialized();
         Instance = this;
+
+        Harmony.CreateAndPatchAll(typeof(HumansPlugin));
 
         Appbar.RegisterAppButton(
             "Humans debug",
@@ -78,6 +87,35 @@ public class HumansPlugin : BaseSpaceWarpPlugin
             _isDebugWindowOpen = !_isDebugWindowOpen;
 
         if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKeyDown(KeyCode.H))
+        {
             _isWindowOpen = !_isWindowOpen;
+
+            foreach (var kerbal in Manager.Instance.AllKerbals)
+            {
+                Manager.Instance.Roster._portraitRenderer.TakeKerbalPortrait(kerbal);
+            }
+        }
+
+    }
+
+    [HarmonyPatch(typeof(Kerbal3DModel), "Build3DKerbal", new Type[] { typeof(KerbalAttributes) }), HarmonyPrefix]
+    //[HarmonyPatch(typeof(Kerbal3DModel), "Build3DKerbal", new Type[] {typeof(KerbalAttributes)})]
+    //[HarmonyPatch(new Type[] { typeof(KerbalAttributes) })]
+    //private static bool Build3DKerbal_AttributeInjection(ref Kerbal3DModel __instance)
+    private static bool Build3DKerbal_AttributeInjection(ref KerbalAttributes kerbalAttributes)
+    {
+        
+        _logger.LogInfo($"Build3DKerbal_AttributeInjection triggered. Kerbal name is: {kerbalAttributes.GetFullName()}");
+
+        if (kerbalAttributes.GetFullName() == "Tim C Kerman")
+        {
+            _logger.LogInfo("It's Tim. Setting attribute.");
+
+            var color = new Color32(141, 85, 36, 255);
+            var varietyPreloadInfox = new VarietyPreloadInfo(color, typeof(GameObject), "");
+            kerbalAttributes.SetAttribute("SKINCOLOR", varietyPreloadInfox);
+        }
+
+        return true;
     }
 }
