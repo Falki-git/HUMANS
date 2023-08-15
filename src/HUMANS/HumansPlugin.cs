@@ -15,6 +15,8 @@ using Newtonsoft.Json.Linq;
 using static Mono.Math.BigInteger;
 using UnityEngine.InputSystem;
 using BepInEx.Logging;
+using KSP.Modding.Variety;
+using KSP;
 
 namespace Humans;
 
@@ -90,32 +92,41 @@ public class HumansPlugin : BaseSpaceWarpPlugin
         {
             _isWindowOpen = !_isWindowOpen;
 
-            foreach (var kerbal in Manager.Instance.AllKerbals)
-            {
-                Manager.Instance.Roster._portraitRenderer.TakeKerbalPortrait(kerbal);
-            }
+            //foreach (var kerbal in Manager.Instance.AllKerbals)
+            //{
+            //    Manager.Instance.Roster._portraitRenderer.TakeKerbalPortrait(kerbal);
+            //}
         }
-
     }
 
-    [HarmonyPatch(typeof(Kerbal3DModel), "Build3DKerbal", new Type[] { typeof(KerbalAttributes) }), HarmonyPrefix]
-    //[HarmonyPatch(typeof(Kerbal3DModel), "Build3DKerbal", new Type[] {typeof(KerbalAttributes)})]
-    //[HarmonyPatch(new Type[] { typeof(KerbalAttributes) })]
-    //private static bool Build3DKerbal_AttributeInjection(ref Kerbal3DModel __instance)
-    private static bool Build3DKerbal_AttributeInjection(ref KerbalAttributes kerbalAttributes)
+    [HarmonyPatch(typeof(Kerbal3DModel), "BuildCharacterFromLoadedAttributes",
+        new Type[] { typeof(Dictionary<string, KerbalVarietyAttributeRule>),
+            typeof(Dictionary<string, VarietyPreloadInfo>) }),
+        HarmonyPrefix]
+    private static bool BuildCharacterFromLoadedAttributes_AttributeInjection(
+        Dictionary<string, KerbalVarietyAttributeRule> attributeRules,
+        Dictionary<string, VarietyPreloadInfo> preloadedAttributes, Kerbal3DModel __instance)
     {
-        
-        _logger.LogInfo($"Build3DKerbal_AttributeInjection triggered. Kerbal name is: {kerbalAttributes.GetFullName()}");
+        string name = preloadedAttributes["NAME"].value.ToString();
+        _logger.LogInfo($"BuildCharacterFromLoadedAttributes_AttributeInjection triggered. Kerbal name is: {name}");
 
-        if (kerbalAttributes.GetFullName() == "Tim C Kerman")
+        /*
+        if (name == "Valentina")
         {
-            _logger.LogInfo("It's Tim. Setting attribute.");
-
-            var color = new Color32(141, 85, 36, 255);
-            var varietyPreloadInfox = new VarietyPreloadInfo(color, typeof(GameObject), "");
-            kerbalAttributes.SetAttribute("SKINCOLOR", varietyPreloadInfox);
+            preloadedAttributes["SKINCOLOR"].value = new Color(1, 0, 0, 1);
         }
+        */
 
         return true;
     }
+
+    //[HarmonyPatch(typeof(VarietyUtils), "ApplyKerbalSkinColor",
+    //    new Type[] { typeof(GameObject), typeof(Color) }),
+    //    HarmonyPrefix]
+    //private static bool ApplyKerbalSkinColor_Prefix(
+    //    ref GameObject GO, ref Color color)
+    //{
+
+    //    return true;
+    //}
 }

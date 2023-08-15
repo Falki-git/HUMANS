@@ -1,4 +1,6 @@
-﻿using IGUtils;
+﻿using BepInEx.Logging;
+using IGUtils;
+using KSP;
 using KSP.Game;
 using KSP.Messages;
 using KSP.Sim;
@@ -6,6 +8,7 @@ using KSP.Sim.impl;
 using KSP.UI.Binding;
 using Newtonsoft.Json.Serialization;
 using SpaceWarp.API.UI;
+using System;
 using UnityEngine;
 
 namespace Humans
@@ -17,7 +20,9 @@ namespace Humans
         private Rect _windowRect = new Rect(650, 140, 600, 100);
         private int spaceAdjuster = -12;
 
-        #pragma warning disable CS0618 // Type or member is obsolete
+        private static readonly ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("Humans.UI");
+
+#pragma warning disable CS0618 // Type or member is obsolete
         private GUIStyle _styleCentered = new GUIStyle(Skins.ConsoleSkin.label) { alignment = TextAnchor.MiddleCenter };        
         private GUIStyle _styleSmall = new GUIStyle(Skins.ConsoleSkin.label) { fontSize = 11 };
         #pragma warning restore CS0618 // Type or member is obsolete
@@ -69,42 +74,59 @@ namespace Humans
         string _attachTo;
         string _objName;
         GameObject _obj;
+        KerbalComponent kerbalComponent;
 
         private void FillDebugUI(int _)
         {
             var kerbal = _kerbals[_kerbalIndexDebug];
 
-            if (GUILayout.Button("button1"))
+            if (GUILayout.Button("Recreate EVA 3D model"))
             {
-                //kerbal.SetLocation(kerbal.Id, IGGuid.Empty, 0);
-
                 UniverseModel universeModel = GameManager.Instance.Game.UniverseModel;
-                var x = universeModel._allKerbals;
-                //KerbalComponent kerbalComponent = universeModel.FindKerbalComponent(kerbal.Id);
-                KerbalComponent kerbalComponent = universeModel._allKerbals[new IGGuid(new Guid(_value))];
-                if (kerbalComponent != null)
+                kerbalComponent = universeModel.FindKerbalComponent(new IGGuid(new Guid(_value)));
+
+                //create
+                var spawnPos = kerbalComponent.SimulationObject.Position;
+                var spawnRot = kerbalComponent.SimulationObject.Rotation;
+                var kerbalInfo = kerbalComponent.KerbalInfo;
+                int seatIdx = 0;
+                Action<IGGuid> createdCallback = (guid) => { };
+                bool createdFromEVA = true;
+
+                SimulationObjectModel newSimulationObjectModel = null;
+
+                try
                 {
-                    kerbalComponent.EVAStartLocationId = IGGuid.Empty;
-                    SimulationObjectModel simulationObject = kerbalComponent.SimulationObject;
-                    VesselComponent vessel = simulationObject.Vessel;
-                    IGAssert.IsNotNull(vessel, "SimObject 'kerbalSimObject' must have a VesselComponent since all Kerbals are also Vessels.");
-                    vessel.IsKerbalEVA = false;
-                    GameManager.Instance.Game.Messages.Publish<EVALeftMessage>();
-                    simulationObject.Destroy();
+                    newSimulationObjectModel =
+                    EVAUtils.CreateKerbalSimObject
+                        (EVAUtils.ComputeOrbitLocation(spawnPos, spawnRot),
+                        kerbalInfo,
+                        seatIdx,
+                        createdCallback,
+                        createdFromEVA);
                 }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex);
+                }
+
+                EVAUtils.SetActiveVesselSimObject(newSimulationObjectModel);
+
+                kerbalComponent.SimulationObject.Destroy();
             }
-            if (GUILayout.Button("button2"))
+
+            if (GUILayout.Button("Refresh Jeb IVA"))
             {
-                var sim = GameManager.Instance.Game.ViewController.GetActiveVehicle().GetSimulationObject();
-                var roster = Manager.Instance.Roster;
-                roster.SetKerbalLocation(kerbal, sim, 0);
+                var k = Manager.Instance.Roster._kerbals.Values.First();
 
-                var x = new KSP.Modding.Variety.KerbalVarietyAttributeRule();
-
+                KerbalLocationChanged kerbalLocationChanged = GameManager.Instance.Game.Messages.CreateMessage<KerbalLocationChanged>();
+                if (kerbalLocationChanged != null)
+                {
+                    kerbalLocationChanged.Kerbal = k;
+                    kerbalLocationChanged.OldLocation = k.Location;
+                    GameManager.Instance.Game.Messages.Publish<KerbalLocationChanged>(kerbalLocationChanged);
+                }                
             }
-
-
-
 
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("<"))
