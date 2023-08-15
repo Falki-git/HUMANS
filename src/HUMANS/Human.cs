@@ -1,9 +1,6 @@
 ﻿using KSP.Game;
 using KSP.Sim;
 using KSP.Sim.impl;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 
 namespace Humans

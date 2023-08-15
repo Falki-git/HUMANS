@@ -143,7 +143,7 @@ namespace Humans
             }
             GUILayout.EndHorizontal();
             
-            GUILayout.Label($"kerbal.Id={kerbal.Id}", _styleSmall);
+            GUILayout.Label($"kerbal.SessionGuidString={kerbal.Id}", _styleSmall);
             GUILayout.Space(spaceAdjuster);
             GUILayout.Label($"kerbal.NameKey={kerbal.NameKey}");
             GUILayout.Space(spaceAdjuster);

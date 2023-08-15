@@ -19,7 +19,20 @@ namespace Humans
         public List<string> Heads = new();
         public List<string> FacePaints = new();
 
-        public Presets()
+        private Presets() { }
+
+        public static Presets Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new Presets();
+
+                return _instance;
+            }
+        }
+
+        public void Initialize()
         {
             InitializeSkinColors();
             InitializeHairStyles();
@@ -32,17 +45,6 @@ namespace Humans
             InitializeBodies();
             InitializeHeads();
             InitializeFacePaints();
-        }        
-
-        public static Presets Instance
-        {
-            get
-            {
-                if (_instance == null)
-                    _instance = new Presets();
-
-                return _instance;
-            }
         }
         
 
@@ -692,7 +694,6 @@ namespace Humans
             FacePaints.Add("CLOWN");
             FacePaints.Add("EYE SCAR");
             FacePaints.Add("WHISKER MARKS");
-
         }
 
 
