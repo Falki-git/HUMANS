@@ -42,7 +42,8 @@ public class HumansPlugin : BaseSpaceWarpPlugin
         base.OnInitialized();
         Instance = this;
 
-        Harmony.CreateAndPatchAll(typeof(HumansPlugin));
+        //Harmony.CreateAndPatchAll(typeof(HumansPlugin));
+        Harmony.CreateAndPatchAll(typeof(Patches));
 
         Appbar.RegisterAppButton(
             "Humans debug",
@@ -65,6 +66,8 @@ public class HumansPlugin : BaseSpaceWarpPlugin
                 GameObject.Find(ToolbarButtonID)?.GetComponent<UIValue_WriteBool_Toggle>()?.SetValue(isOpen);
             }
         );
+
+        Manager.Instance.Initialize();
     }
 
     private void OnGUI()
@@ -99,26 +102,7 @@ public class HumansPlugin : BaseSpaceWarpPlugin
         }
     }
 
-    [HarmonyPatch(typeof(Kerbal3DModel), "BuildCharacterFromLoadedAttributes",
-        new Type[] { typeof(Dictionary<string, KerbalVarietyAttributeRule>),
-            typeof(Dictionary<string, VarietyPreloadInfo>) }),
-        HarmonyPrefix]
-    private static bool BuildCharacterFromLoadedAttributes_AttributeInjection(
-        Dictionary<string, KerbalVarietyAttributeRule> attributeRules,
-        Dictionary<string, VarietyPreloadInfo> preloadedAttributes, Kerbal3DModel __instance)
-    {
-        string name = preloadedAttributes["NAME"].value.ToString();
-        _logger.LogInfo($"BuildCharacterFromLoadedAttributes_AttributeInjection triggered. Kerbal name is: {name}");
 
-        /*
-        if (name == "Valentina")
-        {
-            preloadedAttributes["SKINCOLOR"].value = new Color(1, 0, 0, 1);
-        }
-        */
-
-        return true;
-    }
 
     //[HarmonyPatch(typeof(VarietyUtils), "ApplyKerbalSkinColor",
     //    new Type[] { typeof(GameObject), typeof(Color) }),
