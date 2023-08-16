@@ -18,7 +18,8 @@
         <BaseIntermediateOutputPath>$(SolutionDir)build/obj/$(MSBuildProjectName)</BaseIntermediateOutputPath>
 		<!-- <AssemblyName>$(MSBuildProjectName)</AssemblyName> -->
 		<!-- <AssemblyName>com.github.falki.humans</AssemblyName> -->
-		<AssemblyName>com.github.falki.humans</AssemblyName>
+		<!-- <AssemblyName>com.github.falki.humans</AssemblyName> -->
+		<AssemblyName>Humans</AssemblyName>
         <RootNamespace>Humans</RootNamespace>
         <Configurations>Debug;Release;Deploy;DeployAndRun</Configurations>
         <Platforms>AnyCPU</Platforms>
