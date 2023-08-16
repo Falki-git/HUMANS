@@ -15,4 +15,4 @@ jobs:
         uses: Rexicon226/VerifierAction@V0.5
 
       - name: KSP2 Builder
-        uses: Rexicon226/KSP2Builder@V0.1
+        uses: Falki-git/KSP2Builder@V0.4
