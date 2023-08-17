@@ -26,12 +26,11 @@ namespace Humans
 
         public void SubscribeToMessages()
         {
-            MessageCenter.Subscribe<KSCLoadedMessage>(new Action<MessageCenterMessage>(this.OnKSCLoadedMessage));
-        }
-
-        private void OnKSCLoadedMessage(MessageCenterMessage obj)
-        {
-            //TODO check if campaign is initialized. If not, raise the screen for mode selection
-        }
+            MessageCenter.Subscribe<KSCLoadedMessage>(new Action<MessageCenterMessage>(obj =>
+            {
+                _logger.LogDebug("KSCLoadedMessage triggered.");
+                Manager.Instance.OnKSCLoadedMessage(obj);
+            }));
+        }        
     }
 }
