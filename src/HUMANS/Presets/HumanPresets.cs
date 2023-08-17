@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace Humans
 {
-    public class Presets
+    public class HumanPresets
     {
-        private static Presets _instance;
+        private static HumanPresets _instance;
 
         public List<SkinColorPreset> SkinColors = new();
         public List<string> HairStyles = new();
@@ -19,14 +19,14 @@ namespace Humans
         public List<string> Heads = new();
         public List<string> FacePaints = new();
 
-        private Presets() { }
+        private HumanPresets() { }
 
-        public static Presets Instance
+        public static HumanPresets Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new Presets();
+                    _instance = new HumanPresets();
 
                 return _instance;
             }
@@ -46,7 +46,7 @@ namespace Humans
             InitializeHeads();
             InitializeFacePaints();
         }
-        
+
 
         private void InitializeSkinColors()
         {
@@ -88,14 +88,14 @@ namespace Humans
 
             ///// FAIR /////
             /*
-            Presets.Add(new SkinColor() // REMOVE
+            HumanPresets.Add(new SkinColor() // REMOVE
             {
                 Type = SkinType.Fair,
                 Name = "#f2efee",
                 Color = new(242,239,238, 255)
             });
 
-            Presets.Add(new SkinColor() // REMOVE
+            HumanPresets.Add(new SkinColor() // REMOVE
             {
                 Type = SkinType.Fair,
                 Name = "#efe6dd",
@@ -326,7 +326,7 @@ namespace Humans
                 Color = new(241, 217, 183, 255)
             });
             /*
-            Presets.Add(new SkinColor()
+            HumanPresets.Add(new SkinColor()
             {
                 Type = SkinType.Natural,
                 Name = "Lemon Meringue",
@@ -492,10 +492,10 @@ namespace Humans
         {
             Helmets.Add("HELM_SPACESUIT_01");
         }
-    
+
         private void InitializeHairColors()
         {
-            HairColors.Add(new HairColorPreset ()
+            HairColors.Add(new HairColorPreset()
             {
                 Type = HairColorType.Kerbal,
                 Name = "Dark Brown",
