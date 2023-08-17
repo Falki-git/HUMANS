@@ -34,7 +34,7 @@ public class HumansPlugin : BaseSpaceWarpPlugin
     private bool _isWindowOpen;
     private const string ToolbarDebugButtonID = "BTN-Humans-debug";
     private const string ToolbarButtonID = "BTN-Humans";
-    private static readonly ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("Humans");
+    private readonly ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("Humans");
 
     public static HumansPlugin Instance { get; set; }
 
@@ -43,7 +43,6 @@ public class HumansPlugin : BaseSpaceWarpPlugin
         base.OnInitialized();
         Instance = this;
 
-        //Harmony.CreateAndPatchAll(typeof(HumansPlugin));
         Harmony.CreateAndPatchAll(typeof(Patches));
 
         Appbar.RegisterAppButton(
@@ -73,7 +72,7 @@ public class HumansPlugin : BaseSpaceWarpPlugin
 
     private void OnGUI()
     {
-        if (Manager.Instance.Roster == null)
+        if (Utility.Roster == null)
             return;
 
         #pragma warning disable CS0618 // Type or member is obsolete
@@ -85,6 +84,9 @@ public class HumansPlugin : BaseSpaceWarpPlugin
 
         if (_isWindowOpen)
             UI.Instance.DrawUI();
+
+        if (UI.Instance.ShowCultureSelection == true)
+            UI.Instance.DrawCultureSelectionWindow();
     }
 
     private void Update()
@@ -101,6 +103,8 @@ public class HumansPlugin : BaseSpaceWarpPlugin
             //    Manager.Instance.Roster._portraitRenderer.TakeKerbalPortrait(kerbal);
             //}
         }
+
+        Manager.Instance.Update();
     }
 
 

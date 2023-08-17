@@ -48,5 +48,10 @@ namespace Humans
         /// If kerbal with this ID has been initialized with human parameters
         /// </summary>
         public bool IsHumanized { get; set; }
+
+        public void Humanize()
+        {
+            // TODO Humanize default kerbals - assign them a skin color, hair color, names, etc.
+        }
     }
 }

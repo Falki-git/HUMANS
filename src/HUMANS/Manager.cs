@@ -1,26 +1,12 @@
-﻿using KSP.Game;
-using KSP.OAB;
-using KSP.Sim.impl;
+﻿using BepInEx.Logging;
+using KSP.Game;
+using KSP.Messages;
 using UnityEngine;
 
 namespace Humans
 {
-    public class Manager : MonoBehaviour
-    {
-        public KerbalRosterManager Roster => GameManager.Instance?.Game?.SessionManager?.KerbalRosterManager;
-        public List<KerbalInfo> AllKerbals => Roster.GetAllKerbals();
-        public List<KerbalInfo> KerbalsInVessel(IGGuid guid) => Roster.GetAllKerbalsInVessel(guid);
-        public List<KerbalInfo> KerbalsInVessel(IGGuid simObjectId, IObjectAssembly assembly) => Roster.GetAllKerbalsInAssembly(simObjectId, assembly);
-        public KerbalVarietySystem VarietySystem => Roster.VarietySystem;
-        public DictionaryValueList<IGGuid, KerbalInfo> Kerbals => Roster._kerbals;
-        public KerbalPhotoBooth PortraitRenderer => Roster._portraitRenderer;
-
-        public List<CampaignParameters> Campaigns = new ();
-        public CampaignParameters ActiveCampaign;
-
-        private Manager() { }
-
-        private static Manager _instance;
+    public class Manager
+    {        
         public static Manager Instance
         {
             get
@@ -31,23 +17,71 @@ namespace Humans
                 return _instance;
             }
         }
+        private static Manager _instance;
+
+        private Manager() { }
+
+        public List<CampaignParameters> Campaigns = new ();
+        public CampaignParameters LoadedCampaign => Campaigns.Find(c => c.IsLoaded);
+
+        private readonly ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("Humans.Manager");
+
+
 
         public void Initialize()
         {
-            Presets.Instance.Initialize();
+            HumanPresets.Instance.Initialize();
+            CulturePresets.Instance.Initialize();
+            Utility.SaveCulturePresets();
+            MessageListener.Instance.SubscribeToMessages();
 
             //TODO load campaigns from disk
             //TODO set active campaign if exists
+
+
         }
-
-
-        public void InitializeRoster() => Roster.Initialize();
-        public bool IsKerbalAssemblyTemplateInitialized() => Roster.IsKerbalAssemblyTemplateInitialized;
-        public void LoadKerbalRosterGlobalSettingsAsset() => Roster.LoadKerbalRosterGlobalSettingsAsset();
 
         public void Update()
         {
             return;
+        }
+
+        // TODO move to controller
+        public void OnKSCLoadedMessage(MessageCenterMessage obj)
+        {
+            //TODO check if campaign is initialized. If not, raise the screen for mode selection
+            var campaignGuid = GameManager.Instance.Game.SessionGuidString;
+            var sessionManager = GameManager.Instance.Game.SessionManager;
+
+            var campaign = Campaigns.Find(c => c.SessionGuidString == campaignGuid);
+
+            if (campaign == null)
+            {
+                campaign = new(sessionManager, campaignGuid);
+                Campaigns.Add(campaign);
+                Utility.SaveCampaigns();
+            }
+
+            if (!campaign.IsInitialized)
+            {                
+                UI.Instance.ShowCultureSelection = true;
+
+                //TODO:
+                //raise the screen for mode selection
+                //player selects a mode
+                //SelectedCulture is set
+                //all kerbals go through humanization
+                //campaign is saved to a json file
+                //next time player starts the game, humanized kerbals are loaded
+            }
+        }
+
+        public void OnCultureSelected(Culture culture)
+        {
+            LoadedCampaign.SelectedCulture = culture.Name;
+            //TODO what happens when culture is selected
+
+            Utility.SaveCampaigns();
         }
     }
 }

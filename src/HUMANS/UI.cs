@@ -6,6 +6,7 @@ using KSP.Messages;
 using KSP.Sim;
 using KSP.Sim.impl;
 using KSP.UI.Binding;
+using KSP.VFX;
 using Newtonsoft.Json.Serialization;
 using SpaceWarp.API.UI;
 using System;
@@ -18,6 +19,7 @@ namespace Humans
         private static UI _instance;
         private Rect _debugWindowRect = new Rect(650, 140, 500, 100);
         private Rect _windowRect = new Rect(650, 140, 600, 100);
+        private Rect _cultureSelectionRect = new Rect(200, 200, 800, 100);
         private int spaceAdjuster = -12;
 
         private static readonly ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("Humans.UI");
@@ -27,12 +29,14 @@ namespace Humans
         private GUIStyle _styleSmall = new GUIStyle(Skins.ConsoleSkin.label) { fontSize = 11 };
         #pragma warning restore CS0618 // Type or member is obsolete
 
-        private List<KerbalInfo> _kerbals => Manager.Instance.AllKerbals;
+        private List<KerbalInfo> _kerbals => Utility.AllKerbals;
 
         private int _kerbalIndexDebug;
         private int _kerbalIndex;
         private int _skinColorPresetIndex;
         private int _hairColorPresetIndex;
+
+        public bool ShowCultureSelection;
 
         internal static UI Instance
         {
@@ -67,6 +71,17 @@ namespace Humans
                 );
         }
 
+        internal void DrawCultureSelectionWindow()
+        {
+            _cultureSelectionRect = GUILayout.Window(
+                GUIUtility.GetControlID(FocusType.Passive),
+                _cultureSelectionRect,
+                FillCultureSelection,
+                "// Select culture",
+                GUILayout.Height(0)
+                );
+        }        
+
         #region DEBUG
         string _key;
         string _type;
@@ -80,6 +95,7 @@ namespace Humans
         {
             var kerbal = _kerbals[_kerbalIndexDebug];
 
+            // THIS WORKS FOR EVA
             if (GUILayout.Button("Recreate EVA 3D model"))
             {
                 UniverseModel universeModel = GameManager.Instance.Game.UniverseModel;
@@ -115,9 +131,10 @@ namespace Humans
                 kerbalComponent.SimulationObject.Destroy();
             }
 
+            // THIS WORKS FOR IVA
             if (GUILayout.Button("Refresh Jeb IVA"))
             {
-                var k = Manager.Instance.Roster._kerbals.Values.First();
+                var k = Utility.Roster._kerbals.Values.First();
 
                 KerbalLocationChanged kerbalLocationChanged = GameManager.Instance.Game.Messages.CreateMessage<KerbalLocationChanged>();
                 if (kerbalLocationChanged != null)
@@ -127,6 +144,12 @@ namespace Humans
                     GameManager.Instance.Game.Messages.Publish<KerbalLocationChanged>(kerbalLocationChanged);
                 }                
             }
+            if (GUILayout.Button("deserialization test"))
+            {
+                Utility.LoadCulturePresets();
+
+            }
+
 
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("<"))
@@ -236,8 +259,8 @@ namespace Humans
 
         private void FillUI(int _)
         {
-            var skinColorPresets = Presets.Instance.SkinColors;
-            var hairColorPresets = Presets.Instance.HairColors;
+            var skinColorPresets = HumanPresets.Instance.SkinColors;
+            var hairColorPresets = HumanPresets.Instance.HairColors;
             var kerbal = _kerbals[_kerbalIndex];
             var skinColorPreset = skinColorPresets[_skinColorPresetIndex];
             var hairColorPreset = hairColorPresets[_hairColorPresetIndex];
@@ -363,7 +386,7 @@ namespace Humans
             //kerbal.Attributes.SetAttribute("SKINCOLOR", variety);
             kerbal.Attributes.SetAttribute(skin.Key, skin.Variety);
 
-            Manager.Instance.Roster._portraitRenderer.TakeKerbalPortrait(kerbal);
+            Utility.Roster._portraitRenderer.TakeKerbalPortrait(kerbal);
         }
 
         private void ApplyHairColor(KerbalInfo kerbal, HairColorPreset color)
@@ -371,7 +394,26 @@ namespace Humans
             var hair = new HairColor();
             hair.Value = (Color)color.Color;
             kerbal.Attributes.SetAttribute(hair.Key, hair.Variety);
-            Manager.Instance.Roster._portraitRenderer.TakeKerbalPortrait(kerbal);
+            Utility.Roster._portraitRenderer.TakeKerbalPortrait(kerbal);
+        }
+
+        private void FillCultureSelection(int _)
+        {
+            foreach (var culture in CulturePresets.Instance.Cultures)
+            {
+                GUILayout.BeginHorizontal();
+                {
+                    GUILayout.Label($"{culture.Name}");
+                    if (GUILayout.Button("Select"))
+                    {
+                        Manager.Instance.OnCultureSelected(culture);
+                        ShowCultureSelection = false;
+                    }
+                    GUILayout.EndHorizontal();
+                }
+            }
+
+            GUI.DragWindow(new Rect(0, 0, Screen.width, Screen.height));
         }
     }
 }
