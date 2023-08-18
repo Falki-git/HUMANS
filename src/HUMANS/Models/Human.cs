@@ -10,7 +10,7 @@ namespace Humans
         public IGGuid Id { get; set; }
         public KerbalInfo KerbalInfo { get; set; }
         public Gender Gender { get; set; }
-        public NationName Nationality { get; set; }
+        public string Nationality { get; set; }
 
 
         public string Name { get; set; }

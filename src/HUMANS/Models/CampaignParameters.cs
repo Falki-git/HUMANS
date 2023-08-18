@@ -17,12 +17,12 @@ namespace Humans
         public string SessionGuidString { get; set; }
         [JsonProperty(Order = 2)]
         public string CampaignName { get; set; }
-        
+
         // Campaign that is currently loaded
         public bool IsLoaded { get; set; }
 
         [JsonProperty(Order = 3)]
-        public CultureName SelectedCulture;
+        public string SelectedCulture;
         [JsonProperty(Order = 4)]
         public bool IsInitialized { get; set; }
 

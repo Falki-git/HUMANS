@@ -1,5 +1,4 @@
-﻿using BepInEx.Logging;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Humans
 {

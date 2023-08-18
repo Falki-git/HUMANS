@@ -1,12 +1,11 @@
 ﻿using BepInEx.Logging;
 using KSP.Game;
 using KSP.Messages;
-using UnityEngine;
 
 namespace Humans
 {
     public class Manager
-    {        
+    {
         public static Manager Instance
         {
             get
@@ -21,7 +20,7 @@ namespace Humans
 
         private Manager() { }
 
-        public List<CampaignParameters> Campaigns = new ();
+        public List<CampaignParameters> Campaigns = new();
         public CampaignParameters LoadedCampaign => Campaigns.Find(c => c.IsLoaded);
 
         private readonly ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("Humans.Manager");
@@ -63,8 +62,8 @@ namespace Humans
             }
 
             if (!campaign.IsInitialized)
-            {                
-                UI.Instance.ShowCultureSelection = true;
+            {
+                UI_DEBUG.Instance.ShowCultureSelection = true;
 
                 //TODO:
                 //raise the screen for mode selection
