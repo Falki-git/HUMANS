@@ -1,5 +1,4 @@
-﻿
-namespace Humans
+﻿namespace Humans
 {
     /// <summary>
     /// Color Palette from https://huebliss.com/skin-color-code/
@@ -26,13 +25,16 @@ namespace Humans
         Kerbal
     }
 
+    /*
     public enum CultureName
     {
         American,
         European,
         Asian
     }
+    */
 
+    /*
     public enum NationName
     {
         USA,
@@ -41,6 +43,7 @@ namespace Humans
         France,
         // ...
     }
+    */
 
     public enum Gender
     {
