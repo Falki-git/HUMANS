@@ -1,33 +1,27 @@
 ﻿using BepInEx.Logging;
-using IGUtils;
 using KSP;
 using KSP.Game;
 using KSP.Messages;
-using KSP.Sim;
 using KSP.Sim.impl;
-using KSP.UI.Binding;
-using KSP.VFX;
-using Newtonsoft.Json.Serialization;
 using SpaceWarp.API.UI;
-using System;
 using UnityEngine;
 
 namespace Humans
 {
-    internal class UI
+    internal class UI_DEBUG
     {
-        private static UI _instance;
+        private static UI_DEBUG _instance;
         private Rect _debugWindowRect = new Rect(650, 140, 500, 100);
         private Rect _windowRect = new Rect(650, 140, 600, 100);
         private Rect _cultureSelectionRect = new Rect(200, 200, 800, 100);
         private int spaceAdjuster = -12;
 
-        private static readonly ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("Humans.UI");
+        private static readonly ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("Humans.UI_DEBUG");
 
 #pragma warning disable CS0618 // Type or member is obsolete
-        private GUIStyle _styleCentered = new GUIStyle(Skins.ConsoleSkin.label) { alignment = TextAnchor.MiddleCenter };        
+        private GUIStyle _styleCentered = new GUIStyle(Skins.ConsoleSkin.label) { alignment = TextAnchor.MiddleCenter };
         private GUIStyle _styleSmall = new GUIStyle(Skins.ConsoleSkin.label) { fontSize = 11 };
-        #pragma warning restore CS0618 // Type or member is obsolete
+#pragma warning restore CS0618 // Type or member is obsolete
 
         private List<KerbalInfo> _kerbals => Utility.AllKerbals;
 
@@ -38,12 +32,12 @@ namespace Humans
 
         public bool ShowCultureSelection;
 
-        internal static UI Instance
+        internal static UI_DEBUG Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new UI();
+                    _instance = new UI_DEBUG();
 
                 return _instance;
             }
@@ -80,7 +74,7 @@ namespace Humans
                 "// Select culture",
                 GUILayout.Height(0)
                 );
-        }        
+        }
 
         #region DEBUG
         string _key;
@@ -141,12 +135,12 @@ namespace Humans
                 {
                     kerbalLocationChanged.Kerbal = k;
                     kerbalLocationChanged.OldLocation = k.Location;
-                    GameManager.Instance.Game.Messages.Publish<KerbalLocationChanged>(kerbalLocationChanged);
-                }                
+                    GameManager.Instance.Game.Messages.Publish(kerbalLocationChanged);
+                }
             }
             if (GUILayout.Button("deserialization test"))
             {
-                Utility.LoadCulturePresets();
+                Utility.LoadCulturePresetsDebug();
 
             }
 
@@ -165,7 +159,7 @@ namespace Humans
                     _kerbalIndexDebug++;
             }
             GUILayout.EndHorizontal();
-            
+
             GUILayout.Label($"kerbal.SessionGuidString={kerbal.Id}", _styleSmall);
             GUILayout.Space(spaceAdjuster);
             GUILayout.Label($"kerbal.NameKey={kerbal.NameKey}");
@@ -179,7 +173,7 @@ namespace Humans
                 //Manager.Instance.Roster.GenerateKerbalPortrait(kerbal);
                 GameManager.Instance.Game.SessionManager.KerbalRosterManager._portraitRenderer.TakeKerbalPortrait(kerbal);
                 //Manager.Instance.Roster._portraitRenderer._kerbal3DModelGameObject.Build3DKerbal()                
-            }            
+            }
 
             //var photos = GameManager.Instance.Game.SessionManager.KerbalRosterManager._portraitRenderer._generatedKerbalPhotos;
             GUILayout.BeginHorizontal();
@@ -198,7 +192,7 @@ namespace Humans
 
                     if (GUILayout.Button("SetAttribute"))
                     {
-                        
+
                         kerbal.Attributes.SetAttribute(_key, new VarietyPreloadInfo(_value, Type.GetType(_type), _attachTo));
                         //HEAD_F_01;
                         //UnityEngine.GameObject
@@ -230,7 +224,7 @@ namespace Humans
                 GUILayout.EndVertical();
             }
             GUILayout.EndHorizontal();
-            
+
             GUILayout.Label($"atributes:", _styleSmall);
             GUILayout.Space(spaceAdjuster);
             GUILayout.Label($"kerbal.Attributes.CustomNameKey={kerbal.Attributes.CustomNameKey}", _styleSmall);
@@ -296,7 +290,7 @@ namespace Humans
                     GUILayout.Label($"Name= {kerbal.NameKey}");
 
                     GUILayout.Label($"Skin color presets:");
-                    
+
                     GUILayout.BeginHorizontal();
                     {
                         if (GUILayout.Button("<"))
@@ -368,7 +362,7 @@ namespace Humans
 
                     GUILayout.EndVertical();
                 }
-                
+
                 GUILayout.EndHorizontal();
             }
 
