@@ -3,20 +3,12 @@ using KSP.UI.Binding;
 using JetBrains.Annotations;
 using SpaceWarp;
 using SpaceWarp.API.Mods;
-using KSP.Game;
-using KSP.Sim.impl;
 using SpaceWarp.API.Assets;
 using SpaceWarp.API.UI;
 using SpaceWarp.API.UI.Appbar;
 using UnityEngine;
 using HarmonyLib;
-using KSP.Game.Flow;
-using Newtonsoft.Json.Linq;
-using static Mono.Math.BigInteger;
-using UnityEngine.InputSystem;
 using BepInEx.Logging;
-using KSP.Modding.Variety;
-using KSP;
 
 namespace Humans;
 
@@ -80,13 +72,13 @@ public class HumansPlugin : BaseSpaceWarpPlugin
         #pragma warning restore CS0618 // Type or member is obsolete
 
         if (_isDebugWindowOpen)
-            UI.Instance.DrawDebugUI();
+            UI_DEBUG.Instance.DrawDebugUI();
 
         if (_isWindowOpen)
-            UI.Instance.DrawUI();
+            UI_DEBUG.Instance.DrawUI();
 
-        if (UI.Instance.ShowCultureSelection == true)
-            UI.Instance.DrawCultureSelectionWindow();
+        if (UI_DEBUG.Instance.ShowCultureSelection == true)
+            UI_DEBUG.Instance.DrawCultureSelectionWindow();
     }
 
     private void Update()
