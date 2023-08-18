@@ -1,15 +1,16 @@
-﻿
-using UnityEngine;
+﻿using System.Reflection;
 
 namespace Humans
 {
     public class CulturePresets
     {
         private CulturePresets() { }
-        
-        public List<Culture> Cultures = new ();
-        public List<Nation> Nations = new ();
 
+        public List<Culture> Cultures = new();
+        public List<Nation> Nations = new();
+
+        private readonly string _culturesPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "data", "culture_presets.json");
+        private readonly string _nationsPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "data", "nation_presets.json");
 
         private static CulturePresets _instance;
         public static CulturePresets Instance
@@ -25,10 +26,14 @@ namespace Humans
 
         public void Initialize()
         {
-            InitializeNations();
-            InitializeCultures();
+            Cultures = Utility.LoadPresets<List<Culture>>(_culturesPath);
+            Nations = Utility.LoadPresets<List<Nation>>(_nationsPath);
+
+            //InitializeNations();
+            //InitializeCultures();
         }
 
+        /*
         private void InitializeNations()
         {
             Nations.Add(new Nation
@@ -77,20 +82,6 @@ namespace Humans
                 NationalityWeights = new Dictionary<NationName, int> { } //TODO Asians nations
             });
         }
-
-        //public class Culture
-        //{
-        //    public CultureName Name; // American, European, Russian, East Asia, India...
-        //    public Texture2D PicturePath;
-        //    public Dictionary<Nation, int> NationalityWeights;
-        //}
-
-        //public class Nation
-        //{
-        //    public NationName Name; // USA, Germany, France...
-        //    public Texture2D FlagPath;
-        //    public List<string> FirstNames;
-        //    public List<string> LastNames;
-        //}
+        */
     }
 }

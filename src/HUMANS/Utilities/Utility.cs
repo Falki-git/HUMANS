@@ -55,20 +55,54 @@ namespace Humans
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
 
-            string path2 = Path.Combine(path, "CulturePresets.json");
+            string path2 = Path.Combine(path, "CulturePresetsOutput.json");
 
             File.WriteAllText(path2, JsonConvert.SerializeObject(CulturePresets.Instance.Cultures));
 
-            path2 = Path.Combine(path, "NationPresets.json");
+            path2 = Path.Combine(path, "NationPresetsOutput.json");
 
             File.WriteAllText(path2, JsonConvert.SerializeObject(CulturePresets.Instance.Nations));
         }
 
-        public static void LoadCulturePresets()
+        public static void LoadCulturePresetsDebug()
         {
-            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "data", "culture_test.json");
-            List<Culture> deserializedCultures = JsonConvert.DeserializeObject<List<Culture>>(File.ReadAllText(path));
+            List<Culture> deserializedCultures;
+            List<Nation> deserializedNations;
+
+            try
+            {
+                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "data", "culture_presets.json");
+                deserializedCultures = JsonConvert.DeserializeObject<List<Culture>>(File.ReadAllText(path));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Cultures deserialization error.\n" + ex);
+            }
+
+            try
+            {
+                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "data", "nation_presets.json");
+                deserializedNations = JsonConvert.DeserializeObject<List<Nation>>(File.ReadAllText(path));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Nations deserialization error.\n" + ex);
+            }
+
             return;
+        }
+
+        public static T LoadPresets<T>(string path)
+        {
+            try
+            {
+                return JsonConvert.DeserializeObject<T>(File.ReadAllText(path));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex);
+                return default(T);
+            }
         }
     }
 }
