@@ -19,7 +19,10 @@ namespace Humans
         public List<string> Heads = new();
         public List<string> FacePaints = new();
 
-        private readonly string _skinColorsPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "data", "skin_color_presets.json");
+        private readonly string _baseDataPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "data");
+        private string _skinColorsPath => Path.Combine(_baseDataPath, "skin_color_presets.json");
+        private string _hairStylesPath => Path.Combine(_baseDataPath, "hair_styles_presets.json");
+        private string _helmetsPath => Path.Combine(_baseDataPath, "helmets_presets.json");
 
         private HumanPresets() { }
 
@@ -57,31 +60,12 @@ namespace Humans
 
         private void InitializeHairStyles()
         {
-            HairStyles.Add("HAIR_F_01");
-            HairStyles.Add("HAIR_F_02");
-            HairStyles.Add("HAIR_F_03");
-            HairStyles.Add("HAIR_F_04");
-            HairStyles.Add("HAIR_F_05");
-            HairStyles.Add("HAIR_F_06");
-            HairStyles.Add("HAIR_F_07");
-            HairStyles.Add("HAIR_F_08");
-            HairStyles.Add("HAIR_F_09");
-            HairStyles.Add("HAIR_F_10");
-            HairStyles.Add("HAIR_M_01");
-            HairStyles.Add("HAIR_M_02");
-            HairStyles.Add("HAIR_M_03");
-            HairStyles.Add("HAIR_M_04");
-            HairStyles.Add("HAIR_M_05");
-            HairStyles.Add("HAIR_M_06");
-            HairStyles.Add("HAIR_M_07");
-            HairStyles.Add("HAIR_M_08");
-            HairStyles.Add("HAIR_M_09");
-            HairStyles.Add("HAIR_M_10");
+            HairStyles = Utility.LoadPresets<List<string>>(_hairStylesPath);
         }
 
         private void InitializeHelmets()
         {
-            Helmets.Add("HELM_SPACESUIT_01");
+            Helmets = Utility.LoadPresets<List<string>>(_helmetsPath);
         }
 
         private void InitializeHairColors()

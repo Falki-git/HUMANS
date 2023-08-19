@@ -94,13 +94,19 @@ namespace Humans
 
         public static T LoadPresets<T>(string path)
         {
+            string typeName = typeof(T).IsGenericType
+                ? $"{typeof(T).Name}<{string.Join(", ", typeof(T).GetGenericArguments().Select(t => t.Name))}>"
+                : typeof(T).Name;
+
             try
             {
-                return JsonConvert.DeserializeObject<T>(File.ReadAllText(path));
+                var toReturn = JsonConvert.DeserializeObject<T>(File.ReadAllText(path));
+                _logger.LogInfo($"Loaded presets {typeName} from path {path}.");
+                return toReturn;
             }
             catch (Exception ex)
-            {
-                _logger.LogError($"Error loading {typeof(T).Name} presets.\n" + ex);
+            {                
+                _logger.LogError($"Error loading {typeName} presets from {path}.\n" + ex);
                 return default(T);
             }
         }
@@ -110,6 +116,12 @@ namespace Humans
             try
             {
                 File.WriteAllText(path, JsonConvert.SerializeObject(toSave));
+
+                string typeName = typeof(T).IsGenericType
+                ? $"{typeof(T).Name}<{string.Join(", ", typeof(T).GetGenericArguments().Select(t => t.Name))}>"
+                : typeof(T).Name;
+
+                _logger.LogInfo($"Saved presets {typeName} to path {path}.");
             }
 
             catch (Exception ex)
