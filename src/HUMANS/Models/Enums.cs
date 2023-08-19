@@ -1,8 +1,6 @@
 ﻿namespace Humans
 {
-    /// <summary>
-    /// Color Palette from https://huebliss.com/skin-color-code/
-    /// </summary>
+    /*
     public enum SkinType
     {
         Real,
@@ -18,6 +16,7 @@
         Black,
         Kerbal
     }
+    */
 
     public enum HairColorType
     {

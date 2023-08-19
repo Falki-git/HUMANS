@@ -100,7 +100,7 @@ namespace Humans
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex);
+                _logger.LogError($"Error loading {typeof(T).Name} presets.\n" + ex);
                 return default(T);
             }
         }
