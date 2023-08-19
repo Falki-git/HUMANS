@@ -170,13 +170,14 @@ namespace Humans
                 Name = "#ffcd94",
                 Color = new(255, 205, 148, 255)
             });
-
+            /*
             SkinColors.Add(new SkinColorPreset()
             {
                 Type = SkinType.Caucasian,
                 Name = "#ffe0bd",
                 Color = new(255, 224, 189, 255)
             });
+            */
 
             SkinColors.Add(new SkinColorPreset()
             {
@@ -185,12 +186,14 @@ namespace Humans
                 Color = new(234, 192, 134, 255)
             });
 
+            /*
             SkinColors.Add(new SkinColorPreset()
             {
                 Type = SkinType.Caucasian,
                 Name = "#ffe39f",
                 Color = new(255, 227, 159, 255)
             });
+            */
 
             SkinColors.Add(new SkinColorPreset()
             {
@@ -252,12 +255,14 @@ namespace Humans
                 Name = "Desert Sand",
                 Color = new(235, 191, 174, 255)
             });
+            /*
             SkinColors.Add(new SkinColorPreset()
             {
                 Type = SkinType.BeautifulTouch,
                 Name = "Champagne Pink",
                 Color = new(242, 214, 204, 255)
             });
+            */
 
             // https://www.schemecolor.com/ebony-skin.php
             SkinColors.Add(new SkinColorPreset()
