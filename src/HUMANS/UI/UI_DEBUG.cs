@@ -266,8 +266,17 @@ namespace Humans
 
                     if (GUILayout.Button("SetAttribute"))
                     {
-
-                        kerbal.Attributes.SetAttribute(_key, new VarietyPreloadInfo(_value, Type.GetType(_type), _attachTo));
+                        Color c = new Color();
+                        if (_type == "UnityEngine.Color, UnityEngine")
+                        {
+                            string[] values = _value.Split(' ');
+                            c.r = float.Parse(values[0]);
+                            c.g = float.Parse(values[1]);
+                            c.b = float.Parse(values[2]);
+                            c.a = float.Parse(values[3]);
+                        }
+                        
+                        kerbal.Attributes.SetAttribute(_key, new VarietyPreloadInfo(_type == "UnityEngine.Color, UnityEngine" ? c : _value, Type.GetType(_type), _attachTo));
                         //HEAD_F_01;
                         //UnityEngine.GameObject
                     }
