@@ -104,5 +104,18 @@ namespace Humans
                 return default(T);
             }
         }
+
+        public static void SavePresets<T>(T toSave, string path)
+        {
+            try
+            {
+                File.WriteAllText(path, JsonConvert.SerializeObject(toSave));
+            }
+
+            catch (Exception ex)
+            {
+                _logger.LogError(ex);
+            }
+        }
     }
 }
