@@ -11,7 +11,7 @@ namespace Humans
         public List<string> HairStyles = new();
         public List<string> Helmets = new();
         public List<HairColorPreset> HairColors = new();
-        public List<string> Eyes = new();
+        public List<EyesPreset> Eyes = new();
         public List<string> FacialHairs = new();
         public List<string> FaceDecorations = new();
         public List<int> VoiceSelection = new();
@@ -21,8 +21,10 @@ namespace Humans
 
         private readonly string _baseDataPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "data");
         private string _skinColorsPath => Path.Combine(_baseDataPath, "skin_color_presets.json");
-        private string _hairStylesPath => Path.Combine(_baseDataPath, "hair_styles_presets.json");
-        private string _helmetsPath => Path.Combine(_baseDataPath, "helmets_presets.json");
+        private string _hairStylesPath => Path.Combine(_baseDataPath, "hair_style_presets.json");
+        private string _helmetsPath => Path.Combine(_baseDataPath, "helmet_presets.json");
+        private string _eyesPath => Path.Combine(_baseDataPath, "eyes_presets.json");
+        private string _hairColorsPath => Path.Combine(_baseDataPath, "hair_color_presets.json");
 
         private HumanPresets() { }
 
@@ -70,152 +72,12 @@ namespace Humans
 
         private void InitializeHairColors()
         {
-            HairColors.Add(new HairColorPreset()
-            {
-                Type = HairColorType.Kerbal,
-                Name = "Dark Brown",
-                Color = new(85, 72, 63, 255),
-                Weight = 3
-            });
-            HairColors.Add(new HairColorPreset()
-            {
-                Type = HairColorType.Kerbal,
-                Name = "Black",
-                Color = new(22, 21, 20, 255),
-                Weight = 3
-            });
-            HairColors.Add(new HairColorPreset()
-            {
-                Type = HairColorType.Kerbal,
-                Name = "Dark Blue",
-                Color = new(38, 41, 58, 255),
-                Weight = 3
-            });
-            HairColors.Add(new HairColorPreset()
-            {
-                Type = HairColorType.Kerbal,
-                Name = "Dark Red",
-                Color = new(70, 37, 35, 255),
-                Weight = 3
-            });
-            HairColors.Add(new HairColorPreset()
-            {
-                Type = HairColorType.Kerbal,
-                Name = "Dark Green",
-                Color = new(70, 66, 35, 255),
-                Weight = 3
-            });
-            HairColors.Add(new HairColorPreset()
-            {
-                Type = HairColorType.Kerbal,
-                Name = "Orange",
-                Color = new(243, 141, 40, 255),
-                Weight = 1
-            });
-            HairColors.Add(new HairColorPreset()
-            {
-                Type = HairColorType.Kerbal,
-                Name = "Gray",
-                Color = new(204, 204, 204, 255),
-                Weight = 1
-            });
-            HairColors.Add(new HairColorPreset()
-            {
-                Type = HairColorType.Kerbal,
-                Name = "Brown",
-                Color = new(132, 80, 38, 255),
-                Weight = 1
-            });
-            HairColors.Add(new HairColorPreset()
-            {
-                Type = HairColorType.Kerbal,
-                Name = "Golden",
-                Color = new(219, 213, 148, 255),
-                Weight = 1
-            });
-            HairColors.Add(new HairColorPreset()
-            {
-                Type = HairColorType.Kerbal,
-                Name = "White",
-                Color = new(247, 247, 247, 255),
-                Weight = 1
-            });
-            HairColors.Add(new HairColorPreset()
-            {
-                Type = HairColorType.Kerbal,
-                Name = "Ultramarine",
-                Color = new(0, 60, 125, 255),
-                Weight = 1
-            });
-            HairColors.Add(new HairColorPreset()
-            {
-                Type = HairColorType.Kerbal,
-                Name = "Sepia",
-                Color = new(255, 188, 115, 255),
-                Weight = 1
-            });
-            HairColors.Add(new HairColorPreset()
-            {
-                Type = HairColorType.Kerbal,
-                Name = "Light Brown",
-                Color = new(152, 124, 104, 255),
-                Weight = 1
-            });
-            HairColors.Add(new HairColorPreset()
-            {
-                Type = HairColorType.Kerbal,
-                Name = "Dijon",
-                Color = new(183, 171, 101, 255),
-                Weight = 1
-            });
-            HairColors.Add(new HairColorPreset()
-            {
-                Type = HairColorType.Kerbal,
-                Name = "Light Orange",
-                Color = new(233, 159, 65, 255),
-                Weight = 1
-            });
-            HairColors.Add(new HairColorPreset()
-            {
-                Type = HairColorType.Kerbal,
-                Name = "Blond",
-                Color = new(255, 211, 122, 255),
-                Weight = 1
-            });
-            HairColors.Add(new HairColorPreset()
-            {
-                Type = HairColorType.Kerbal,
-                Name = "Graying blond",
-                Color = new(152, 134, 98, 255),
-                Weight = 1
-            });
-            HairColors.Add(new HairColorPreset()
-            {
-                Type = HairColorType.Kerbal,
-                Name = "Canary Blond",
-                Color = new(255, 196, 79, 255),
-                Weight = 1
-            });
-            HairColors.Add(new HairColorPreset()
-            {
-                Type = HairColorType.Kerbal,
-                Name = "Dirty Blond",
-                Color = new(195, 168, 115, 255),
-                Weight = 1
-            });
-            HairColors.Add(new HairColorPreset()
-            {
-                Type = HairColorType.Kerbal,
-                Name = "Light Blond",
-                Color = new(233, 200, 134, 255),
-                Weight = 1
-            });
+            HairColors = Utility.LoadPresets<List<HairColorPreset>>(_hairColorsPath);
         }
 
         private void InitializeEyes()
         {
-            Eyes.Add("EYES_F_01");
-            Eyes.Add("EYES_M_01");
+            Eyes = Utility.LoadPresets<List<EyesPreset>>(_eyesPath);
         }
 
         private void InitializeFacialHairs()
@@ -288,6 +150,12 @@ namespace Humans
         public string Name;
         public Color32 Color;
         public int Weight;
+    }
+
+    public class EyesPreset
+    {
+        public Gender Gender;
+        public string Name;
     }
 
 

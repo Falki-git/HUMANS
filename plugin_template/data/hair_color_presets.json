@@ -1,0 +1,387 @@
+[
+  {
+    "Type": "Kerbal",
+    "Name": "Dark Brown",
+    "Color": {
+      "r": 85,
+      "g": 72,
+      "b": 63,
+      "a": 255
+    },
+    "Weight": 10
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "Black",
+    "Color": {
+      "r": 22,
+      "g": 21,
+      "b": 20,
+      "a": 255
+    },
+    "Weight": 10
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "Dark Blue",
+    "Color": {
+      "r": 38,
+      "g": 41,
+      "b": 58,
+      "a": 255
+    },
+    "Weight": 10
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "Dark Red",
+    "Color": {
+      "r": 70,
+      "g": 37,
+      "b": 35,
+      "a": 255
+    },
+    "Weight": 8
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "Dark Green",
+    "Color": {
+      "r": 70,
+      "g": 66,
+      "b": 35,
+      "a": 255
+    },
+    "Weight": 1
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "Orange",
+    "Color": {
+      "r": 243,
+      "g": 141,
+      "b": 40,
+      "a": 255
+    },
+    "Weight": 1
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "Gray",
+    "Color": {
+      "r": 204,
+      "g": 204,
+      "b": 204,
+      "a": 255
+    },
+    "Weight": 10
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "Brown",
+    "Color": {
+      "r": 132,
+      "g": 80,
+      "b": 38,
+      "a": 255
+    },
+    "Weight": 10
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "Golden",
+    "Color": {
+      "r": 219,
+      "g": 213,
+      "b": 148,
+      "a": 255
+    },
+    "Weight": 3
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "White",
+    "Color": {
+      "r": 247,
+      "g": 247,
+      "b": 247,
+      "a": 255
+    },
+    "Weight": 10
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "Ultramarine",
+    "Color": {
+      "r": 0,
+      "g": 60,
+      "b": 125,
+      "a": 255
+    },
+    "Weight": 0
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "Sepia",
+    "Color": {
+      "r": 255,
+      "g": 188,
+      "b": 115,
+      "a": 255
+    },
+    "Weight": 5
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "Light Brown",
+    "Color": {
+      "r": 152,
+      "g": 124,
+      "b": 104,
+      "a": 255
+    },
+    "Weight": 10
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "Dijon",
+    "Color": {
+      "r": 183,
+      "g": 171,
+      "b": 101,
+      "a": 255
+    },
+    "Weight": 10
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "Light Orange",
+    "Color": {
+      "r": 233,
+      "g": 159,
+      "b": 65,
+      "a": 255
+    },
+    "Weight": 8
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "Blond",
+    "Color": {
+      "r": 255,
+      "g": 211,
+      "b": 122,
+      "a": 255
+    },
+    "Weight": 10
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "Graying blond",
+    "Color": {
+      "r": 152,
+      "g": 134,
+      "b": 98,
+      "a": 255
+    },
+    "Weight": 10
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "Canary Blond",
+    "Color": {
+      "r": 255,
+      "g": 196,
+      "b": 79,
+      "a": 255
+    },
+    "Weight": 5
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "Dirty Blond",
+    "Color": {
+      "r": 195,
+      "g": 168,
+      "b": 115,
+      "a": 255
+    },
+    "Weight": 5
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "Light Blond",
+    "Color": {
+      "r": 233,
+      "g": 200,
+      "b": 134,
+      "a": 255
+    },
+    "Weight": 5
+  },
+  {
+    "Type": "Human",
+    "Name": "Root Beer",
+    "Color": {
+      "r": 35,
+      "g": 18,
+      "b": 1,
+      "a": 255
+    },
+    "Weight": 10
+  },
+  {
+    "Type": "Human",
+    "Name": "Bistre",
+    "Color": {
+      "r": 61,
+      "g": 35,
+      "b": 20,
+      "a": 255
+    },
+    "Weight": 10
+  },
+  {
+    "Type": "Human",
+    "Name": "Liver",
+    "Color": {
+      "r": 90,
+      "g": 56,
+      "b": 37,
+      "a": 255
+    },
+    "Weight": 10
+  },
+  {
+    "Type": "Human",
+    "Name": "Brown Yellow",
+    "Color": {
+      "r": 204,
+      "g": 153,
+      "b": 102,
+      "a": 255
+    },
+    "Weight": 10
+  },
+  {
+    "Type": "Human",
+    "Name": "Zinnwaldite Brown",
+    "Color": {
+      "r": 44,
+      "g": 22,
+      "b": 8,
+      "a": 255
+    },
+    "Weight": 10
+  },
+  {
+    "Type": "Human",
+    "Name": "Boy Red",
+    "Color": {
+      "r": 118,
+      "g": 89,
+      "b": 82,
+      "a": 255
+    },
+    "Weight": 5
+  },
+  {
+    "Type": "Human",
+    "Name": "Antique Brass",
+    "Color": {
+      "r": 200,
+      "g": 151,
+      "b": 125,
+      "a": 255
+    },
+    "Weight": 5
+  },
+  {
+    "Type": "Human",
+    "Name": "Brown Sugar",
+    "Color": {
+      "r": 174,
+      "g": 109,
+      "b": 75,
+      "a": 255
+    },
+    "Weight": 5
+  },
+  {
+    "Type": "Human",
+    "Name": "Chestnut",
+    "Color": {
+      "r": 138,
+      "g": 74,
+      "b": 44,
+      "a": 255
+    },
+    "Weight": 5
+  },
+  {
+    "Type": "Human",
+    "Name": "Royal Brown",
+    "Color": {
+      "r": 90,
+      "g": 54,
+      "b": 43,
+      "a": 255
+    },
+    "Weight": 5
+  },
+  {
+    "Type": "Human",
+    "Name": "Red",
+    "Color": {
+      "r": 150,
+      "g": 0,
+      "b": 0,
+      "a": 255
+    },
+    "Weight": 5
+  },
+  {
+    "Type": "Human",
+    "Name": "Joker",
+    "Color": {
+      "r": 0,
+      "g": 255,
+      "b": 0,
+      "a": 255
+    },
+    "Weight": 0
+  },
+  {
+    "Type": "Human",
+    "Name": "Blue",
+    "Color": {
+      "r": 0,
+      "g": 0,
+      "b": 255,
+      "a": 255
+    },
+    "Weight": 0
+  },
+  {
+    "Type": "Human",
+    "Name": "Pink",
+    "Color": {
+      "r": 255,
+      "g": 0,
+      "b": 255,
+      "a": 255
+    },
+    "Weight": 0
+  },
+  {
+    "Type": "Human",
+    "Name": "Purple",
+    "Color": {
+      "r": 150,
+      "g": 0,
+      "b": 230,
+      "a": 255
+    },
+    "Weight": 0
+  }
+]
