@@ -56,6 +56,20 @@
 			"Czechia" : 1,
 			"Vietnam" : 1,
 			"Croatia" : 1
+		},
+		"SkinColorWeights": {
+			"Real" : 10,
+			"Fair" : 10,
+			"Dark" : 5,
+			"Caucasian" : 10,
+			"Indian" : 5,
+			"BeautifulTouch" : 15,
+			"Ebony" : 5,
+			"NormalAndTan" : 10,
+			"Natural" : 15,
+			"Asian" : 10,
+			"Black" : 5,
+			"Kerbal" : 0
 		}
 	},
 	{
@@ -115,6 +129,20 @@
             "Russia" : 1,
             "Ukraine" : 1,
             "Vietnam" : 1
+		},
+		"SkinColorWeights": {
+			"Real" : 15,
+			"Fair" : 15,
+			"Dark" : 3,
+			"Caucasian" : 15,
+			"Indian" : 3,
+			"BeautifulTouch" : 20,
+			"Ebony" : 3,
+			"NormalAndTan" : 15,
+			"Natural" : 5,
+			"Asian" : 3,
+			"Black" : 3,
+			"Kerbal" : 0
 		}
 	},
 	{
@@ -174,6 +202,20 @@
 			"Ukraine" : 1,
 			"Czechia" : 1,
 			"Croatia" : 1
+		},
+		"SkinColorWeights": {
+			"Real" : 0,
+			"Fair" : 10,
+			"Dark" : 0,
+			"Caucasian" : 0,
+			"Indian" : 0,
+			"BeautifulTouch" : 10,
+			"Ebony" : 0,
+			"NormalAndTan" : 20,
+			"Natural" : 30,
+			"Asian" : 30,
+			"Black" : 0,
+			"Kerbal" : 0
 		}
 	},
 	{
@@ -233,6 +275,20 @@
             "India" : 1,
             "Malta" : 1,
             "Vietnam" : 1
-		}
+		},
+		"SkinColorWeights": {
+			"Real" : 10,
+			"Fair" : 20,
+			"Dark" : 0,
+			"Caucasian" : 20,
+			"Indian" : 0,
+			"BeautifulTouch" : 20,
+			"Ebony" : 0,
+			"NormalAndTan" : 20,
+			"Natural" : 5,
+			"Asian" : 5,
+			"Black" : 0,
+			"Kerbal" : 0
+		}		
 	}
 ]

@@ -1,0 +1,532 @@
+[
+  {
+    "Type": "Real",
+    "Name": "Russet",
+    "Color": {
+      "r": 141,
+      "g": 85,
+      "b": 36,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Real",
+    "Name": "Peru",
+    "Color": {
+      "r": 198,
+      "g": 134,
+      "b": 66,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Real",
+    "Name": "Fawn",
+    "Color": {
+      "r": 224,
+      "g": 172,
+      "b": 105,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Real",
+    "Name": "Mellow Apricot",
+    "Color": {
+      "r": 241,
+      "g": 194,
+      "b": 125,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Real",
+    "Name": "Navajo White",
+    "Color": {
+      "r": 255,
+      "g": 219,
+      "b": 172,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Fair",
+    "Name": "#e8d3c5",
+    "Color": {
+      "r": 232,
+      "g": 211,
+      "b": 197,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Fair",
+    "Name": "#d7b6a5",
+    "Color": {
+      "r": 215,
+      "g": 182,
+      "b": 165,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Fair",
+    "Name": "#9f7967",
+    "Color": {
+      "r": 159,
+      "g": 121,
+      "b": 103,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Dark",
+    "Name": "#70361c",
+    "Color": {
+      "r": 112,
+      "g": 54,
+      "b": 28,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Dark",
+    "Name": "#714937",
+    "Color": {
+      "r": 113,
+      "g": 73,
+      "b": 55,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Dark",
+    "Name": "#65371e",
+    "Color": {
+      "r": 101,
+      "g": 55,
+      "b": 30,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Dark",
+    "Name": "#492816",
+    "Color": {
+      "r": 73,
+      "g": 40,
+      "b": 22,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Dark",
+    "Name": "#321b0f",
+    "Color": {
+      "r": 50,
+      "g": 27,
+      "b": 15,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Caucasian",
+    "Name": "#ffcd94",
+    "Color": {
+      "r": 255,
+      "g": 205,
+      "b": 148,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Caucasian",
+    "Name": "#eac086",
+    "Color": {
+      "r": 234,
+      "g": 192,
+      "b": 134,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Caucasian",
+    "Name": "#ffad60",
+    "Color": {
+      "r": 255,
+      "g": 173,
+      "b": 96,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Indian",
+    "Name": "#bf9169",
+    "Color": {
+      "r": 191,
+      "g": 145,
+      "b": 105,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Indian",
+    "Name": "#8c644d",
+    "Color": {
+      "r": 140,
+      "g": 100,
+      "b": 77,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Indian",
+    "Name": "#593123",
+    "Color": {
+      "r": 89,
+      "g": 49,
+      "b": 35,
+      "a": 255
+    }
+  },
+  {
+    "Type": "BeautifulTouch",
+    "Name": "Café Au Lait",
+    "Color": {
+      "r": 179,
+      "g": 121,
+      "b": 89,
+      "a": 255
+    }
+  },
+  {
+    "Type": "BeautifulTouch",
+    "Name": "Antique Brass",
+    "Color": {
+      "r": 212,
+      "g": 152,
+      "b": 120,
+      "a": 255
+    }
+  },
+  {
+    "Type": "BeautifulTouch",
+    "Name": "Tumbleweed",
+    "Color": {
+      "r": 232,
+      "g": 175,
+      "b": 149,
+      "a": 255
+    }
+  },
+  {
+    "Type": "BeautifulTouch",
+    "Name": "Desert Sand",
+    "Color": {
+      "r": 235,
+      "g": 191,
+      "b": 174,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Ebony",
+    "Name": "Royal Brown",
+    "Color": {
+      "r": 84,
+      "g": 55,
+      "b": 52,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Ebony",
+    "Name": "Rose Ebony",
+    "Color": {
+      "r": 102,
+      "g": 70,
+      "b": 63,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Ebony",
+    "Name": "Quincy",
+    "Color": {
+      "r": 112,
+      "g": 83,
+      "b": 77,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Ebony",
+    "Name": "Deep Taupe",
+    "Color": {
+      "r": 125,
+      "g": 99,
+      "b": 91,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Ebony",
+    "Name": "Shadow",
+    "Color": {
+      "r": 138,
+      "g": 112,
+      "b": 106,
+      "a": 255
+    }
+  },
+  {
+    "Type": "NormalAndTan",
+    "Name": "Unbleached Silk",
+    "Color": {
+      "r": 248,
+      "g": 224,
+      "b": 200,
+      "a": 255
+    }
+  },
+  {
+    "Type": "NormalAndTan",
+    "Name": "Crayola's Tan",
+    "Color": {
+      "r": 213,
+      "g": 156,
+      "b": 110,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Natural",
+    "Name": "Fawn",
+    "Color": {
+      "r": 219,
+      "g": 169,
+      "b": 116,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Natural",
+    "Name": "Crayola's Gold",
+    "Color": {
+      "r": 227,
+      "g": 192,
+      "b": 139,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Natural",
+    "Name": "Dutch White",
+    "Color": {
+      "r": 241,
+      "g": 217,
+      "b": 183,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Asian",
+    "Name": "Pale Pink",
+    "Color": {
+      "r": 249,
+      "g": 222,
+      "b": 215,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Asian",
+    "Name": "Baby Pink",
+    "Color": {
+      "r": 236,
+      "g": 201,
+      "b": 189,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Asian",
+    "Name": "Pastel Pink",
+    "Color": {
+      "r": 232,
+      "g": 179,
+      "b": 162,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Asian",
+    "Name": "Desert Sand",
+    "Color": {
+      "r": 240,
+      "g": 194,
+      "b": 170,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Asian",
+    "Name": "Dutch White",
+    "Color": {
+      "r": 240,
+      "g": 211,
+      "b": 192,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Black",
+    "Name": "Root Beer",
+    "Color": {
+      "r": 38,
+      "g": 7,
+      "b": 1,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Black",
+    "Name": "Black Bean",
+    "Color": {
+      "r": 61,
+      "g": 12,
+      "b": 2,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Black",
+    "Name": "Burnt Umber",
+    "Color": {
+      "r": 132,
+      "g": 55,
+      "b": 34,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Black",
+    "Name": "Brown Sugar",
+    "Color": {
+      "r": 175,
+      "g": 110,
+      "b": 81,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Black",
+    "Name": "Antique Brass",
+    "Color": {
+      "r": 198,
+      "g": 144,
+      "b": 118,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "1",
+    "Color": {
+      "r": 202,
+      "g": 218,
+      "b": 129,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "2",
+    "Color": {
+      "r": 186,
+      "g": 218,
+      "b": 84,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "3",
+    "Color": {
+      "r": 136,
+      "g": 157,
+      "b": 70,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "4",
+    "Color": {
+      "r": 113,
+      "g": 157,
+      "b": 70,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "5",
+    "Color": {
+      "r": 148,
+      "g": 198,
+      "b": 99,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "6",
+    "Color": {
+      "r": 153,
+      "g": 217,
+      "b": 91,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "7",
+    "Color": {
+      "r": 151,
+      "g": 176,
+      "b": 80,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "8",
+    "Color": {
+      "r": 190,
+      "g": 219,
+      "b": 108,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "9",
+    "Color": {
+      "r": 123,
+      "g": 146,
+      "b": 60,
+      "a": 255
+    }
+  },
+  {
+    "Type": "Kerbal",
+    "Name": "10",
+    "Color": {
+      "r": 157,
+      "g": 193,
+      "b": 55,
+      "a": 255
+    }
+  }
+]
