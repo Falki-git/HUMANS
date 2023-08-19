@@ -7,17 +7,17 @@ namespace Humans
     {
         private static HumanPresets _instance;
 
-        public List<SkinColorPreset> SkinColors = new();
-        public List<string> HairStyles = new();
-        public List<string> Helmets = new();
-        public List<HairColorPreset> HairColors = new();
-        public List<EyesPreset> Eyes = new();
-        public List<string> FacialHairs = new();
-        public List<string> FaceDecorations = new();
-        public List<int> VoiceSelection = new();
-        public List<string> Bodies = new();
-        public List<HeadPreset> Heads = new();
-        public List<string> FacePaints = new();
+        public List<SkinColorPreset> SkinColors;
+        public List<string> HairStyles;
+        public List<string> Helmets;
+        public List<HairColorPreset> HairColors;
+        public List<EyesPreset> Eyes;
+        public List<string> FacialHairs;
+        public List<string> FaceDecorations;
+        public List<int> VoiceSelection;
+        public List<string> Bodies;
+        public List<HeadPreset> Heads;
+        public List<string> FacePaints;
 
         private readonly string _baseDataPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "data");
         private string _skinColorsPath => Path.Combine(_baseDataPath, "skin_color_presets.json");
