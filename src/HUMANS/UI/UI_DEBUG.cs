@@ -2,8 +2,10 @@
 using KSP;
 using KSP.Game;
 using KSP.Messages;
+using KSP.Sim;
 using KSP.Sim.impl;
 using SpaceWarp.API.UI;
+using System.Reflection;
 using UnityEngine;
 
 namespace Humans
@@ -12,6 +14,7 @@ namespace Humans
     {
         private static UI_DEBUG _instance;
         private Rect _debugWindowRect = new Rect(650, 140, 500, 100);
+        private Rect _debugColorWindowRect = new Rect(100, 100, 1600, 2000);
         private Rect _windowRect = new Rect(650, 140, 600, 100);
         private Rect _cultureSelectionRect = new Rect(200, 200, 800, 100);
         private int spaceAdjuster = -12;
@@ -31,6 +34,7 @@ namespace Humans
         private int _hairColorPresetIndex;
 
         public bool ShowCultureSelection;
+        private bool _showDebugColorWindow;
 
         internal static UI_DEBUG Instance
         {
@@ -74,6 +78,66 @@ namespace Humans
                 "// Select culture",
                 GUILayout.Height(0)
                 );
+        }
+
+        internal void OnGui()
+        {
+            if (_showDebugColorWindow)
+            {
+                _debugColorWindowRect = GUILayout.Window(
+                GUIUtility.GetControlID(FocusType.Passive),
+                _debugColorWindowRect,
+                FillColorDebug,
+                "// Color debug",
+                GUILayout.Height(0)
+                );
+            }
+        }
+
+        private void FillColorDebug(int _)
+        {
+            //SkinColorPreset color;
+            int width = 50;
+            int height = 50;
+
+            var skinTypes = HumanPresets.Instance.SkinColors.Select(s => s.Type).Distinct();
+
+            foreach (var type in skinTypes)
+            {
+                GUILayout.BeginHorizontal();
+                {
+                    var skins = HumanPresets.Instance.SkinColors.Where(s => s.Type == type);
+
+                    foreach (var skin in skins)
+                    {
+                        GUILayout.BeginVertical();
+
+                        GUILayout.Label($"<b>{skin.Type}</b>", _styleSmall);
+                        GUILayout.Space(spaceAdjuster);
+                        GUILayout.Label($"{skin.Name}", _styleSmall);
+                        GUILayout.Space(spaceAdjuster);
+                        GUILayout.Label($"{skin.Color}", _styleSmall);
+                        GUILayout.Space(spaceAdjuster);
+
+                        var t = new Texture2D(width, height);
+                        Color32[] pixels = new Color32[width * height];
+                        for (int j = 0; j < pixels.Length; j++)
+                        {
+                            pixels[j] = skin.Color;
+                        }
+                        t.SetPixels32(pixels);
+                        t.Apply();
+                        GUILayout.Label(t);
+                        
+                        GUILayout.EndVertical();
+                    }
+
+                    GUILayout.FlexibleSpace();
+                }
+                GUILayout.EndHorizontal();
+            }
+
+            GUI.DragWindow(new Rect(0, 0, Screen.width, Screen.height));
         }
 
         #region DEBUG
@@ -141,7 +205,17 @@ namespace Humans
             if (GUILayout.Button("deserialization test"))
             {
                 Utility.LoadCulturePresetsDebug();
+            }
 
+            if (GUILayout.Button("display skin colors"))
+            {
+                _showDebugColorWindow = !_showDebugColorWindow;                
+            }
+            if (GUILayout.Button("Export skin colors"))
+            {
+                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "data", "skin_color_presets.json");
+                var toSave = HumanPresets.Instance.SkinColors;
+                Utility.SavePresets<List<SkinColorPreset>>(toSave, path);
             }
 
 

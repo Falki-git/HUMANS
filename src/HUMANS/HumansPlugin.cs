@@ -71,6 +71,8 @@ public class HumansPlugin : BaseSpaceWarpPlugin
         GUI.skin = Skins.ConsoleSkin;
         #pragma warning restore CS0618 // Type or member is obsolete
 
+        UI_DEBUG.Instance.OnGui();
+
         if (_isDebugWindowOpen)
             UI_DEBUG.Instance.DrawDebugUI();
 
