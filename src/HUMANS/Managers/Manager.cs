@@ -31,7 +31,7 @@ namespace Humans
         {
             HumanPresets.Instance.Initialize();
             CulturePresets.Instance.Initialize();
-            Utility.SaveCulturePresets();
+            //Utility.SaveCulturePresets();
             MessageListener.Instance.SubscribeToMessages();
 
             //TODO load campaigns from disk
