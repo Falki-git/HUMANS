@@ -25,6 +25,10 @@ namespace Humans
         private string _helmetsPath => Path.Combine(_baseDataPath, "helmet_presets.json");
         private string _eyesPath => Path.Combine(_baseDataPath, "eyes_presets.json");
         private string _hairColorsPath => Path.Combine(_baseDataPath, "hair_color_presets.json");
+        private string _faceDecorationsPath => Path.Combine(_baseDataPath, "face_decoration_presets.json");
+        private string _facialHairPath => Path.Combine(_baseDataPath, "facial_hair_presets.json");
+        private string _bodiesPath => Path.Combine(_baseDataPath, "body_presets.json");
+
 
         private HumanPresets() { }
 
@@ -82,22 +86,12 @@ namespace Humans
 
         private void InitializeFacialHairs()
         {
-            FacialHairs.Add("TIMC_FACIALHAIR");
+            FacialHairs = Utility.LoadPresets<List<string>>(_facialHairPath);
         }
 
         private void InitializeFaceDecorations()
         {
-            FaceDecorations.Add("DECO_FACE_GLASSES_AVIATORS_01");
-            FaceDecorations.Add("DECO_FACE_GLASSES_CATEYE_01");
-            FaceDecorations.Add("DECO_FACE_GLASSES_CIRCULAR_01");
-            FaceDecorations.Add("DECO_FACE_GLASSES_NASA60S_01");
-            FaceDecorations.Add("DECO_FACE_GLASSES_NERDY_01");
-            FaceDecorations.Add("DECO_FACE_GLASSES_RIMLESS_01");
-            FaceDecorations.Add("DECO_FACE_GLASSES_WIDE_01");
-            FaceDecorations.Add("DECO_FACE_GLASSES_WIDE_02");
-            FaceDecorations.Add("DECO_FACE_SAFETY_01");
-            FaceDecorations.Add("DECO_FACE_SAFETY_02");
-            FaceDecorations.Add("DECO_FACE_SAFETY_03");
+            FaceDecorations = Utility.LoadPresets<List<string>>(_faceDecorationsPath);
         }
 
         private void InitializeVoiceSelection()
@@ -107,12 +101,7 @@ namespace Humans
 
         private void InitializeBodies()
         {
-            Bodies.Add("BODY_SPACESUIT_01");
-            Bodies.Add("BODY_GROUNDCREW_01");
-            Bodies.Add("BODY_JUMPSUIT_01");
-            Bodies.Add("BODY_JUMPSUIT_02");
-            Bodies.Add("BODY_SCIENTIST_01");
-            Bodies.Add("BODY_WORKER_01");
+            Bodies = Utility.LoadPresets<List<string>>(_bodiesPath);
         }
 
         private void InitializeHeads()
