@@ -5,7 +5,18 @@ namespace Humans
 {
     public class HumanPresets
     {
+        private HumanPresets() { }
         private static HumanPresets _instance;
+        public static HumanPresets Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new HumanPresets();
+
+                return _instance;
+            }
+        }
 
         public List<SkinColorPreset> SkinColors;
         public List<string> HairStyles;
@@ -32,18 +43,7 @@ namespace Humans
         private string _facePaintsPath => Path.Combine(_baseDataPath, "face_paint_presets.json");
 
 
-        private HumanPresets() { }
-
-        public static HumanPresets Instance
-        {
-            get
-            {
-                if (_instance == null)
-                    _instance = new HumanPresets();
-
-                return _instance;
-            }
-        }
+        
 
         public void Initialize()
         {

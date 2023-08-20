@@ -6,6 +6,7 @@ namespace Humans
 {
     public class Manager
     {
+        private static Manager _instance;
         public static Manager Instance
         {
             get
@@ -15,8 +16,7 @@ namespace Humans
 
                 return _instance;
             }
-        }
-        private static Manager _instance;
+        }        
 
         private Manager() { }
 

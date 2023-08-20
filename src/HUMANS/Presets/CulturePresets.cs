@@ -5,13 +5,6 @@ namespace Humans
     public class CulturePresets
     {
         private CulturePresets() { }
-
-        public List<Culture> Cultures = new();
-        public List<Nation> Nations = new();
-
-        private readonly string _culturesPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "data", "culture_presets.json");
-        private readonly string _nationsPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "data", "nation_presets.json");
-
         private static CulturePresets _instance;
         public static CulturePresets Instance
         {
@@ -23,6 +16,14 @@ namespace Humans
                 return _instance;
             }
         }
+
+        public List<Culture> Cultures = new();
+        public List<Nation> Nations = new();
+
+        private readonly string _culturesPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "data", "culture_presets.json");
+        private readonly string _nationsPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "data", "nation_presets.json");
+
+        
 
         public void Initialize()
         {
