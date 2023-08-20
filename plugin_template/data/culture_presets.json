@@ -57,7 +57,7 @@
 			"Vietnam" : 1,
 			"Croatia" : 1
 		},
-		"SkinColorWeights": {
+		"SkinColorTypeWeights": {
 			"Real" : 10,
 			"Fair" : 10,
 			"Dark" : 5,
@@ -130,7 +130,7 @@
             "Ukraine" : 1,
             "Vietnam" : 1
 		},
-		"SkinColorWeights": {
+		"SkinColorTypeWeights": {
 			"Real" : 15,
 			"Fair" : 15,
 			"Dark" : 3,
@@ -203,7 +203,7 @@
 			"Czechia" : 1,
 			"Croatia" : 1
 		},
-		"SkinColorWeights": {
+		"SkinColorTypeWeights": {
 			"Real" : 0,
 			"Fair" : 10,
 			"Dark" : 0,
@@ -276,7 +276,7 @@
             "Malta" : 1,
             "Vietnam" : 1
 		},
-		"SkinColorWeights": {
+		"SkinColorTypeWeights": {
 			"Real" : 10,
 			"Fair" : 20,
 			"Dark" : 0,

@@ -11,6 +11,7 @@ namespace Humans
             CampaignName = sessionManager.ActiveCampaignName;
             IsLoaded = true;
             SessionGuidString = campaignGuid;
+            Humans = new();
         }
 
         [JsonProperty(Order = 1)]

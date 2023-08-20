@@ -80,6 +80,13 @@ namespace Humans
             LoadedCampaign.SelectedCulture = culture.Name;
             //TODO what happens when culture is selected
 
+            foreach (var kerbal in Utility.AllKerbals)
+            {
+                Human human = new Human(kerbal, culture);
+
+                LoadedCampaign.Humans.Add(human);
+            }
+
             Utility.SaveCampaigns();
         }
     }

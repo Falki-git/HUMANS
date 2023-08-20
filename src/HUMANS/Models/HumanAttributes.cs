@@ -11,11 +11,17 @@ namespace Humans
         public Type ValueType { get; set; }
         public string AttachToName { get; set; }
         public VarietyPreloadInfo Variety => new VarietyPreloadInfo(Value, ValueType, AttachToName);
+        public void ApplyAttribute(KerbalInfo kerbal, T value)
+        {
+            Value = value;
+            kerbal.Attributes.SetAttribute(Key, Variety);
+            Utility.Roster._portraitRenderer.TakeKerbalPortrait(kerbal);
+        }
     }
 
-    public class NameAttribute : HumanAttribute<string>
+    public class FirstNameAttribute : HumanAttribute<string>
     {
-        public NameAttribute()
+        public FirstNameAttribute()
         {
             Key = "NAME";
             ValueType = typeof(string);

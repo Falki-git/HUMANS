@@ -1,5 +1,7 @@
-﻿using System.Reflection;
+﻿using BepInEx.Logging;
+using System.Reflection;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Humans
 {
@@ -30,6 +32,7 @@ namespace Humans
         public List<HeadPreset> Heads;
         public List<string> FacePaints;
 
+        private static ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("Humans.HumanPresets");
         private readonly string _baseDataPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "data");
         private string _skinColorsPath => Path.Combine(_baseDataPath, "skin_color_presets.json");
         private string _hairStylesPath => Path.Combine(_baseDataPath, "hair_style_presets.json");
@@ -41,9 +44,6 @@ namespace Humans
         private string _bodiesPath => Path.Combine(_baseDataPath, "body_presets.json");
         private string _headsPath => Path.Combine(_baseDataPath, "head_presets.json");
         private string _facePaintsPath => Path.Combine(_baseDataPath, "face_paint_presets.json");
-
-
-        
 
         public void Initialize()
         {
@@ -59,6 +59,41 @@ namespace Humans
             Heads = Utility.LoadPresets<List<HeadPreset>>(_headsPath);
             FacePaints = Utility.LoadPresets<List<string>>(_facePaintsPath);
         }
+
+        public SkinColorPreset GetRandomSkinColor(string skinType)
+        {
+            var skinsWithSkinType = SkinColors.FindAll(s => s.Type == skinType);
+
+            if (skinsWithSkinType.Count == 0)
+            {
+                _logger.LogError($"Error retrieving skins for skin type '{skinType}'");
+                return null;
+            }
+
+            return skinsWithSkinType[Random.Range(0, skinsWithSkinType.Count())];
+        }
+
+        public HairColorPreset GetRandomHairColor()
+        {
+            int totalWeight = 0;
+            foreach (var weight in HairColors.Select(hc => hc.Weight).ToList())
+                totalWeight += weight;
+
+            int randomValue = Random.Range(0, totalWeight + 1);
+
+            foreach (var hc in HairColors)
+            {
+                randomValue -= hc.Weight;
+                if (randomValue < 0)
+                {
+                    return hc;
+                }
+            }
+
+            _logger.LogError("Error generating random skin color. Weights are not properly defined.");
+            return null;
+        }
+
     }
 
     public class SkinColorPreset
