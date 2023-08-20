@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Humans
 {
-    public class HumanParameters<T>
+    public class HumanAttribute<T>
     {
         public string Key { get; set; }
         public T Value { get; set; }
@@ -13,9 +13,9 @@ namespace Humans
         public VarietyPreloadInfo Variety => new VarietyPreloadInfo(Value, ValueType, AttachToName);
     }
 
-    public class Name : HumanParameters<string>
+    public class NameAttribute : HumanAttribute<string>
     {
-        public Name()
+        public NameAttribute()
         {
             Key = "NAME";
             ValueType = typeof(string);
@@ -23,9 +23,9 @@ namespace Humans
         }
     }
 
-    public class Surname : HumanParameters<string>
+    public class SurnameAttribute : HumanAttribute<string>
     {
-        public Surname()
+        public SurnameAttribute()
         {
             Key = "SURNAME";
             ValueType = typeof(string);
@@ -33,9 +33,9 @@ namespace Humans
         }
     }
 
-    public class HumanType : HumanParameters<KerbalType>
+    public class HumanTypeAttribute : HumanAttribute<KerbalType>
     {
-        public HumanType()
+        public HumanTypeAttribute()
         {
             Key = "TYPE";
             ValueType = typeof(KerbalType);
@@ -43,9 +43,9 @@ namespace Humans
         }
     }
 
-    public class HairStyle : HumanParameters<string>
+    public class HairStyleAttribute : HumanAttribute<string>
     {
-        public HairStyle()
+        public HairStyleAttribute()
         {
             Key = "HAIRSTYLE";
             ValueType = typeof(GameObject);
@@ -53,9 +53,9 @@ namespace Humans
         }
     }
 
-    public class Helmet : HumanParameters<string>
+    public class HelmetAttribute : HumanAttribute<string>
     {
-        public Helmet()
+        public HelmetAttribute()
         {
             Key = "HELMET";
             ValueType = typeof(GameObject);
@@ -63,9 +63,9 @@ namespace Humans
         }
     }
 
-    public class HairColor : HumanParameters<Color>
+    public class HairColorAttribute : HumanAttribute<Color>
     {
-        public HairColor()
+        public HairColorAttribute()
         {
             Key = "HAIRCOLOR";
             ValueType = typeof(Color);
@@ -73,9 +73,9 @@ namespace Humans
         }
     }
 
-    public class Eyes : HumanParameters<string>
+    public class EyesAttribute : HumanAttribute<string>
     {
-        public Eyes()
+        public EyesAttribute()
         {
             Key = "EYES";
             ValueType = typeof(GameObject);
@@ -83,9 +83,9 @@ namespace Humans
         }
     }
 
-    public class EyeHeight : HumanParameters<Single>
+    public class EyeHeightAttribute : HumanAttribute<Single>
     {
-        public EyeHeight()
+        public EyeHeightAttribute()
         {
             Key = "EYEHEIGHT";
             ValueType = typeof(Single);
@@ -93,9 +93,9 @@ namespace Humans
         }
     }
 
-    public class EyeSymmetry : HumanParameters<Single>
+    public class EyeSymmetryAttribute : HumanAttribute<Single>
     {
-        public EyeSymmetry()
+        public EyeSymmetryAttribute()
         {
             Key = "EYESYMMETRY";
             ValueType = typeof(Single);
@@ -103,9 +103,9 @@ namespace Humans
         }
     }
 
-    public class SkinColor : HumanParameters<Color>
+    public class SkinColorAttribute : HumanAttribute<Color>
     {
-        public SkinColor()
+        public SkinColorAttribute()
         {
             Key = "SKINCOLOR";
             ValueType = typeof(Color);
@@ -113,9 +113,9 @@ namespace Humans
         }
     }
 
-    public class FacialHair : HumanParameters<string>
+    public class FacialHairAttribute : HumanAttribute<string>
     {
-        public FacialHair()
+        public FacialHairAttribute()
         {
             Key = "FACIALHAIR";
             ValueType = typeof(GameObject);
@@ -123,9 +123,9 @@ namespace Humans
         }
     }
 
-    public class FaceDecoration : HumanParameters<string>
+    public class FaceDecorationAttribute : HumanAttribute<string>
     {
-        public FaceDecoration()
+        public FaceDecorationAttribute()
         {
             Key = "FACEDECORATION";
             ValueType = typeof(GameObject);
@@ -133,9 +133,9 @@ namespace Humans
         }
     }
 
-    public class TeamColor1 : HumanParameters<Color>
+    public class TeamColor1Attribute : HumanAttribute<Color>
     {
-        public TeamColor1()
+        public TeamColor1Attribute()
         {
             Key = "TEAMCOLOR1";
             ValueType = typeof(Color);
@@ -143,9 +143,9 @@ namespace Humans
         }
     }
 
-    public class TeamColor2 : HumanParameters<Color>
+    public class TeamColor2Attribute : HumanAttribute<Color>
     {
-        public TeamColor2()
+        public TeamColor2Attribute()
         {
             Key = "TEAMCOLOR2";
             ValueType = typeof(Color);
@@ -153,9 +153,9 @@ namespace Humans
         }
     }
 
-    public class Stupidity : HumanParameters<Single>
+    public class StupidityAttribute : HumanAttribute<Single>
     {
-        public Stupidity()
+        public StupidityAttribute()
         {
             Key = "STUPIDITY";
             ValueType = typeof(Single);
@@ -163,9 +163,9 @@ namespace Humans
         }
     }
 
-    public class Bravery : HumanParameters<Single>
+    public class BraveryAttribute : HumanAttribute<Single>
     {
-        public Bravery()
+        public BraveryAttribute()
         {
             Key = "BRAVERY";
             ValueType = typeof(Single);
@@ -173,9 +173,9 @@ namespace Humans
         }
     }
 
-    public class Constitution : HumanParameters<Single>
+    public class ConstitutionAttribute : HumanAttribute<Single>
     {
-        public Constitution()
+        public ConstitutionAttribute()
         {
             Key = "CONSTITUTION";
             ValueType = typeof(Single);
@@ -183,9 +183,9 @@ namespace Humans
         }
     }
 
-    public class Optimism : HumanParameters<Single>
+    public class OptimismAttribute : HumanAttribute<Single>
     {
-        public Optimism()
+        public OptimismAttribute()
         {
             Key = "OPTIMISM";
             ValueType = typeof(Single);
@@ -193,9 +193,9 @@ namespace Humans
         }
     }
 
-    public class IsVeteran : HumanParameters<bool>
+    public class IsVeteranAttribute : HumanAttribute<bool>
     {
-        public IsVeteran()
+        public IsVeteranAttribute()
         {
             Key = "ISVETERAN";
             ValueType = typeof(bool);
@@ -203,9 +203,9 @@ namespace Humans
         }
     }
 
-    public class VoiceSelection : HumanParameters<Int32>
+    public class VoiceSelectionAttribute : HumanAttribute<Int32>
     {
-        public VoiceSelection()
+        public VoiceSelectionAttribute()
         {
             Key = "VOICESELECTION";
             ValueType = typeof(Int32);
@@ -213,9 +213,9 @@ namespace Humans
         }
     }
 
-    public class VoiceType : HumanParameters<Single>
+    public class VoiceTypeAttribute : HumanAttribute<Single>
     {
-        public VoiceType()
+        public VoiceTypeAttribute()
         {
             Key = "VOICETYPE";
             ValueType = typeof(Single);
@@ -223,9 +223,9 @@ namespace Humans
         }
     }
 
-    public class Body : HumanParameters<string>
+    public class BodyAttribute : HumanAttribute<string>
     {
-        public Body()
+        public BodyAttribute()
         {
             Key = "BODY";
             ValueType = typeof(GameObject);
@@ -233,9 +233,9 @@ namespace Humans
         }
     }
 
-    public class Head : HumanParameters<string>
+    public class HeadAttribute : HumanAttribute<string>
     {
-        public Head()
+        public HeadAttribute()
         {
             Key = "HEAD";
             ValueType = typeof(GameObject);
@@ -243,9 +243,9 @@ namespace Humans
         }
     }
 
-    public class FacePaint : HumanParameters<string>
+    public class FacePaintAttribute : HumanAttribute<string>
     {
-        public FacePaint()
+        public FacePaintAttribute()
         {
             Key = "FACEPAINT";
             ValueType = typeof(string);
@@ -253,9 +253,9 @@ namespace Humans
         }
     }
 
-    public class Radiation : HumanParameters<Single>
+    public class RadiationAttribute : HumanAttribute<Single>
     {
-        public Radiation()
+        public RadiationAttribute()
         {
             Key = "RADIATION";
             ValueType = typeof(Single);
@@ -263,9 +263,9 @@ namespace Humans
         }
     }
 
-    public class Happiness : HumanParameters<Single>
+    public class HappinessAttribute : HumanAttribute<Single>
     {
-        public Happiness()
+        public HappinessAttribute()
         {
             Key = "HAPPINESS";
             ValueType = typeof(Single);
@@ -273,9 +273,9 @@ namespace Humans
         }
     }
 
-    public class Experience : HumanParameters<Int32>
+    public class ExperienceAttribute : HumanAttribute<Int32>
     {
-        public Experience()
+        public ExperienceAttribute()
         {
             Key = "EXPERIENCE";
             ValueType = typeof(Int32);
@@ -283,9 +283,9 @@ namespace Humans
         }
     }
 
-    public class Biography : HumanParameters<string>
+    public class BiographyAttribute : HumanAttribute<string>
     {
-        public Biography()
+        public BiographyAttribute()
         {
             Key = "BIOGRAPHY";
             ValueType = typeof(string);

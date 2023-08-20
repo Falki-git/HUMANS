@@ -454,7 +454,7 @@ namespace Humans
 
         private void ApplySkinColor(KerbalInfo kerbal, SkinColorPreset color)
         {
-            var skin = new SkinColor();
+            var skin = new SkinColorAttribute();
             skin.Value = (Color)color.Color;
 
             //var variety = new VarietyPreloadInfo((Color)color.Color, typeof(Color), "");
@@ -468,7 +468,7 @@ namespace Humans
 
         private void ApplyHairColor(KerbalInfo kerbal, HairColorPreset color)
         {
-            var hair = new HairColor();
+            var hair = new HairColorAttribute();
             hair.Value = (Color)color.Color;
             kerbal.Attributes.SetAttribute(hair.Key, hair.Variety);
             Utility.Roster._portraitRenderer.TakeKerbalPortrait(kerbal);
