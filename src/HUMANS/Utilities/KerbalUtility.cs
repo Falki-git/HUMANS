@@ -2,13 +2,12 @@
 using KSP.Sim;
 using KSP.Sim.impl;
 using UnityEngine;
+using BepInEx.Logging;
 
 namespace Humans.Utilities
 {
     public static class KerbalUtility
     {
-        private static KerbalInfo _kerbalInfo;
-        
         public static void SetKerbal(KerbalInfo kerbalInfo) => _kerbalInfo = kerbalInfo;
 
         public static IGGuid IGGuid { get => _kerbalInfo.Id; }
@@ -25,12 +24,26 @@ namespace Humans.Utilities
         public static Single EyeSymmetry { get => (Single)_kerbalInfo.Attributes.GetAttribute("EYESYMMETRY"); }
         public static Color SkinColor { get => (Color)_kerbalInfo.Attributes.GetAttribute("SKINCOLOR"); }
 
-        
-        
-        
-        
-        
+        private static KerbalInfo _kerbalInfo;
+
+
+        // TODO other attributes
+
+
+
         public static string Head { get => (string)_kerbalInfo.Attributes.GetAttribute("HEAD"); }
 
+        public static void TakeKerbalPortraits(List<KerbalInfo> kerbals)
+        {
+            foreach (var kerbal in kerbals)
+            {
+                GameManager.Instance.Game.SessionManager.KerbalRosterManager._portraitRenderer.TakeKerbalPortrait(kerbal);
+            }
+        }
+
+        public static void TakeKerbalPortrait(KerbalInfo kerbal)
+        {
+            GameManager.Instance.Game.SessionManager.KerbalRosterManager._portraitRenderer.TakeKerbalPortrait(kerbal);
+        }
     }
 }

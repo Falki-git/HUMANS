@@ -1,4 +1,5 @@
 ﻿using BepInEx.Logging;
+using Humans.Utilities;
 using KSP.Game;
 using KSP.Messages;
 
@@ -78,7 +79,7 @@ namespace Humans
         public void OnCultureSelected(Culture culture)
         {
             LoadedCampaign.SelectedCulture = culture.Name;
-            //TODO what happens when culture is selected
+            LoadedCampaign.Humans.Clear();
 
             foreach (var kerbal in Utility.AllKerbals)
             {
@@ -86,6 +87,8 @@ namespace Humans
 
                 LoadedCampaign.Humans.Add(human);
             }
+
+            KerbalUtility.TakeKerbalPortraits(Utility.AllKerbals);
 
             Utility.SaveCampaigns();
         }

@@ -15,7 +15,6 @@ namespace Humans
         {
             Value = value;
             kerbal.Attributes.SetAttribute(Key, Variety);
-            Utility.Roster._portraitRenderer.TakeKerbalPortrait(kerbal);
         }
     }
 

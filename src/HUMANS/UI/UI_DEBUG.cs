@@ -1,4 +1,5 @@
 ﻿using BepInEx.Logging;
+using Humans.Utilities;
 using KSP;
 using KSP.Game;
 using KSP.Messages;
@@ -217,6 +218,14 @@ namespace Humans
                 var toSave = HumanPresets.Instance.SkinColors;
                 Utility.SavePresets<List<SkinColorPreset>>(toSave, path);
             }
+            if (GUILayout.Button("Generate all portraits"))
+            {
+                KerbalUtility.TakeKerbalPortraits(Utility.Roster.GetAllKerbals());
+            }
+            if (GUILayout.Button("Toggle culture select window"))
+            {
+                ShowCultureSelection = !ShowCultureSelection;
+            }
 
 
             GUILayout.BeginHorizontal();
@@ -246,7 +255,7 @@ namespace Humans
             {
                 //Manager.Instance.Roster.GenerateKerbalPortrait(kerbal);
                 GameManager.Instance.Game.SessionManager.KerbalRosterManager._portraitRenderer.TakeKerbalPortrait(kerbal);
-                //Manager.Instance.Roster._portraitRenderer._kerbal3DModelGameObject.Build3DKerbal()                
+                //Manager.Instance.Roster._portraitRenderer._kerbal3DModelGameObject.Build3DKerbal()
             }
 
             //var photos = GameManager.Instance.Game.SessionManager.KerbalRosterManager._portraitRenderer._generatedKerbalPhotos;
