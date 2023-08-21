@@ -3,7 +3,7 @@
 		"Name": "American",
 		"PicturePath": "some path",
 		"NationalityWeights": {
-			"USA" : 150,
+			"USA" : 300,
 			"Russia" : 10,
 			"Great Britain" : 4,
 			"Israel" : 4,
@@ -149,7 +149,7 @@
 		"Name": "Chinese",
 		"PicturePath": "some path",
 		"NationalityWeights": {
-			"China" : 250,
+			"China" : 300,
 			"Russia" : 10,
 			"France" : 10,
 			"Arabia" : 5,
@@ -222,7 +222,7 @@
 		"Name": "Russian",
 		"PicturePath": "some path",
 		"NationalityWeights": {
-			"Russia" : 100,
+			"Russia" : 150,
 			"China" : 5,
 			"Kazakhstan" : 5,
 			"Serbia" : 3,
