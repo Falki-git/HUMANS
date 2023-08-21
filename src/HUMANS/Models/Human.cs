@@ -46,7 +46,8 @@ namespace Humans
             HairColor = HumanPresets.Instance.GetRandomHairColor();
             var hairColorAttribute = new HairColorAttribute();
             hairColorAttribute.ApplyAttribute(kerbal, HairColor.Color);
-            
+
+            //Utility.Roster._portraitRenderer.TakeKerbalPortrait(kerbal);
 
             /*
             NameKey = KerbalUtility.NameKey;
@@ -96,6 +97,7 @@ namespace Humans
         public Single EyeHeight { get; set; }
         [JsonProperty]
         public Single EyeSymmetry { get; set; }
+        [JsonProperty]
         public SkinColorPreset SkinColor { get; set; }
 
 
