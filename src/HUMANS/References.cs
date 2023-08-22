@@ -32,4 +32,11 @@ Source material
     ## original Kerbal skins - in-game assets
 
 
+TODO
+- skin color type and hair color weights
+- nationality flags
+- culture flags
+- presets for fameous astronauts and people (Lux)
+
+
 */
