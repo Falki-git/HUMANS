@@ -34,6 +34,7 @@ Source material
 
 TODO
 - skin color type and hair color weights
+- add bald hair type
 - nationality flags
 - culture flags
 - presets for fameous astronauts and people (Lux)
