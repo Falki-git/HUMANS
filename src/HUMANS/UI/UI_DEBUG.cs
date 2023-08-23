@@ -380,7 +380,7 @@ namespace Humans
                     GUILayout.Label($"ID= {kerbal.Id}", _styleSmall);
                     GUILayout.Space(spaceAdjuster);
                     GUILayout.Label($"Name= {kerbal.Attributes.FirstName} {kerbal.Attributes.Surname}");
-                    var human = Manager.Instance.LoadedCampaign.Humans.Find(h => h.Id == kerbal.Id);
+                    var human = Manager.Instance.LoadedCampaign?.Humans?.Find(h => h.Id == kerbal.Id);
                     if (human != null)
                         GUILayout.Label($"Nationality= {human.Nationality}");
 
