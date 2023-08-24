@@ -26,11 +26,19 @@ namespace Humans
 
         public void SubscribeToMessages()
         {
-            MessageCenter.Subscribe<KSCLoadedMessage>(new Action<MessageCenterMessage>(obj =>
+            // We're showing Culture select window when KSC is loaded and if campaign hasn't been initialized yet
+            MessageCenter.Subscribe<KSCLoadedMessage>(new Action<MessageCenterMessage>(msg =>
             {
                 _logger.LogDebug("KSCLoadedMessage triggered.");
-                Manager.Instance.OnKSCLoadedMessage(obj);
+                Manager.Instance.OnKSCLoadedMessage(msg);
             }));
-        }        
+
+            MessageCenter.Subscribe<GameStateChangedMessage>(new Action<MessageCenterMessage>(obj =>
+            {
+                var msg = obj as GameStateChangedMessage;
+                _logger.LogDebug($"GameStateChangedMessage triggered. {msg.PreviousState} -> {msg.CurrentState}.");
+                Manager.Instance.OnGameStateChangedMessage(msg);
+            }));
+        }
     }
 }

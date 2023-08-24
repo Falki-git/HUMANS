@@ -49,7 +49,6 @@ namespace Humans
         // TODO move to controller
         public void OnKSCLoadedMessage(MessageCenterMessage obj)
         {
-            //TODO check if campaign is initialized. If not, raise the screen for mode selection
             var campaignGuid = GameManager.Instance.Game.SessionGuidString;
             var sessionManager = GameManager.Instance.Game.SessionManager;
 
@@ -67,13 +66,22 @@ namespace Humans
                 UI_DEBUG.Instance.ShowCultureSelection = true;
 
                 //TODO:
-                //raise the screen for mode selection
-                //player selects a mode
-                //SelectedCulture is set
-                //all kerbals go through humanization
-                //campaign is saved to a json file
+                //raise the screen for mode selection - DONE
+                //player selects a mode - DONE
+                //SelectedCulture is set - DONE
+                //all kerbals go through humanization - DONE
+                //campaign is saved to a json file - DONE
                 //next time player starts the game, humanized kerbals are loaded
             }
+        }
+
+        public void OnGameStateChangedMessage(GameStateChangedMessage msg)
+        {
+            if (msg.PreviousState == GameState.KerbalSpaceCenter && UI_DEBUG.Instance.ShowCultureSelection)
+                UI_DEBUG.Instance.ShowCultureSelection = false;
+
+            if (msg.CurrentState == GameState.KerbalSpaceCenter && !LoadedCampaign.IsInitialized)
+                UI_DEBUG.Instance.ShowCultureSelection = true;
         }
 
         public void OnCultureSelected(Culture culture)
@@ -90,7 +98,11 @@ namespace Humans
 
             KerbalUtility.TakeKerbalPortraits(Utility.AllKerbals);
 
+            LoadedCampaign.IsInitialized = true;
+
             Utility.SaveCampaigns();
         }
+
+        
     }
 }
