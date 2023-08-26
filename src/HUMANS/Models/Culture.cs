@@ -16,7 +16,7 @@ namespace Humans
         {
             try
             {
-                return getRandom(NationalityWeights);
+                return GetRandom(NationalityWeights);
             }
             catch (InvalidOperationException ex)
             {
@@ -29,7 +29,7 @@ namespace Humans
         {
             try
             {
-                return getRandom(SkinColorTypeWeights);
+                return GetRandom(SkinColorTypeWeights);
             }
             catch (InvalidOperationException ex)
             {
@@ -38,13 +38,13 @@ namespace Humans
             }
         }
 
-        private string getRandom(Dictionary<string, int> weights)
+        private string GetRandom(Dictionary<string, int> weights)
         {
             int totalWeight = 0;
             foreach (var weight in weights.Values)
                 totalWeight += weight;
 
-            int randomValue = UnityEngine.Random.Range(0, totalWeight + 1);
+            int randomValue = UnityEngine.Random.Range(0, totalWeight);
 
             foreach (var kvp in weights)
             {

@@ -2,7 +2,6 @@
 using KSP.Game;
 using KSP.Sim;
 using KSP.Sim.impl;
-using Moq;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -127,9 +126,21 @@ namespace Humans
         /// </summary>
         public bool IsHumanized { get; set; }
 
-        public void Humanize()
+        public void Humanize(KerbalInfo kerbal)
         {
-            // TODO Humanize default kerbals - assign them a skin color, hair color, names, etc.
+            var firstNameAttribute = new FirstNameAttribute();
+            firstNameAttribute.ApplyAttribute(kerbal, FirstName);
+
+            var surnameAttribute = new SurnameAttribute();
+            surnameAttribute.ApplyAttribute(kerbal, Surname);
+
+            var skinColorAttribute = new SkinColorAttribute();
+            skinColorAttribute.ApplyAttribute(kerbal, (Color)SkinColor.Color);
+
+            var hairColorAttribute = new HairColorAttribute();
+            hairColorAttribute.ApplyAttribute(kerbal, HairColor.Color);
+
+            //TODO other attributes
         }
     }
 }

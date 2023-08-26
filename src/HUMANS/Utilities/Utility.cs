@@ -4,6 +4,7 @@ using KSP.Game;
 using KSP.OAB;
 using KSP.Sim.impl;
 using Newtonsoft.Json;
+using System.Globalization;
 using System.Reflection;
 
 namespace Humans
@@ -30,6 +31,8 @@ namespace Humans
         public static KerbalVarietySystem VarietySystem => Roster.VarietySystem;
         public static DictionaryValueList<IGGuid, KerbalInfo> Kerbals => Roster._kerbals;
         public static KerbalPhotoBooth PortraitRenderer => Roster._portraitRenderer;
+        public static string SessionGuidString => GameManager.Instance?.Game?.SessionGuidString;
+        public static SessionManager SessionManager => GameManager.Instance?.Game?.SessionManager;
 
         public static void SaveCampaigns()
         {
@@ -44,9 +47,20 @@ namespace Humans
             }
         }
 
-        public static void LoadCampaigns()
+        public static List<CampaignParameters> LoadCampaigns()
         {
-            //TODO
+            try
+            {
+                var json = File.ReadAllText(CampaignsPath);
+                var toReturn = JsonConvert.DeserializeObject<List<CampaignParameters>>(json);
+                _logger.LogInfo($"Loaded Campaigns from path {CampaignsPath}.Number of campaigns: {toReturn.Count}");
+                return toReturn;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error loading Campaigns from {CampaignsPath}.\n" + ex);
+                return new List<CampaignParameters>();
+            }
         }
 
         public static void SaveCulturePresets()

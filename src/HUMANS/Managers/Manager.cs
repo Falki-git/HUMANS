@@ -26,24 +26,43 @@ namespace Humans
 
         private readonly ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("Humans.Manager");
 
-
-
         public void Initialize()
         {
             HumanPresets.Instance.Initialize();
             CulturePresets.Instance.Initialize();
-            //Utility.SaveCulturePresets();
+            Campaigns = Utility.LoadCampaigns();
             MessageListener.Instance.SubscribeToMessages();
+        }
 
-            //TODO load campaigns from disk
-            //TODO set active campaign if exists
-
-
+        private void LoadCampaignsFromDisk()
+        {
+            throw new NotImplementedException();
         }
 
         public void Update()
         {
-            return;
+            if (Utility.SessionManager == null || string.IsNullOrEmpty(Utility.SessionGuidString))
+                return;
+
+            if (LoadedCampaign == null || Utility.SessionGuidString != LoadedCampaign.SessionGuidString)
+            {
+                var campaign = Campaigns.Find(c => c.SessionGuidString == Utility.SessionGuidString);
+
+                if (campaign == null)
+                {
+                    campaign = new(Utility.SessionManager, Utility.SessionGuidString);
+                    Campaigns.Add(campaign);
+                    Utility.SaveCampaigns();
+                }
+                else
+                {
+                    if (LoadedCampaign != null)
+                        LoadedCampaign.IsLoaded = false;
+
+                    campaign.IsLoaded = true;
+                }
+            }
+
         }
 
         // TODO move to controller
@@ -77,9 +96,11 @@ namespace Humans
 
         public void OnGameStateChangedMessage(GameStateChangedMessage msg)
         {
+            // Hide Culture select window if we're leaving the KSC scene
             if (msg.PreviousState == GameState.KerbalSpaceCenter && UI_DEBUG.Instance.ShowCultureSelection)
                 UI_DEBUG.Instance.ShowCultureSelection = false;
 
+            // Show Culture select window if we're in KSC scene and the campaign hasn't been initialized yet
             if (msg.CurrentState == GameState.KerbalSpaceCenter && !LoadedCampaign.IsInitialized)
                 UI_DEBUG.Instance.ShowCultureSelection = true;
         }
@@ -103,6 +124,9 @@ namespace Humans
             Utility.SaveCampaigns();
         }
 
-        
+        public void OnViewControllerFlowFinished(MessageCenterMessage obj)
+        {
+            KerbalUtility.TakeKerbalPortraits(Utility.AllKerbals);
+        }
     }
 }

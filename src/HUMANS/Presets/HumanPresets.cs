@@ -1,4 +1,5 @@
 ﻿using BepInEx.Logging;
+using Newtonsoft.Json;
 using System.Reflection;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -96,30 +97,45 @@ namespace Humans
 
     }
 
+    [JsonObject(MemberSerialization.OptIn)]
     public class SkinColorPreset
     {
+        [JsonProperty]        
         public string Type;
+        [JsonProperty]
         public string Name;
+        [JsonProperty]
         public Color32 Color;
     }
 
+    [JsonObject(MemberSerialization.OptIn)]
     public class HairColorPreset
     {
+        [JsonProperty]
         public HairColorType Type;
+        [JsonProperty]
         public string Name;
+        [JsonProperty]
         public Color32 Color;
+        [JsonProperty]
         public int Weight;
     }
 
+    [JsonObject(MemberSerialization.OptIn)]
     public class EyesPreset
     {
+        [JsonProperty]
         public Gender Gender;
+        [JsonProperty]
         public string Name;
     }
-
+    
+    [JsonObject(MemberSerialization.OptIn)]
     public class HeadPreset
     {
+        [JsonProperty]
         public Gender Gender;
+        [JsonProperty]
         public string Name;
     }
 

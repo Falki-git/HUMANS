@@ -6,6 +6,8 @@ namespace Humans
     [JsonObject(MemberSerialization.OptIn)]
     public class CampaignParameters
     {
+        public CampaignParameters() { }
+
         public CampaignParameters(SessionManager sessionManager, string campaignGuid)
         {
             CampaignName = sessionManager.ActiveCampaignName;

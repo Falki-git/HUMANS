@@ -33,11 +33,19 @@ namespace Humans
                 Manager.Instance.OnKSCLoadedMessage(msg);
             }));
 
+            // Show and Hide Culture select window
             MessageCenter.Subscribe<GameStateChangedMessage>(new Action<MessageCenterMessage>(obj =>
             {
                 var msg = obj as GameStateChangedMessage;
                 _logger.LogDebug($"GameStateChangedMessage triggered. {msg.PreviousState} -> {msg.CurrentState}.");
                 Manager.Instance.OnGameStateChangedMessage(msg);
+            }));
+
+            // Take kerbal portraits when view controller is finished
+            MessageCenter.Subscribe<ViewControllerFlowFinished>(new Action<MessageCenterMessage>(obj =>
+            {
+                _logger.LogDebug("ViewControllerFlowFinished triggered.");
+                Manager.Instance.OnViewControllerFlowFinished(obj);
             }));
         }
     }

@@ -1,7 +1,9 @@
 ﻿using BepInEx.Logging;
 using HarmonyLib;
+using Humans.Utilities;
 using KSP.Game;
 using KSP.Modding.Variety;
+using KSP.Sim.impl;
 
 namespace Humans
 {
@@ -17,6 +19,30 @@ namespace Humans
         {
             string name = preloadedAttributes["NAME"].value.ToString();
             _logger.LogInfo($"BuildCharacterFromLoadedAttributes_AttributeInjection triggered. Kerbal name is: {name}");
+
+            // Campaign must be initialized (culture selected, kerbal humanized) in order to apply new attributes
+            if (Manager.Instance.LoadedCampaign?.IsInitialized ?? false)
+            {
+                var kerbalId = __instance.ThisKerbalInfo?.Id;
+
+                if (kerbalId == null)
+                {
+                    _logger.LogError("Error fetching kerbalId.");
+                }
+
+                var human = Manager.Instance.LoadedCampaign.Humans.Find(h => h.Id == kerbalId);
+
+                if (human != null)
+                {
+                    _logger.LogDebug("Found human!");
+                    human.Humanize(__instance.ThisKerbalInfo);
+                    _logger.LogDebug("Kerbal humanized.");
+                }
+                else
+                {
+                    _logger.LogDebug("Did NOT find human!");
+                }
+            }
 
             /*
             if (name == "Valentina")
