@@ -12,7 +12,7 @@ namespace Humans.Utilities
 
         public static IGGuid IGGuid { get => _kerbalInfo.Id; }
         public static KerbalInfo KerbalInfo { get => _kerbalInfo; }
-        public static string NameKey { get => _kerbalInfo.NameKey; }
+        public static string NameKey { get => _kerbalInfo.NameKey; set => _kerbalInfo._nameKey = value; }
         public static string FirstName { get => _kerbalInfo.Attributes.FirstName; }
         public static string Surname { get => _kerbalInfo.Attributes.Surname; }
         public static KerbalType HumanType { get => (KerbalType)_kerbalInfo.Attributes.GetAttribute("TYPE"); }
@@ -23,8 +23,10 @@ namespace Humans.Utilities
         public static Single EyeHeight { get => (Single)_kerbalInfo.Attributes.GetAttribute("EYEHEIGHT"); }
         public static Single EyeSymmetry { get => (Single)_kerbalInfo.Attributes.GetAttribute("EYESYMMETRY"); }
         public static Color SkinColor { get => (Color)_kerbalInfo.Attributes.GetAttribute("SKINCOLOR"); }
+        public static string FullName { get => _kerbalInfo.Attributes._fullName; set => _kerbalInfo._kerbalAttributes._fullName = value; }
 
         private static KerbalInfo _kerbalInfo;
+        private static readonly ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("Humans.KerbalUtility");
 
 
         // TODO other attributes
@@ -37,13 +39,22 @@ namespace Humans.Utilities
         {
             foreach (var kerbal in kerbals)
             {
-                GameManager.Instance.Game.SessionManager.KerbalRosterManager._portraitRenderer.TakeKerbalPortrait(kerbal);
+                //GameManager.Instance.Game.SessionManager.KerbalRosterManager._portraitRenderer.TakeKerbalPortrait(kerbal);
+                TakeKerbalPortrait(kerbal);
             }
         }
 
         public static void TakeKerbalPortrait(KerbalInfo kerbal)
         {
-            GameManager.Instance.Game.SessionManager.KerbalRosterManager._portraitRenderer.TakeKerbalPortrait(kerbal);
+            try
+            {
+                GameManager.Instance.Game.SessionManager.KerbalRosterManager._portraitRenderer.TakeKerbalPortrait(kerbal);
+                _logger.LogDebug($"Successfuly create kerbal portrait for kerbal {kerbal.NameKey}");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error taking kerbal portrait for kerbal {kerbal.NameKey}.\n" + ex);
+            }
         }
     }
 }

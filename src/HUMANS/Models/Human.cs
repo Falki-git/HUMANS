@@ -30,21 +30,23 @@ namespace Humans
             var nation = CulturePresets.Instance.Nations.Find(n => n.Name == Nationality);
 
             FirstName = nation.GetRandomFirstName(Gender);
-            var firstNameAttribute = new FirstNameAttribute();
-            firstNameAttribute.ApplyAttribute(kerbal, FirstName);
+            //var firstNameAttribute = new FirstNameAttribute();
+            //firstNameAttribute.ApplyAttribute(kerbal, FirstName);
 
             Surname = nation.GetRandomLastName();
-            var surnameAttribute = new SurnameAttribute();
-            surnameAttribute.ApplyAttribute(kerbal, Surname);
+            //var surnameAttribute = new SurnameAttribute();
+            //surnameAttribute.ApplyAttribute(kerbal, Surname);
+
+            //KerbalUtility.FullName = $"{FirstName} {Surname}";
 
             var skinType = culture.GetRandomSkinColorType();
             SkinColor = HumanPresets.Instance.GetRandomSkinColor(skinType);
-            var skinColorAttribute = new SkinColorAttribute();
-            skinColorAttribute.ApplyAttribute(kerbal, (Color)SkinColor.Color);
+            //var skinColorAttribute = new SkinColorAttribute();
+            //skinColorAttribute.ApplyAttribute(kerbal, (Color)SkinColor.Color);
 
             HairColor = HumanPresets.Instance.GetRandomHairColor();
-            var hairColorAttribute = new HairColorAttribute();
-            hairColorAttribute.ApplyAttribute(kerbal, HairColor.Color);
+            //var hairColorAttribute = new HairColorAttribute();
+            //hairColorAttribute.ApplyAttribute(kerbal, HairColor.Color);
 
             //Utility.Roster._portraitRenderer.TakeKerbalPortrait(kerbal);
 
@@ -66,6 +68,7 @@ namespace Humans
 
             //Head = KerbalUtility.Head;
 
+            Humanize();
         }
 
         [JsonProperty]
@@ -126,8 +129,11 @@ namespace Humans
         /// </summary>
         public bool IsHumanized { get; set; }
 
+        public void Humanize() => Humanize(KerbalInfo);
         public void Humanize(KerbalInfo kerbal)
         {
+            KerbalUtility.SetKerbal(kerbal);
+
             var firstNameAttribute = new FirstNameAttribute();
             firstNameAttribute.ApplyAttribute(kerbal, FirstName);
 
@@ -139,6 +145,8 @@ namespace Humans
 
             var hairColorAttribute = new HairColorAttribute();
             hairColorAttribute.ApplyAttribute(kerbal, HairColor.Color);
+
+            KerbalUtility.FullName = $"{FirstName} {Surname}";
 
             //TODO other attributes
         }

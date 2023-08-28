@@ -203,21 +203,25 @@ namespace Humans
                     GameManager.Instance.Game.Messages.Publish(kerbalLocationChanged);
                 }
             }
+            /*
             if (GUILayout.Button("deserialization test"))
             {
                 Utility.LoadCulturePresetsDebug();
             }
+            */
 
             if (GUILayout.Button("display skin colors"))
             {
                 _showDebugColorWindow = !_showDebugColorWindow;                
             }
+            /*
             if (GUILayout.Button("Export skin colors"))
             {
                 string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "data", "skin_color_presets.json");
                 var toSave = HumanPresets.Instance.SkinColors;
                 Utility.SavePresets<List<SkinColorPreset>>(toSave, path);
             }
+            */
             if (GUILayout.Button("Generate all portraits"))
             {
                 KerbalUtility.TakeKerbalPortraits(Utility.Roster.GetAllKerbals());
@@ -225,6 +229,15 @@ namespace Humans
             if (GUILayout.Button("Toggle culture select window"))
             {
                 ShowCultureSelection = !ShowCultureSelection;
+            }
+            if (GUILayout.Button("Set full name - test 1"))
+            {
+                kerbal._nameKey = "test1";
+            }
+            if (GUILayout.Button("Set full name - test 2"))
+            {
+                kerbal._kerbalAttributes._fullName = "test2";
+
             }
 
 
@@ -323,7 +336,7 @@ namespace Humans
             GUILayout.Space(spaceAdjuster);
             GUILayout.Label($"kerbal.Attributes.FirstName={kerbal.Attributes.FirstName}", _styleSmall);
             GUILayout.Space(spaceAdjuster);
-            GUILayout.Label($"kerbal.Attributes.GetFullNameCustomNameKey={kerbal.Attributes.GetFullName()}", _styleSmall);
+            GUILayout.Label($"kerbal.Attributes.GetFullName={kerbal.Attributes.GetFullName()}", _styleSmall);
             GUILayout.Space(spaceAdjuster);
             GUILayout.Label($"kerbal.Attributes.Surname={kerbal.Attributes.Surname}", _styleSmall);
             GUILayout.Space(spaceAdjuster);
@@ -371,6 +384,12 @@ namespace Humans
 
             GUILayout.BeginHorizontal();
             {
+                /*
+                if (kerbal.Portrait == null)
+                {
+                    KerbalUtility.TakeKerbalPortraits(_kerbals);
+                }
+                */
                 GUILayout.Label(kerbal.Portrait.texture);
 
                 GUILayout.Space(20);
