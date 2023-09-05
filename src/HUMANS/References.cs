@@ -40,4 +40,28 @@ TODO
 - presets for fameous astronauts and people (Lux)
 
 
+- KSC menu - "Kerbal Space Center (KSC)" - GameManager/Default Game Instance(Clone)/UI Manager(Clone)/Main Canvas/KSCMenu(Clone)/LandingPanel/InteriorWindow/MenuButtons/Content/Menu/Agency
+    - Image-Text Holder -> image -> replace with Culture flag/logo
+                        -> TextHolder -> location and space agency name?
+
+
+KSC menu: GameManager/Default Game Instance(Clone)/UI Manager(Clone)/Main Canvas/KSCMenu(Clone)/LandingPanel/InteriorWindow/MenuButtons/Content/Menu/LaunchLocationFlyoutHeaderToggle
+
+
+// THIS LOADS UP A NEW SPACE CENTER KSC LOGO
+//using SpaceWarp.API.Assets;
+//using UnityEngine;
+//using UnityEngine.UI;
+var newTexture = AssetManager.GetAsset<Texture2D>("com.github.falki.humans/images/usa_flag.png");
+var gameobject = GameObject.Find("GameManager/Default Game Instance(Clone)/UI Manager(Clone)/Main Canvas/KSCMenu(Clone)/LandingPanel/InteriorWindow/MenuButtons/Content/Menu/Agency/Image-Text Holder/Image");
+newTexture.filterMode = FilterMode.Point;
+var image = gameobject.GetComponent<UnityEngine.UI.Image>();
+image.sprite = Sprite.Create(newTexture, new Rect(0, 0, 600, 400), new Vector2(0.5f, 0.5f));
+{
+    Material newMaterial = new Material(image.material);
+    newMaterial.color = Color.white;
+    image.material = newMaterial;
+}
+
+
 */

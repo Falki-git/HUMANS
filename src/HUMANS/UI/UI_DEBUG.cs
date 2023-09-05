@@ -1,13 +1,19 @@
 ﻿using BepInEx.Logging;
 using Humans.Utilities;
+using I2.Loc;
+using JetBrains.Annotations;
 using KSP;
 using KSP.Game;
 using KSP.Messages;
 using KSP.Sim;
 using KSP.Sim.impl;
+using KSP.UI;
+using SpaceWarp.API.Assets;
+using SpaceWarp;
 using SpaceWarp.API.UI;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Humans
 {
@@ -150,6 +156,8 @@ namespace Humans
         GameObject _obj;
         KerbalComponent kerbalComponent;
 
+        private bool test;
+
         private void FillDebugUI(int _)
         {
             var kerbal = _kerbals[_kerbalIndexDebug];
@@ -239,6 +247,70 @@ namespace Humans
                 kerbal._kerbalAttributes._fullName = "test2";
 
             }
+            if (GUILayout.Button("KscAppBarTest"))
+            {
+                // Get the Launch Pads menu item
+                var menu = UnityEngine.GameObject.Find("GameManager/Default Game Instance(Clone)/UI Manager(Clone)/Main Canvas/KSCMenu(Clone)/LandingPanel/InteriorWindow/MenuButtons/Content/Menu");
+                var launchLocationsButton = menu.GetChild("LaunchLocationFlyoutHeaderToggle");
+
+                // Clone it, add it to the menu and rename it
+                var kscAppTray = UnityEngine.Object.Instantiate(launchLocationsButton, menu.transform);
+                kscAppTray.name = "KscApps";
+
+                var image = kscAppTray.GetChild("Header").GetChild("Content").GetChild("Icon Panel").GetChild("icon").GetComponent<Image>();
+                var tex = AssetManager.GetAsset<Texture2D>($"{SpaceWarpPlugin.ModGuid}/images/oabTrayButton.png");
+                tex.filterMode = FilterMode.Point;
+                image.sprite = Sprite.Create(tex, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f));
+
+                var text = kscAppTray.GetChild("Header").GetChild("Content").GetChild("Title").GetComponent<TMPro.TextMeshProUGUI>();
+                text.text = "Apps";
+
+                // Get the popout menu for launch pads and clear items
+                var popoutMenu = kscAppTray.GetChild("LaunchLocationsFlyoutTarget");
+                popoutMenu.name = "KscAppsPopout";
+                // TODO clear items
+
+                var firstPopoutMenuItem = popoutMenu.GetChild("Boat_Launch");
+                var modButton = UnityEngine.Object.Instantiate(firstPopoutMenuItem, popoutMenu.transform);
+                modButton.name = "hereGoesModId";
+                //var localize = modButton.GetChild("Content").GetChild("Text (TMP)").GetComponent<I2.Loc.Localize>();
+                //localize.enabled = false;
+                var modText = modButton.GetChild("Content").GetChild("Text (TMP)").GetComponent<TMPro.TextMeshProUGUI>();
+                modText.text = "setModNameHere";
+                var localizer = modText.gameObject.GetComponent<Localize>();
+                if (localizer)
+                {
+                    UnityEngine.Object.Destroy(localizer);
+                }
+
+                // Add our function call to the toggle.
+                //var utoggle = modButton.GetComponent<ToggleExtended>();
+                //utoggle.onValueChanged.AddListener(state =>
+                //{
+                //    _showDebugColorWindow = !_showDebugColorWindow;
+                //});
+
+                var buttonExtended = modButton.GetComponent<ButtonExtended>();
+                var previousListeners = modButton.GetComponent<UIAction_String_ButtonExtended>();
+                if (previousListeners)
+                {
+                    UnityEngine.GameObject.Destroy(previousListeners);
+                }
+                buttonExtended.onClick.AddListener(() =>
+                {
+                    _logger.LogDebug("Mod button clicked.");
+                    HumansPlugin.Instance._isDebugWindowOpen = !HumansPlugin.Instance._isDebugWindowOpen;
+                    //popoutMenu.SetActive(false);
+                    var toggle = kscAppTray.GetComponent<ToggleExtended>();
+                    toggle.isOn = false;
+                    
+                });
+                //utoggle.onValueChanged.AddListener(_ => SetTrayState(false));
+
+
+            }
+
+            
 
 
             GUILayout.BeginHorizontal();
