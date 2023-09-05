@@ -250,13 +250,14 @@ namespace Humans
             if (GUILayout.Button("KscAppBarTest"))
             {
                 // Get the Launch Pads menu item
-                var menu = UnityEngine.GameObject.Find("GameManager/Default Game Instance(Clone)/UI Manager(Clone)/Main Canvas/KSCMenu(Clone)/LandingPanel/InteriorWindow/MenuButtons/Content/Menu");
-                var launchLocationsButton = menu.GetChild("LaunchLocationFlyoutHeaderToggle");
+                var kscMenu = UnityEngine.GameObject.Find("GameManager/Default Game Instance(Clone)/UI Manager(Clone)/Main Canvas/KSCMenu(Clone)/LandingPanel/InteriorWindow/MenuButtons/Content/Menu");
+                var launchLocationsButton = kscMenu != null ? kscMenu.GetChild("LaunchLocationFlyoutHeaderToggle") : null;
 
                 // Clone it, add it to the menu and rename it
-                var kscAppTray = UnityEngine.Object.Instantiate(launchLocationsButton, menu.transform);
+                var kscAppTray = UnityEngine.Object.Instantiate(launchLocationsButton, kscMenu.transform);
                 kscAppTray.name = "KscApps";
 
+                // Set the tray icon.
                 var image = kscAppTray.GetChild("Header").GetChild("Content").GetChild("Icon Panel").GetChild("icon").GetComponent<Image>();
                 var tex = AssetManager.GetAsset<Texture2D>($"{SpaceWarpPlugin.ModGuid}/images/oabTrayButton.png");
                 tex.filterMode = FilterMode.Point;
@@ -310,6 +311,50 @@ namespace Humans
 
             }
 
+            if (GUILayout.Button("SW -- create KSC tray"))
+            {
+                _logger.LogInfo("Creating KSC app tray...");
+
+                // Find the KSC launch locations menu item; it will be used for cloning the app tray
+
+                // Get the Launch Pads menu item
+                var kscMenu = GameObject.Find("GameManager/Default Game Instance(Clone)/UI Manager(Clone)/Main Canvas/KSCMenu(Clone)/LandingPanel/InteriorWindow/MenuButtons/Content/Menu");
+                var launchLocationsButton = kscMenu != null ? kscMenu.GetChild("LaunchLocationFlyoutHeaderToggle") : null;
+
+                if (kscMenu == null || launchLocationsButton == null)
+                {
+                    _logger.LogError("Couldn't find KSC tray.");
+                    return;
+                }
+
+                // Clone it, add it to the menu and rename it
+                var kscAppTrayButton = UnityEngine.Object.Instantiate(launchLocationsButton, kscMenu.transform);
+                kscAppTrayButton.name = "KSC-AppTrayButton";
+
+                // Set the button icon
+                var image = kscAppTrayButton.GetChild("Header").GetChild("Content").GetChild("Icon Panel").GetChild("icon").GetComponent<Image>();
+                var tex = AssetManager.GetAsset<Texture2D>($"{SpaceWarpPlugin.ModGuid}/images/oabTrayButton.png");
+                tex.filterMode = FilterMode.Point;
+                image.sprite = Sprite.Create(tex, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f));
+
+                // Change the text to APPS
+                var text = kscAppTrayButton.GetChild("Header").GetChild("Content").GetChild("Title").GetComponent<TMPro.TextMeshProUGUI>();
+                text.text = "Apps";
+
+                // Get the tray and rename it
+                var kscAppTray = kscAppTrayButton.GetChild("LaunchLocationsFlyoutTarget");
+                kscAppTray.name = "KSC-AppTray";
+
+                // Delete existing buttons in the tray.
+                for (var i = 0; i < kscAppTray.transform.childCount; i++)
+                {
+                    var child = kscAppTray.transform.GetChild(i);
+
+                    UnityEngine.Object.Destroy(child.gameObject);
+                }
+
+                _logger.LogInfo("Created KSC app tray.");
+            }
             
 
 
