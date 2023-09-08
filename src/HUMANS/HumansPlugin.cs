@@ -27,9 +27,11 @@ public class HumansPlugin : BaseSpaceWarpPlugin
     [PublicAPI] public const string ModVer = MyPluginInfo.PLUGIN_VERSION;
 
     public bool _isDebugWindowOpen;
-    private bool _isWindowOpen;
+    public bool _isWindowOpen;
     private const string ToolbarDebugButtonID = "BTN-Humans-debug";
     private const string ToolbarButtonID = "BTN-Humans";
+    private const string ToolbarKscButtonID = "BTN-HumansKSC";
+    private const string ToolbarKscDebugButtonID = "BTN-HumansDebugKSC";
     private readonly ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("Humans");
 
     public static HumansPlugin Instance { get; set; }
@@ -63,6 +65,26 @@ public class HumansPlugin : BaseSpaceWarpPlugin
             }
         );
 
+        Appbar.RegisterKSCAppButton(
+            "Humans",
+            ToolbarKscButtonID,
+            AssetManager.GetAsset<Texture2D>($"{SpaceWarpMetadata.ModID}/images/icon.png"),
+            () =>
+            {
+                _isWindowOpen = !_isWindowOpen;
+            }
+        );
+
+        Appbar.RegisterKSCAppButton(
+            "Humans Debug",
+            ToolbarKscDebugButtonID,
+            AssetManager.GetAsset<Texture2D>($"{SpaceWarpMetadata.ModID}/images/icon.png"),
+            () =>
+            {                
+                _isDebugWindowOpen = !_isDebugWindowOpen;
+            }
+        );
+
         Manager.Instance.Initialize();
 
         //TestBed();
@@ -70,103 +92,6 @@ public class HumansPlugin : BaseSpaceWarpPlugin
 
     private void TestBed()
     {
-        /*         
-         var x = UnityEngine.GameObject.Find("GameManager/Default Game Instance(Clone)/UI Manager(Clone)/Main Canvas/KSCMenu(Clone)/LandingPanel/InteriorWindow/MenuButtons/Content/Menu/Agency/Image-Text Holder/Image").GetComponent<UnityEngine.UI.Image>().activeSprite;
-        x.texture;
-        var y = SpaceWarp.API.Assets.AssetManager.GetAsset<Texture2D>("com.github.falki.customizable-ui/images/icon.png");
-        var newTexture = SpaceWarp.API.Assets.AssetManager.GetAsset<Texture2D>($"{Info.Metadata.GUID}/images/icon.png");        
-        var gameobject = UnityEngine.GameObject.Find("GameManager/Default Game Instance(Clone)/UI Manager(Clone)/Main Canvas/KSCMenu(Clone)/LandingPanel/InteriorWindow/MenuButtons/Content/Menu/Agency/Image-Text Holder/Image");
-        var spriteRenderer = gameobject.GetComponent<SpriteRenderer>();
-
-        UnityEngine.Material newMaterial = new UnityEngine.Material(spriteRenderer.material);
-        newMaterial.mainTexture = newTexture;
-        spriteRenderer.material = newMaterial;         
-         */
-
-
-
-        //var gameobject = GameObject.Find("GameManager/Default Game Instance(Clone)/UI Manager(Clone)/Main Canvas/KSCMenu(Clone)/LandingPanel/InteriorWindow/MenuButtons/Content/Menu/Agency/Image-Text Holder/Image").GetComponent<UnityEngine.UI.Image>();
-
-        //var spriteRenderer = gameobject.GetComponent<SpriteRenderer>();
-
-
-        // THIS LOADS UP A NEW SPACE CENTER KSC LOGO
-        //using SpaceWarp.API.Assets;
-        //using UnityEngine;
-        //using UnityEngine.UI;
-        var newTexture = AssetManager.GetAsset<Texture2D>("com.github.falki.humans/images/usa_flag.png");
-        var gameobject = GameObject.Find("GameManager/Default Game Instance(Clone)/UI Manager(Clone)/Main Canvas/KSCMenu(Clone)/LandingPanel/InteriorWindow/MenuButtons/Content/Menu/Agency/Image-Text Holder/Image");
-        newTexture.filterMode = FilterMode.Point;
-        var image = gameobject.GetComponent<UnityEngine.UI.Image>();
-        image.sprite = Sprite.Create(newTexture, new Rect(0, 0, 600, 400), new Vector2(0.5f, 0.5f));
-        {
-            Material newMaterial = new Material(image.material);
-            newMaterial.color = Color.white;
-            image.material = newMaterial;
-        }
-
-
-        //var newTexture = SpaceWarp.API.Assets.AssetManager.GetAsset<Texture2D>("com.github.falki.humans/images/icon.png");
-        //image.material.mainTexture = newTexture;
-        //UnityEngine.Material newMaterial = new UnityEngine.Material(image.material);
-        //newMaterial.mainTexture = newTexture;
-        //image.material = newMaterial;
-
-        //var canvas = gameobject.GetComponent<UnityEngine.CanvasRenderer>();
-        //canvas.SetMaterial(newMaterial, newTexture);
-
-        //newMaterial.mainTexture = newTexture;
-        //spriteRenderer.material = newMaterial;
-
-
-        //GameManager/Default Game Instance(Clone)/UI Manager(Clone)/Main Canvas/KSCMenu(Clone)/LandingPanel/InteriorWindow/MenuButtons/Content/Menu/
-
-
-
-        // Get the Launch Pads menu item
-        var menu = UnityEngine.GameObject.Find("GameManager/Default Game Instance(Clone)/UI Manager(Clone)/Main Canvas/KSCMenu(Clone)/LandingPanel/InteriorWindow/MenuButtons/Content/Menu");
-        var launchLocationsButton = menu.GetChild("LaunchLocationFlyoutHeaderToggle");
-        
-        // Clone it, add it to the menu and rename it
-        var kscAppTray = UnityEngine.Object.Instantiate(launchLocationsButton, menu.transform);
-        kscAppTray.name = "KscApps";
-
-        var text = kscAppTray.GetChild("Header").GetChild("Content").GetChild("Title").GetComponent<TMPro.TextMeshProUGUI>();
-        text.text = "Apps";
-
-        // Get the popout menu for launch pads and clear items
-        var popoutMenu = kscAppTray.GetChild("LaunchLocationsFlyoutTarget");
-        popoutMenu.name = "KscAppsPopout";
-
-        var firstPopoutMenuItem = popoutMenu.GetChild("Launchpad_1");
-        var modButton = UnityEngine.Object.Instantiate(firstPopoutMenuItem, popoutMenu.transform);
-        modButton.name = "hereGoesModId";
-        var modText = modButton.GetChild("Content").GetChild("Text (TMP)").GetComponent<TMPro.TextMeshProUGUI>();
-        modText.text = "modNameText";
-        
-
-        var modIcon = modButton.GetChild("Content").GetChild("Icon");
-        var modIconImage = modIcon.GetComponent<UnityEngine.UI.Image>();
-        var tex = SpaceWarp.API.Assets.AssetManager.GetAsset<UnityEngine.Texture2D>("com.github.falki.humans/images/icon.png");
-        modIconImage.sprite = UnityEngine.Sprite.Create(tex, new Rect(0, 0, 24, 24), new Vector2(0.5f, 0.5f));
-
-
-        //temp
-        var x = UnityEngine.GameObject.Find("GameManager/Default Game Instance(Clone)/UI Manager(Clone)/Main Canvas/KSCMenu(Clone)/LandingPanel/InteriorWindow/MenuButtons/Content/Menu/KscApps/KscAppsPopout/hereGoesModId");
-        var y = x.GetChild("Content");
-        var z = y.GetChild("Text (TMP)");
-        var k = z.GetComponent<TMPro.TextMeshProUGUI>();
-        k.text = "myText";
-        //endtemp
-
-        // TODO SET THE TRAY BUTTON
-        /*
-        // Set the button icon.
-        var image = oabTrayButton.GetComponent<Image>();
-        var tex = AssetManager.GetAsset<Texture2D>($"{SpaceWarpPlugin.ModGuid}/images/oabTrayButton.png");
-        tex.filterMode = FilterMode.Point;
-        image.sprite = Sprite.Create(tex, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f));
-        */
 
     }
 

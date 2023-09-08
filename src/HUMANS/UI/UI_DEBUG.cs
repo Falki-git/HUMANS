@@ -156,7 +156,19 @@ namespace Humans
         GameObject _obj;
         KerbalComponent kerbalComponent;
 
-        private bool test;
+        private GameObject _kscTray;
+        private GameObject KSCTray
+        {
+            get
+            {
+                if (_kscTray == null)
+                {
+                    return _kscTray = CreateKSCTray();
+                }
+
+                return _kscTray;
+            }
+        }
 
         private void FillDebugUI(int _)
         {
@@ -313,49 +325,25 @@ namespace Humans
 
             if (GUILayout.Button("SW -- create KSC tray"))
             {
-                _logger.LogInfo("Creating KSC app tray...");
-
-                // Find the KSC launch locations menu item; it will be used for cloning the app tray
-
-                // Get the Launch Pads menu item
-                var kscMenu = GameObject.Find("GameManager/Default Game Instance(Clone)/UI Manager(Clone)/Main Canvas/KSCMenu(Clone)/LandingPanel/InteriorWindow/MenuButtons/Content/Menu");
-                var launchLocationsButton = kscMenu != null ? kscMenu.GetChild("LaunchLocationFlyoutHeaderToggle") : null;
-
-                if (kscMenu == null || launchLocationsButton == null)
-                {
-                    _logger.LogError("Couldn't find KSC tray.");
-                    return;
-                }
-
-                // Clone it, add it to the menu and rename it
-                var kscAppTrayButton = UnityEngine.Object.Instantiate(launchLocationsButton, kscMenu.transform);
-                kscAppTrayButton.name = "KSC-AppTrayButton";
-
-                // Set the button icon
-                var image = kscAppTrayButton.GetChild("Header").GetChild("Content").GetChild("Icon Panel").GetChild("icon").GetComponent<Image>();
-                var tex = AssetManager.GetAsset<Texture2D>($"{SpaceWarpPlugin.ModGuid}/images/oabTrayButton.png");
-                tex.filterMode = FilterMode.Point;
-                image.sprite = Sprite.Create(tex, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f));
-
-                // Change the text to APPS
-                var text = kscAppTrayButton.GetChild("Header").GetChild("Content").GetChild("Title").GetComponent<TMPro.TextMeshProUGUI>();
-                text.text = "Apps";
-
-                // Get the tray and rename it
-                var kscAppTray = kscAppTrayButton.GetChild("LaunchLocationsFlyoutTarget");
-                kscAppTray.name = "KSC-AppTray";
-
-                // Delete existing buttons in the tray.
-                for (var i = 0; i < kscAppTray.transform.childCount; i++)
-                {
-                    var child = kscAppTray.transform.GetChild(i);
-
-                    UnityEngine.Object.Destroy(child.gameObject);
-                }
-
-                _logger.LogInfo("Created KSC app tray.");
+                _kscTray = CreateKSCTray();
             }
-            
+
+            if (GUILayout.Button("SW -- create Humans button"))
+            {
+                CreateHumansButton();
+            }
+
+            if (GUILayout.Button("Nonstageable resources"))
+            {
+                var x = GameObject.Find("GameManager/Default Game Instance(Clone)/UI Manager(Clone)/Scaled Main Canvas/FlightHudRoot(Clone)/NonStageableResources(Clone)/KSP2UIWindow/Root/UIPanel/GRP-Body/Scroll View/Viewport/Content");
+                var y = x.GetChild("NonStageableResourceItem(Clone)");
+                UnityEngine.Object.Instantiate(y, x.transform);
+
+                var z = GameObject.Find("GameManager/Default Game Instance(Clone)/UI Manager(Clone)/Scaled Main Canvas/FlightHudRoot(Clone)/NonStageableResources(Clone)/KSP2UIWindow/Root/UIPanel");
+                var m = x.GetComponent<RectTransform>();
+                m.sizeDelta = new Vector2(0, 100);
+            }
+
 
 
             GUILayout.BeginHorizontal();
@@ -469,6 +457,97 @@ namespace Humans
             //var photos = GameManager.Instance.Game.SessionManager.KerbalRosterManager._portraitRenderer._generatedKerbalPhotos;
 
             GUI.DragWindow(new Rect(0, 0, Screen.width, Screen.height));
+        }        
+
+        private GameObject CreateKSCTray()
+        {
+            _logger.LogInfo("Creating KSC app tray...");
+
+            // Find the KSC launch locations menu item; it will be used for cloning the app tray
+
+            // Get the Launch Pads menu item
+            var kscMenu = GameObject.Find("GameManager/Default Game Instance(Clone)/UI Manager(Clone)/Main Canvas/KSCMenu(Clone)/LandingPanel/InteriorWindow/MenuButtons/Content/Menu");
+            var launchLocationsButton = kscMenu != null ? kscMenu.GetChild("LaunchLocationFlyoutHeaderToggle") : null;
+
+            if (kscMenu == null || launchLocationsButton == null)
+            {
+                _logger.LogError("Couldn't find KSC tray.");
+                return null;
+            }
+
+            // Clone it, add it to the menu and rename it
+            var kscAppTrayButton = UnityEngine.Object.Instantiate(launchLocationsButton, kscMenu.transform);
+            kscAppTrayButton.name = "KSC-AppTrayButton";
+
+            // Set the button icon
+            var image = kscAppTrayButton.GetChild("Header").GetChild("Content").GetChild("Icon Panel").GetChild("icon").GetComponent<Image>();
+            var tex = AssetManager.GetAsset<Texture2D>($"{SpaceWarpPlugin.ModGuid}/images/oabTrayButton.png");
+            tex.filterMode = FilterMode.Point;
+            image.sprite = Sprite.Create(tex, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f));
+
+            // Change the text to APPS
+            var text = kscAppTrayButton.GetChild("Header").GetChild("Content").GetChild("Title").GetComponent<TMPro.TextMeshProUGUI>();
+            text.text = "Apps";
+
+            // Get the tray and rename it
+            var kscAppTray = kscAppTrayButton.GetChild("LaunchLocationsFlyoutTarget");
+            kscAppTray.name = "KSC-AppTray";
+
+            // Delete existing buttons in the tray.
+            for (var i = 0; i < kscAppTray.transform.childCount; i++)
+            {
+                var child = kscAppTray.transform.GetChild(i);
+
+                UnityEngine.Object.Destroy(child.gameObject);
+            }
+
+            _logger.LogInfo("Created KSC app tray.");
+
+            return kscAppTray;
+        }
+
+        private void CreateHumansButton()
+        {
+            var kscLaunchLocationsFlyoutTarget = GameObject.Find("GameManager/Default Game Instance(Clone)/UI Manager(Clone)/Main Canvas/KSCMenu(Clone)/LandingPanel/InteriorWindow/MenuButtons/Content/Menu/LaunchLocationFlyoutHeaderToggle/LaunchLocationsFlyoutTarget");
+            var launchPadButton = kscLaunchLocationsFlyoutTarget.GetChild("Launchpad_1");
+
+            var modButton = UnityEngine.Object.Instantiate(launchPadButton, KSCTray.transform);
+            modButton.name = "hereGoesModId";
+
+            var modText = modButton.GetChild("Content").GetChild("Text (TMP)").GetComponent<TMPro.TextMeshProUGUI>();
+            modText.text = "setModNameHere";
+            
+            var localizer = modText.gameObject.GetComponent<Localize>();
+            if (localizer)
+            {
+                UnityEngine.Object.Destroy(localizer);
+            }
+
+            // Change the icon.
+            var icon = modButton.GetChild("Icon");
+            var image = icon.GetComponent<Image>();
+            {
+                // TEMP
+                var tex = AssetManager.GetAsset<Texture2D>($"com.github.falki.humans/images/icon.png");
+                tex.filterMode = FilterMode.Point;
+                image.sprite = Sprite.Create(tex, new Rect(0, 0, 24, 24), new Vector2(0.5f, 0.5f));
+            }
+            //image.sprite = buttonIcon;
+
+            var buttonExtended = modButton.GetComponent<ButtonExtended>();
+            var previousListeners = modButton.GetComponent<UIAction_String_ButtonExtended>();
+            if (previousListeners)
+            {
+                UnityEngine.GameObject.Destroy(previousListeners);
+            }
+            buttonExtended.onClick.AddListener(() =>
+            {
+                _logger.LogDebug("Mod button clicked.");
+                HumansPlugin.Instance._isDebugWindowOpen = !HumansPlugin.Instance._isDebugWindowOpen;
+                var toggle = KSCTray.GetComponentInParent<ToggleExtended>();
+                toggle.isOn = false;
+            });
+
         }
 
         #endregion
