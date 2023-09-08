@@ -132,6 +132,7 @@ namespace Humans
         public void Humanize() => Humanize(KerbalInfo);
         public void Humanize(KerbalInfo kerbal)
         {
+            
             KerbalUtility.SetKerbal(kerbal);
 
             var firstNameAttribute = new FirstNameAttribute();
@@ -146,7 +147,8 @@ namespace Humans
             var hairColorAttribute = new HairColorAttribute();
             hairColorAttribute.ApplyAttribute(kerbal, HairColor.Color);
 
-            KerbalUtility.FullName = $"{FirstName} {Surname}";
+            //KerbalUtility.FullName = $"{FirstName} {Surname}";
+            KerbalUtility.FullName = kerbal.Attributes.GetFullName();
 
             //TODO other attributes
         }
