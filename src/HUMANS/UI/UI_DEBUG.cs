@@ -379,7 +379,12 @@ namespace Humans
             //var photos = GameManager.Instance.Game.SessionManager.KerbalRosterManager._portraitRenderer._generatedKerbalPhotos;
             GUILayout.BeginHorizontal();
             {
-                GUILayout.Label(kerbal.Portrait.texture);
+                var portrait = kerbal.Portrait?.texture;
+                if (portrait != null)
+                    GUILayout.Label(kerbal.Portrait.texture);
+                else
+                    GUILayout.Label("Portrait is null");
+
                 GUILayout.BeginVertical();
                 {
                     GUILayout.Label("Key:", _styleSmall);
@@ -586,7 +591,13 @@ namespace Humans
                     KerbalUtility.TakeKerbalPortraits(_kerbals);
                 }
                 */
-                GUILayout.Label(kerbal.Portrait.texture);
+
+                var portrait = kerbal.Portrait?.texture;
+                
+                if (portrait != null)
+                    GUILayout.Label(kerbal.Portrait.texture);
+                else
+                    GUILayout.Label("Portrait is null");
 
                 GUILayout.Space(20);
 

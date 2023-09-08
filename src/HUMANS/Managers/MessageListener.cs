@@ -24,29 +24,70 @@ namespace Humans
             }
         }
 
-        public void SubscribeToMessages()
+        public void SubscribeToMessages() => _ = Subscribe();
+
+        private async Task Subscribe()
         {
+            await Task.Delay(1000);
+
             // We're showing Culture select window when KSC is loaded and if campaign hasn't been initialized yet
-            MessageCenter.Subscribe<KSCLoadedMessage>(new Action<MessageCenterMessage>(msg =>
-            {
-                _logger.LogDebug("KSCLoadedMessage triggered.");
-                Manager.Instance.OnKSCLoadedMessage(msg);
-            }));
+            MessageCenter.Subscribe<KSCLoadedMessage>(OnKSCLoaded);
+            _logger.LogInfo("Subscribed to KSCLoadedMessage.");
 
             // Show and Hide Culture select window
-            MessageCenter.Subscribe<GameStateChangedMessage>(new Action<MessageCenterMessage>(obj =>
-            {
-                var msg = obj as GameStateChangedMessage;
-                _logger.LogDebug($"GameStateChangedMessage triggered. {msg.PreviousState} -> {msg.CurrentState}.");
-                Manager.Instance.OnGameStateChangedMessage(msg);
-            }));
+            MessageCenter.Subscribe<GameStateChangedMessage>(OnGameStateChanged);
+            _logger.LogInfo("Subscribed to GameStateChangedMessage.");
 
-            // Take kerbal portraits when view controller is finished
-            MessageCenter.Subscribe<ViewControllerFlowFinished>(new Action<MessageCenterMessage>(obj =>
+            // Take kerbal portraits when game load is finished
+            MessageCenter.Subscribe<GameLoadFinishedMessage>(OnGameLoadFinishedMessage);
+            _logger.LogInfo("Subscribed to GameLoadFinishedMessage.");
+        }
+
+        private void ResubscribeToMessages()
+        {
+            _logger.LogDebug("Resubscription triggered");
+
+            try
             {
-                _logger.LogDebug("ViewControllerFlowFinished triggered.");
-                Manager.Instance.OnViewControllerFlowFinished(obj);
-            }));
+                MessageCenter.Unsubscribe<KSCLoadedMessage>(OnKSCLoaded);
+            }
+            catch { _logger.LogDebug("KSCLoadedMessage unsubscribe failed."); }
+            try
+            {
+                MessageCenter.Unsubscribe<GameStateChangedMessage>(OnGameStateChanged);
+            }
+            catch { _logger.LogDebug("GameStateChangedMessage unsubscribe failed."); }
+
+            try
+            {
+                MessageCenter.Unsubscribe<GameLoadFinishedMessage>(OnGameLoadFinishedMessage);
+            }
+            catch { _logger.LogDebug("GameLoadFinishedMessage unsubscribe failed."); }
+
+            SubscribeToMessages();
+        }
+
+        private void OnKSCLoaded(MessageCenterMessage msg)
+        {
+            _logger.LogDebug("KSCLoadedMessage triggered.");
+            Manager.Instance.OnKSCLoadedMessage(msg);
+        }
+
+        private void OnGameStateChanged(MessageCenterMessage obj)
+        {
+            var msg = obj as GameStateChangedMessage;
+            _logger.LogDebug($"GameStateChangedMessage triggered. {msg.PreviousState} -> {msg.CurrentState}.");
+
+            if (msg.CurrentState == KSP.Game.GameState.MainMenu)
+                ResubscribeToMessages();
+            else
+                Manager.Instance.OnGameStateChangedMessage(msg);
+        }
+
+        private void OnGameLoadFinishedMessage(MessageCenterMessage obj)
+        {
+            _logger.LogDebug("GameLoadFinishedMessage triggered.");
+            Manager.Instance.OnGameLoadFinished(obj);
         }
     }
 }

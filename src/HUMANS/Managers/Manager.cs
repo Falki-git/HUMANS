@@ -34,11 +34,6 @@ namespace Humans
             MessageListener.Instance.SubscribeToMessages();
         }
 
-        private void LoadCampaignsFromDisk()
-        {
-            throw new NotImplementedException();
-        }
-
         public void Update()
         {
             if (Utility.SessionManager == null || string.IsNullOrEmpty(Utility.SessionGuidString))
@@ -124,7 +119,7 @@ namespace Humans
             Utility.SaveCampaigns();
         }
 
-        public void OnViewControllerFlowFinished(MessageCenterMessage obj)
+        public void OnGameLoadFinished(MessageCenterMessage obj)
         {
             KerbalUtility.TakeKerbalPortraits(Utility.AllKerbals);
         }

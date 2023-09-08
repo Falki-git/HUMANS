@@ -37,6 +37,8 @@ namespace Humans.Utilities
 
         public static void TakeKerbalPortraits(List<KerbalInfo> kerbals)
         {
+            _logger.LogDebug($"Starting TakeKerbalPortraits. Number of kerbals: {kerbals.Count}.");
+
             foreach (var kerbal in kerbals)
             {
                 //GameManager.Instance.Game.SessionManager.KerbalRosterManager._portraitRenderer.TakeKerbalPortrait(kerbal);
