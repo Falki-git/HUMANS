@@ -1,0 +1,565 @@
+[
+  {
+    "SessionGuidString": "21e2b50b-02cf-4492-bfd2-c5acf2356930",
+    "CampaignName": "HUNAMS",
+    "SelectedCulture": "American",
+    "IsInitialized": true,
+    "Humans": [
+      {
+        "Id": {
+          "Guid": "c8bfc2f5-9122-4507-a200-088b2ccf4f15",
+          "DebugName": null
+        },
+        "Gender": "Male",
+        "Nationality": "USA",
+        "NameKey": null,
+        "FirstName": "Gerald",
+        "Surname": "Robinson",
+        "HairStyle": null,
+        "Helmet": null,
+        "HairColor": {
+          "Type": "Kerbal",
+          "Name": "Dijon",
+          "Color": {
+            "r": 183,
+            "g": 171,
+            "b": 101,
+            "a": 255
+          },
+          "Weight": 10
+        },
+        "Eyes": null,
+        "EyeHeight": 0.0,
+        "EyeSymmetry": 0.0,
+        "SkinColor": {
+          "Type": "BeautifulTouch",
+          "Name": "Desert Sand",
+          "Color": {
+            "r": 235,
+            "g": 191,
+            "b": 174,
+            "a": 255
+          }
+        }
+      },
+      {
+        "Id": {
+          "Guid": "0c061c6e-b1c4-4f4c-aeae-7940a69a4a68",
+          "DebugName": null
+        },
+        "Gender": "Female",
+        "Nationality": "USA",
+        "NameKey": null,
+        "FirstName": "Susan",
+        "Surname": "Perez",
+        "HairStyle": null,
+        "Helmet": null,
+        "HairColor": {
+          "Type": "Kerbal",
+          "Name": "Blond",
+          "Color": {
+            "r": 255,
+            "g": 211,
+            "b": 122,
+            "a": 255
+          },
+          "Weight": 10
+        },
+        "Eyes": null,
+        "EyeHeight": 0.0,
+        "EyeSymmetry": 0.0,
+        "SkinColor": {
+          "Type": "Ebony",
+          "Name": "Shadow",
+          "Color": {
+            "r": 138,
+            "g": 112,
+            "b": 106,
+            "a": 255
+          }
+        }
+      },
+      {
+        "Id": {
+          "Guid": "508e843b-13fd-4a1d-a3f4-845d62f86587",
+          "DebugName": null
+        },
+        "Gender": "Male",
+        "Nationality": "USA",
+        "NameKey": null,
+        "FirstName": "Nathan",
+        "Surname": "Lee",
+        "HairStyle": null,
+        "Helmet": null,
+        "HairColor": {
+          "Type": "Kerbal",
+          "Name": "Blond",
+          "Color": {
+            "r": 255,
+            "g": 211,
+            "b": 122,
+            "a": 255
+          },
+          "Weight": 10
+        },
+        "Eyes": null,
+        "EyeHeight": 0.0,
+        "EyeSymmetry": 0.0,
+        "SkinColor": {
+          "Type": "Real",
+          "Name": "Mellow Apricot",
+          "Color": {
+            "r": 241,
+            "g": 194,
+            "b": 125,
+            "a": 255
+          }
+        }
+      },
+      {
+        "Id": {
+          "Guid": "5ad109a6-8dc3-4c1d-859e-6be8898b25e8",
+          "DebugName": null
+        },
+        "Gender": "Male",
+        "Nationality": "Great Britain",
+        "NameKey": null,
+        "FirstName": "Christopher",
+        "Surname": "James",
+        "HairStyle": null,
+        "Helmet": null,
+        "HairColor": {
+          "Type": "Human",
+          "Name": "Bistre",
+          "Color": {
+            "r": 61,
+            "g": 35,
+            "b": 20,
+            "a": 255
+          },
+          "Weight": 10
+        },
+        "Eyes": null,
+        "EyeHeight": 0.0,
+        "EyeSymmetry": 0.0,
+        "SkinColor": {
+          "Type": "Dark",
+          "Name": "#321b0f",
+          "Color": {
+            "r": 50,
+            "g": 27,
+            "b": 15,
+            "a": 255
+          }
+        }
+      },
+      {
+        "Id": {
+          "Guid": "0c246628-617a-46f7-ba51-9d9371b89a7a",
+          "DebugName": null
+        },
+        "Gender": "Male",
+        "Nationality": "USA",
+        "NameKey": null,
+        "FirstName": "Adam",
+        "Surname": "Gomez",
+        "HairStyle": null,
+        "Helmet": null,
+        "HairColor": {
+          "Type": "Kerbal",
+          "Name": "Golden",
+          "Color": {
+            "r": 219,
+            "g": 213,
+            "b": 148,
+            "a": 255
+          },
+          "Weight": 3
+        },
+        "Eyes": null,
+        "EyeHeight": 0.0,
+        "EyeSymmetry": 0.0,
+        "SkinColor": {
+          "Type": "Natural",
+          "Name": "Fawn",
+          "Color": {
+            "r": 219,
+            "g": 169,
+            "b": 116,
+            "a": 255
+          }
+        }
+      },
+      {
+        "Id": {
+          "Guid": "33e7e707-aced-40f3-a568-9fe196760836",
+          "DebugName": null
+        },
+        "Gender": "Female",
+        "Nationality": "USA",
+        "NameKey": null,
+        "FirstName": "Andrea",
+        "Surname": "Ross",
+        "HairStyle": null,
+        "Helmet": null,
+        "HairColor": {
+          "Type": "Kerbal",
+          "Name": "Dijon",
+          "Color": {
+            "r": 183,
+            "g": 171,
+            "b": 101,
+            "a": 255
+          },
+          "Weight": 10
+        },
+        "Eyes": null,
+        "EyeHeight": 0.0,
+        "EyeSymmetry": 0.0,
+        "SkinColor": {
+          "Type": "Real",
+          "Name": "Mellow Apricot",
+          "Color": {
+            "r": 241,
+            "g": 194,
+            "b": 125,
+            "a": 255
+          }
+        }
+      },
+      {
+        "Id": {
+          "Guid": "fdde7f3c-454d-4f45-8940-eea24eb54884",
+          "DebugName": null
+        },
+        "Gender": "Male",
+        "Nationality": "USA",
+        "NameKey": null,
+        "FirstName": "Dale",
+        "Surname": "Hall",
+        "HairStyle": null,
+        "Helmet": null,
+        "HairColor": {
+          "Type": "Kerbal",
+          "Name": "Graying blond",
+          "Color": {
+            "r": 152,
+            "g": 134,
+            "b": 98,
+            "a": 255
+          },
+          "Weight": 10
+        },
+        "Eyes": null,
+        "EyeHeight": 0.0,
+        "EyeSymmetry": 0.0,
+        "SkinColor": {
+          "Type": "Asian",
+          "Name": "Pale Pink",
+          "Color": {
+            "r": 249,
+            "g": 222,
+            "b": 215,
+            "a": 255
+          }
+        }
+      },
+      {
+        "Id": {
+          "Guid": "8a54d407-5db8-4442-a09c-b0b82d26babe",
+          "DebugName": null
+        },
+        "Gender": "Female",
+        "Nationality": "USA",
+        "NameKey": null,
+        "FirstName": "Tyler",
+        "Surname": "Russell",
+        "HairStyle": null,
+        "Helmet": null,
+        "HairColor": {
+          "Type": "Kerbal",
+          "Name": "Light Orange",
+          "Color": {
+            "r": 233,
+            "g": 159,
+            "b": 65,
+            "a": 255
+          },
+          "Weight": 8
+        },
+        "Eyes": null,
+        "EyeHeight": 0.0,
+        "EyeSymmetry": 0.0,
+        "SkinColor": {
+          "Type": "Real",
+          "Name": "Russet",
+          "Color": {
+            "r": 141,
+            "g": 85,
+            "b": 36,
+            "a": 255
+          }
+        }
+      },
+      {
+        "Id": {
+          "Guid": "63ef4702-feb9-47c9-85d1-b6d7f3c0819b",
+          "DebugName": null
+        },
+        "Gender": "Male",
+        "Nationality": "USA",
+        "NameKey": null,
+        "FirstName": "Anthony",
+        "Surname": "Campbell",
+        "HairStyle": null,
+        "Helmet": null,
+        "HairColor": {
+          "Type": "Human",
+          "Name": "Zinnwaldite Brown",
+          "Color": {
+            "r": 44,
+            "g": 22,
+            "b": 8,
+            "a": 255
+          },
+          "Weight": 10
+        },
+        "Eyes": null,
+        "EyeHeight": 0.0,
+        "EyeSymmetry": 0.0,
+        "SkinColor": {
+          "Type": "BeautifulTouch",
+          "Name": "Antique Brass",
+          "Color": {
+            "r": 212,
+            "g": 152,
+            "b": 120,
+            "a": 255
+          }
+        }
+      },
+      {
+        "Id": {
+          "Guid": "e2d8e149-a922-4d4b-b04d-2dfc69471ff6",
+          "DebugName": null
+        },
+        "Gender": "Female",
+        "Nationality": "USA",
+        "NameKey": null,
+        "FirstName": "Alexis",
+        "Surname": "Hill",
+        "HairStyle": null,
+        "Helmet": null,
+        "HairColor": {
+          "Type": "Kerbal",
+          "Name": "White",
+          "Color": {
+            "r": 247,
+            "g": 247,
+            "b": 247,
+            "a": 255
+          },
+          "Weight": 10
+        },
+        "Eyes": null,
+        "EyeHeight": 0.0,
+        "EyeSymmetry": 0.0,
+        "SkinColor": {
+          "Type": "Caucasian",
+          "Name": "#ffcd94",
+          "Color": {
+            "r": 255,
+            "g": 205,
+            "b": 148,
+            "a": 255
+          }
+        }
+      },
+      {
+        "Id": {
+          "Guid": "452e5550-093f-4a97-b298-cca17e90c5d6",
+          "DebugName": null
+        },
+        "Gender": "Female",
+        "Nationality": "USA",
+        "NameKey": null,
+        "FirstName": "Angel",
+        "Surname": "Flores",
+        "HairStyle": null,
+        "Helmet": null,
+        "HairColor": {
+          "Type": "Human",
+          "Name": "Liver",
+          "Color": {
+            "r": 90,
+            "g": 56,
+            "b": 37,
+            "a": 255
+          },
+          "Weight": 10
+        },
+        "Eyes": null,
+        "EyeHeight": 0.0,
+        "EyeSymmetry": 0.0,
+        "SkinColor": {
+          "Type": "NormalAndTan",
+          "Name": "Unbleached Silk",
+          "Color": {
+            "r": 248,
+            "g": 224,
+            "b": 200,
+            "a": 255
+          }
+        }
+      },
+      {
+        "Id": {
+          "Guid": "b24592c2-a904-4985-a5da-6f65769a652f",
+          "DebugName": null
+        },
+        "Gender": "Female",
+        "Nationality": "USA",
+        "NameKey": null,
+        "FirstName": "Linda",
+        "Surname": "Sullivan",
+        "HairStyle": null,
+        "Helmet": null,
+        "HairColor": {
+          "Type": "Kerbal",
+          "Name": "Orange",
+          "Color": {
+            "r": 243,
+            "g": 141,
+            "b": 40,
+            "a": 255
+          },
+          "Weight": 1
+        },
+        "Eyes": null,
+        "EyeHeight": 0.0,
+        "EyeSymmetry": 0.0,
+        "SkinColor": {
+          "Type": "Asian",
+          "Name": "Dutch White",
+          "Color": {
+            "r": 240,
+            "g": 211,
+            "b": 192,
+            "a": 255
+          }
+        }
+      },
+      {
+        "Id": {
+          "Guid": "49dc7561-5043-47e0-b2bb-a1ed693a5b2b",
+          "DebugName": null
+        },
+        "Gender": "Male",
+        "Nationality": "USA",
+        "NameKey": null,
+        "FirstName": "Patrick",
+        "Surname": "Cruz",
+        "HairStyle": null,
+        "Helmet": null,
+        "HairColor": {
+          "Type": "Human",
+          "Name": "Bistre",
+          "Color": {
+            "r": 61,
+            "g": 35,
+            "b": 20,
+            "a": 255
+          },
+          "Weight": 10
+        },
+        "Eyes": null,
+        "EyeHeight": 0.0,
+        "EyeSymmetry": 0.0,
+        "SkinColor": {
+          "Type": "Black",
+          "Name": "Brown Sugar",
+          "Color": {
+            "r": 175,
+            "g": 110,
+            "b": 81,
+            "a": 255
+          }
+        }
+      },
+      {
+        "Id": {
+          "Guid": "4b728e1b-034f-4f41-ba3c-93ddf131ff8b",
+          "DebugName": null
+        },
+        "Gender": "Male",
+        "Nationality": "USA",
+        "NameKey": null,
+        "FirstName": "Michael",
+        "Surname": "Hill",
+        "HairStyle": null,
+        "Helmet": null,
+        "HairColor": {
+          "Type": "Kerbal",
+          "Name": "Dark Blue",
+          "Color": {
+            "r": 38,
+            "g": 41,
+            "b": 58,
+            "a": 255
+          },
+          "Weight": 10
+        },
+        "Eyes": null,
+        "EyeHeight": 0.0,
+        "EyeSymmetry": 0.0,
+        "SkinColor": {
+          "Type": "Fair",
+          "Name": "#9f7967",
+          "Color": {
+            "r": 159,
+            "g": 121,
+            "b": 103,
+            "a": 255
+          }
+        }
+      },
+      {
+        "Id": {
+          "Guid": "dfcaea56-43b2-421f-a8bc-3da8bf73086e",
+          "DebugName": null
+        },
+        "Gender": "Female",
+        "Nationality": "USA",
+        "NameKey": null,
+        "FirstName": "Jeanne",
+        "Surname": "Jenkins",
+        "HairStyle": null,
+        "Helmet": null,
+        "HairColor": {
+          "Type": "Kerbal",
+          "Name": "Sepia",
+          "Color": {
+            "r": 255,
+            "g": 188,
+            "b": 115,
+            "a": 255
+          },
+          "Weight": 5
+        },
+        "Eyes": null,
+        "EyeHeight": 0.0,
+        "EyeSymmetry": 0.0,
+        "SkinColor": {
+          "Type": "NormalAndTan",
+          "Name": "Crayola's Tan",
+          "Color": {
+            "r": 213,
+            "g": 156,
+            "b": 110,
+            "a": 255
+          }
+        }
+      }
+    ]
+  }
+]
