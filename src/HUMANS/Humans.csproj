@@ -9,7 +9,31 @@
         <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
         <PackageReference Include="HarmonyX" Version="2.10.1" />
         <PackageReference Include="KerbalSpaceProgram2.GameLibs" Version="0.1.3" PrivateAssets="all" />
-        <PackageReference Include="SpaceWarp" Version="1.4.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <!--<PackageReference Include="SpaceWarp" Version="1.4.0" />-->
         <PackageReference Include="UnityEngine.Modules" Version="2020.3.33.1" />
+    </ItemGroup>
+    <ItemGroup>
+      <Reference Include="SpaceWarp">
+        <HintPath>..\..\external_dlls\SpaceWarp.dll</HintPath>
+      </Reference>
+      <Reference Include="SpaceWarp.Core">
+        <HintPath>..\..\external_dlls\SpaceWarp.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="SpaceWarp.Game">
+        <HintPath>..\..\external_dlls\SpaceWarp.Game.dll</HintPath>
+      </Reference>
+      <Reference Include="SpaceWarp.Messaging">
+        <HintPath>..\..\external_dlls\SpaceWarp.Messaging.dll</HintPath>
+      </Reference>
+      <Reference Include="SpaceWarp.Sound">
+        <HintPath>..\..\external_dlls\SpaceWarp.Sound.dll</HintPath>
+      </Reference>
+      <Reference Include="SpaceWarp.UI">
+        <HintPath>..\..\external_dlls\SpaceWarp.UI.dll</HintPath>
+      </Reference>
+      <Reference Include="SpaceWarp.VersionChecking">
+        <HintPath>..\..\external_dlls\SpaceWarp.VersionChecking.dll</HintPath>
+      </Reference>
     </ItemGroup>
 </Project>
