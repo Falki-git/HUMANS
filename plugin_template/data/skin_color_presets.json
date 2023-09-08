@@ -431,7 +431,7 @@
   },
   {
     "Type": "Kerbal",
-    "Name": "1",
+    "Name": "Cantalope",
     "Color": {
       "r": 202,
       "g": 218,
@@ -441,7 +441,7 @@
   },
   {
     "Type": "Kerbal",
-    "Name": "2",
+    "Name": "KSP1 Original Flavor",
     "Color": {
       "r": 186,
       "g": 218,
@@ -451,7 +451,7 @@
   },
   {
     "Type": "Kerbal",
-    "Name": "3",
+    "Name": "Olive Green",
     "Color": {
       "r": 136,
       "g": 157,
@@ -461,7 +461,7 @@
   },
   {
     "Type": "Kerbal",
-    "Name": "4",
+    "Name": "Forest Green",
     "Color": {
       "r": 113,
       "g": 157,
@@ -471,7 +471,7 @@
   },
   {
     "Type": "Kerbal",
-    "Name": "5",
+    "Name": "Granny Smith",
     "Color": {
       "r": 148,
       "g": 198,
@@ -481,7 +481,7 @@
   },
   {
     "Type": "Kerbal",
-    "Name": "6",
+    "Name": "Light Green",
     "Color": {
       "r": 153,
       "g": 217,
@@ -491,7 +491,7 @@
   },
   {
     "Type": "Kerbal",
-    "Name": "7",
+    "Name": "Split Pea Soup",
     "Color": {
       "r": 151,
       "g": 176,
@@ -501,7 +501,7 @@
   },
   {
     "Type": "Kerbal",
-    "Name": "8",
+    "Name": "Lemon Grass",
     "Color": {
       "r": 190,
       "g": 219,
@@ -511,7 +511,7 @@
   },
   {
     "Type": "Kerbal",
-    "Name": "9",
+    "Name": "Evergreen",
     "Color": {
       "r": 123,
       "g": 146,
@@ -521,7 +521,7 @@
   },
   {
     "Type": "Kerbal",
-    "Name": "10",
+    "Name": "KSP2 Green",
     "Color": {
       "r": 157,
       "g": 193,
