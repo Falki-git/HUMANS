@@ -78,14 +78,6 @@ namespace Humans
             if (!campaign.IsInitialized)
             {
                 UI_DEBUG.Instance.ShowCultureSelection = true;
-
-                //TODO:
-                //raise the screen for mode selection - DONE
-                //player selects a mode - DONE
-                //SelectedCulture is set - DONE
-                //all kerbals go through humanization - DONE
-                //campaign is saved to a json file - DONE
-                //next time player starts the game, humanized kerbals are loaded
             }
         }
 

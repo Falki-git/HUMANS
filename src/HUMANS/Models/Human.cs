@@ -20,53 +20,48 @@ namespace Humans
 
             // Male kerbals are recognized by having "*_M_*" for Head type and "*_M_*" for Eyes type
             // Female kerbals are recognized by having "*_F_*" for Head type and "*_F_*" for Eyes type
-            if (KerbalUtility.Head.Contains("_M_"))
-                Gender = Gender.Male;
-            else
-                Gender = Gender.Female;
+            Head = new HeadPreset { Name = KerbalUtility.Head, Gender = KerbalUtility.Head.Contains("_M_") ? Gender.Male : Gender.Female };
+            Gender = Head.Gender;
 
             Nationality = culture.GetRandomNationality();
 
             var nation = CulturePresets.Instance.Nations.Find(n => n.Name == Nationality);
 
             FirstName = nation.GetRandomFirstName(Gender);
-            //var firstNameAttribute = new FirstNameAttribute();
-            //firstNameAttribute.ApplyAttribute(kerbal, FirstName);
-
             Surname = nation.GetRandomLastName();
-            //var surnameAttribute = new SurnameAttribute();
-            //surnameAttribute.ApplyAttribute(kerbal, Surname);
-
-            //KerbalUtility.FullName = $"{FirstName} {Surname}";
+            KerbalType = KerbalUtility.KerbalType;
+            NameKey = KerbalUtility.NameKey;
 
             var skinType = culture.GetRandomSkinColorType();
             SkinColor = HumanPresets.Instance.GetRandomSkinColor(skinType);
-            //var skinColorAttribute = new SkinColorAttribute();
-            //skinColorAttribute.ApplyAttribute(kerbal, (Color)SkinColor.Color);
-
             HairColor = HumanPresets.Instance.GetRandomHairColor();
-            //var hairColorAttribute = new HairColorAttribute();
-            //hairColorAttribute.ApplyAttribute(kerbal, HairColor.Color);
-
-            //Utility.Roster._portraitRenderer.TakeKerbalPortrait(kerbal);
-
-            /*
-            NameKey = KerbalUtility.NameKey;
-            FirstName = KerbalUtility.FirstName;
-            Surname = KerbalUtility.Surname;
-            //HumanType = KerbalUtility.HumanType;
             HairStyle = KerbalUtility.HairStyle;
             Helmet = KerbalUtility.Helmet;
-            HairColor = KerbalUtility.HairColor;
             Eyes = KerbalUtility.Eyes;
             EyeHeight = KerbalUtility.EyeHeight;
             EyeSymmetry = KerbalUtility.EyeSymmetry;
-            SkinColor = KerbalUtility.SkinColor;
-            */
+            FacialHair = KerbalUtility.FacialHair;
+            FaceDecoration = KerbalUtility.FaceDecoration;
+            TeamColor1 = KerbalUtility.TeamColor1;
+            TeamColor2 = KerbalUtility.TeamColor2;
+            Stupidity = KerbalUtility.Stupidity;
+            Bravery = KerbalUtility.Bravery;
+            Constitution = KerbalUtility.Constitution;
+            Optimism = KerbalUtility.Optimism;
+            IsVeteran = KerbalUtility.IsVeteran;
+            VoiceSelection = KerbalUtility.VoiceSelection;
+            VoiceType = KerbalUtility.VoiceType;
+            Body = KerbalUtility.Body;
+            FacePaint = KerbalUtility.FacePaint;
+            Radiation = KerbalUtility.Radiation;
+            Happiness = KerbalUtility.Happiness;
+            Experience = KerbalUtility.Experience;
+            Biography = KerbalUtility.Biography;
+
+            //HumanType = KerbalUtility.HumanType;
+
 
             // TODO
-
-            //Head = KerbalUtility.Head;
 
             Humanize();
         }
@@ -86,7 +81,8 @@ namespace Humans
         public string FirstName { get; set; }
         [JsonProperty]
         public string Surname { get; set; }
-        //public KerbalType HumanType { get; set; }
+        [JsonProperty]
+        public KerbalType KerbalType { get; set; }
         [JsonProperty]
         public string HairStyle { get; set; }
         [JsonProperty]
@@ -94,7 +90,7 @@ namespace Humans
         [JsonProperty]
         public HairColorPreset HairColor { get; set; }
         [JsonProperty]
-        public EyesPreset Eyes { get; set; }
+        public string Eyes { get; set; }
         [JsonProperty]
         public Single EyeHeight { get; set; }
         [JsonProperty]
@@ -102,24 +98,43 @@ namespace Humans
         [JsonProperty]
         public SkinColorPreset SkinColor { get; set; }
 
-
+        [JsonProperty]
         public string FacialHair { get; set; }
+        [JsonProperty]
         public string FaceDecoration { get; set; }
+        [JsonProperty]
         public Color TeamColor1 { get; set; }
+        [JsonProperty]
         public Color TeamColor2 { get; set; }
+        [JsonProperty]
         public Single Stupidity { get; set; }
+        [JsonProperty]
         public Single Bravery { get; set; }
+        [JsonProperty]
         public Single Constitution { get; set; }
+        [JsonProperty]
         public Single Optimism { get; set; }
+
+
+        [JsonProperty]
         public bool IsVeteran { get; set; }
+        [JsonProperty]
         public int VoiceSelection { get; set; }
+        [JsonProperty]
         public Single VoiceType { get; set; }
+        [JsonProperty]
         public string Body { get; set; }
+        [JsonProperty]
         public HeadPreset Head { get; set; }
+        [JsonProperty]
         public string FacePaint { get; set; }
+        [JsonProperty]        
         public Single Radiation { get; set; }
+        [JsonProperty]
         public Single Happiness { get; set; }
+        [JsonProperty]
         public int Experience { get; set; }
+        [JsonProperty]
         public string Biography { get; set; }
 
 
@@ -148,7 +163,7 @@ namespace Humans
             hairColorAttribute.ApplyAttribute(kerbal, HairColor.Color);
 
             //KerbalUtility.FullName = $"{FirstName} {Surname}";
-            KerbalUtility.FullName = kerbal.Attributes.GetFullName();
+            kerbal._kerbalAttributes._fullName = KerbalUtility.FullName; // = kerbal.Attributes.GetFullName();
 
             //TODO other attributes
         }

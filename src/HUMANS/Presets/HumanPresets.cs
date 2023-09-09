@@ -25,7 +25,7 @@ namespace Humans
         public List<string> HairStyles;
         public List<string> Helmets;
         public List<HairColorPreset> HairColors;
-        public List<EyesPreset> Eyes;
+        public List<string> Eyes;
         public List<string> FacialHairs;
         public List<string> FaceDecorations;
         public List<int> VoiceSelection;
@@ -52,7 +52,7 @@ namespace Humans
             HairStyles = Utility.LoadPresets<List<string>>(_hairStylesPath);
             Helmets = Utility.LoadPresets<List<string>>(_helmetsPath);
             HairColors = Utility.LoadPresets<List<HairColorPreset>>(_hairColorsPath);
-            Eyes = Utility.LoadPresets<List<EyesPreset>>(_eyesPath);
+            Eyes = Utility.LoadPresets<List<string>>(_eyesPath);
             FacialHairs = Utility.LoadPresets<List<string>>(_facialHairPath);
             FaceDecorations = Utility.LoadPresets<List<string>>(_faceDecorationsPath);
             VoiceSelection = new() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -121,6 +121,7 @@ namespace Humans
         public int Weight;
     }
 
+    /*
     [JsonObject(MemberSerialization.OptIn)]
     public class EyesPreset
     {
@@ -129,6 +130,7 @@ namespace Humans
         [JsonProperty]
         public string Name;
     }
+    */
     
     [JsonObject(MemberSerialization.OptIn)]
     public class HeadPreset
