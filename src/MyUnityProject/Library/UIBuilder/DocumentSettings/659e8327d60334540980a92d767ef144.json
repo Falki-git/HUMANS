@@ -1,0 +1,30 @@
+{
+    "UxmlGuid": "659e8327d60334540980a92d767ef144",
+    "UxmlPath": "Assets/MicroEngineer/StageInfoOAB.uxml",
+    "CanvasX": 0,
+    "CanvasY": 0,
+    "CanvasWidth": 786,
+    "CanvasHeight": 562,
+    "MatchGameView": false,
+    "ZoomScale": 1.75,
+    "PanOffset": {
+        "x": 75.544677734375,
+        "y": 314.333251953125
+    },
+    "ColorModeBackgroundOpacity": 1.0,
+    "ImageModeCanvasBackgroundOpacity": 1.0,
+    "CameraModeCanvasBackgroundOpacity": 1.0,
+    "EnableCanvasBackground": false,
+    "CanvasBackgroundMode": 0,
+    "CanvasBackgroundColor": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0,
+        "a": 255.0
+    },
+    "CanvasBackgroundImage": {
+        "instanceID": 0
+    },
+    "CanvasBackgroundImageScaleMode": 1,
+    "CanvasBackgroundCameraName": ""
+}

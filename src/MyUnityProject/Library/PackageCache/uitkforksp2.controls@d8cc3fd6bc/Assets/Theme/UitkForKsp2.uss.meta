@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 305f2f35903610c499eb291dc18f8f38
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: kerbalui
+  assetBundleVariant: 
+  script: {fileID: 12385, guid: 0000000000000000e000000000000000, type: 0}
+  disableValidation: 0

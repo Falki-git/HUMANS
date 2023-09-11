@@ -1,0 +1,14 @@
+{
+    "name": "uitkforksp2.controls.Runtime",
+    "rootNamespace": "UitkForKsp2.Controls",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

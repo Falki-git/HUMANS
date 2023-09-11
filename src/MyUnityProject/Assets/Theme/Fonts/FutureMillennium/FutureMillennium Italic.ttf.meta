@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: c0fc8aeeb85ea4e48829ecb8fad72f99
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - FutureMillennium
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: a5e0e6a1873af2b42b54aee538257064, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: kerbalui
+  assetBundleVariant: 

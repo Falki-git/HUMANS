@@ -1,0 +1,47 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="HUMANS.uss" />
+    <ui:VisualElement name="root" class="root">
+        <ui:VisualElement name="left-column" class="left-column">
+            <ui:VisualElement name="navigation-container" class="navigation">
+                <ui:Button text="◄ PREV" display-tooltip-when-elided="true" name="prev" class="prev-button navigation-buttons" />
+                <ui:Button text="NEXT ►" display-tooltip-when-elided="true" name="next" class="next-button navigation-buttons" />
+            </ui:VisualElement>
+            <ui:VisualElement name="portrait-container" class="portrait-container">
+                <ui:VisualElement name="portrait" class="portrait" />
+            </ui:VisualElement>
+            <ui:VisualElement name="data-container" class="data-container">
+                <ui:VisualElement name="flag" class="flag" />
+                <ui:VisualElement name="data-text-container" class="data-text-container">
+                    <ui:Label text="Name" display-tooltip-when-elided="true" name="fullname-label" class="fullname-label" />
+                    <ui:Label text="Adam Johnson" display-tooltip-when-elided="true" name="fullname" class="fullname" />
+                    <ui:Label text="Nationality" display-tooltip-when-elided="true" name="nationality-label" class="nationality-label" />
+                    <ui:Label text="USA" display-tooltip-when-elided="true" name="nationality" class="nationality" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="right-column" class="right-column">
+            <ui:VisualElement name="right-header" class="right-header">
+                <ui:Button text="General" display-tooltip-when-elided="true" name="tab-1" class="button-tab button-tab--clicked" />
+                <ui:Button text="Customize" display-tooltip-when-elided="true" name="tab-2" class="button-tab" style="margin-left: 10px;" />
+                <ui:Button text="Achievements" display-tooltip-when-elided="true" name="tab-3" class="button-tab" style="margin-left: 10px;" />
+                <ui:VisualElement name="oldtab-1" class="tab-1 tab" style="display: none;">
+                    <ui:Label text="General" display-tooltip-when-elided="true" name="General" />
+                </ui:VisualElement>
+                <ui:VisualElement name="oldtab-2" class="tab-2 tab" style="display: none;">
+                    <ui:Label text="Edit" display-tooltip-when-elided="true" name="Edit" />
+                </ui:VisualElement>
+                <ui:VisualElement name="oldtab-3" class="tab-3 tab" style="display: none;">
+                    <ui:Label text="Achievements" display-tooltip-when-elided="true" name="Achievements" />
+                </ui:VisualElement>
+                <ui:VisualElement style="align-items: flex-end; flex-grow: 1;">
+                    <ui:Button name="close-button" class="close-button">
+                        <ui:VisualElement name="close-button__background" class="close-button__background" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="right-body" class="right-body">
+                <ui:Label text="&lt;b&gt;Adam Johnson&lt;/b&gt; attended &lt;b&gt;Kerbin Space University&lt;/b&gt; and lost an argument with the school mascot while pretending to study Zero G Ballet. Off the clock, Jebediah talks to themselves about larping, cartwheeling on runways, and breaking playground safety signs. They wish they spent less time studying Collision Safety." display-tooltip-when-elided="true" style="white-space: normal;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

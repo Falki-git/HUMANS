@@ -1,0 +1,20 @@
+ManifestFileVersion: 0
+CRC: 3320878346
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: kerbalui
+      Dependencies: {}
+    Info_1:
+      Name: microengineer_flightui.bundle
+      Dependencies:
+        Dependency_0: kerbalui
+    Info_2:
+      Name: microengineer_oabui.bundle
+      Dependencies:
+        Dependency_0: kerbalui
+        Dependency_1: microengineer_flightui.bundle
+    Info_3:
+      Name: humans.bundle
+      Dependencies:
+        Dependency_0: microengineer_flightui.bundle

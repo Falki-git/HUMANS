@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: ef4714f8a9dc9a646aa289ee8229627c
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - JetBrains Mono-Bold
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 1ca910daafdf8994e8d8a531d696e46b, type: 3}
+  - {fileID: 12800000, guid: 01c5d8f0d5275ef45b7261d3ac3f1a56, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: kerbalui
+  assetBundleVariant: 
