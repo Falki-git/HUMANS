@@ -26,12 +26,15 @@ public class HumansPlugin : BaseSpaceWarpPlugin
     [PublicAPI] public const string ModName = MyPluginInfo.PLUGIN_NAME;
     [PublicAPI] public const string ModVer = MyPluginInfo.PLUGIN_VERSION;
 
+    public string GUID => Info.Metadata.GUID;
+
     public bool _isDebugWindowOpen;
     public bool _isWindowOpen;
     private const string ToolbarDebugButtonID = "BTN-Humans-debug";
     private const string ToolbarButtonID = "BTN-Humans";
     private const string ToolbarKscButtonID = "BTN-HumansKSC";
     private const string ToolbarKscDebugButtonID = "BTN-HumansDebugKSC";
+    private const string ToolbarKscUitkButtonID = "BTN-HumansUitkKSC";
     private readonly ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("Humans");
 
     public static HumansPlugin Instance { get; set; }
@@ -82,6 +85,16 @@ public class HumansPlugin : BaseSpaceWarpPlugin
             () =>
             {                
                 _isDebugWindowOpen = !_isDebugWindowOpen;
+            }
+        );
+
+        Appbar.RegisterKSCAppButton(
+            "Humans UITK",
+            ToolbarKscUitkButtonID,
+            AssetManager.GetAsset<Texture2D>($"{SpaceWarpMetadata.ModID}/images/icon.png"),
+            () =>
+            {
+                KscSceneController.Instance.ShowMainGui = !KscSceneController.Instance.ShowMainGui;
             }
         );
 

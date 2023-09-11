@@ -8,15 +8,18 @@
         <PackageReference Include="BepInEx.Core" Version="5.*" />
         <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
         <PackageReference Include="HarmonyX" Version="2.10.1" />
-        <PackageReference Include="KerbalSpaceProgram2.GameLibs" Version="0.1.4" PrivateAssets="all" />
+		<PackageReference Include="UitkForKsp2" Version="1.2.0" />
+		<!--<PackageReference Include="Ksp2Uitk" Version="0.3.0" />-->
+		<PackageReference Include="KerbalSpaceProgram2.GameLibs" Version="0.1.4" PrivateAssets="all" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
         <!--<PackageReference Include="SpaceWarp" Version="1.4.0" />-->
         <PackageReference Include="UnityEngine.Modules" Version="2020.3.33.1" />
+		<PackageReference Include="UnityEngine.UITK" Version="2020.3.33.1" Publicize="true" />
     </ItemGroup>
     <ItemGroup>
-      <Reference Include="SpaceWarp">
-        <HintPath>..\..\external_dlls\SpaceWarp.dll</HintPath>
-      </Reference>
+      <!--<Reference Include="SpaceWarp">-->
+        <!--<HintPath>..\..\external_dlls\SpaceWarp.dll</HintPath>-->
+      <!--</Reference>-->
       <Reference Include="SpaceWarp.Core">
         <HintPath>..\..\external_dlls\SpaceWarp.Core.dll</HintPath>
       </Reference>
