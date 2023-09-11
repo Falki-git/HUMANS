@@ -37,7 +37,8 @@ TODO
 - add bald hair type
 - nationality flags
 - culture flags
-- presets for fameous astronauts and people (Lux)
+- presets for famous astronauts and people (Lux)
+- humanize on create kerbal
 
 
 - KSC menu - "Kerbal Space Center (KSC)" - GameManager/Default Game Instance(Clone)/UI Manager(Clone)/Main Canvas/KSCMenu(Clone)/LandingPanel/InteriorWindow/MenuButtons/Content/Menu/Agency
@@ -62,6 +63,28 @@ image.sprite = Sprite.Create(newTexture, new Rect(0, 0, 600, 400), new Vector2(0
     newMaterial.color = Color.white;
     image.material = newMaterial;
 }
+
+
+
+/// LAYOUT
+
+Portrait *  |   (description)  |   (edit)   |   (achievements)
+Flag        |   Biography
+First name  |
+Surname     |
+Nationality |
+
+* star on portrait if IsVeteran
+
+- icon for kerbal type?
+- gender?
+
+
+
+
+HOW TO GET CAREER LENGTH:
+Utility.Kerbals[new KSP.Sim.impl.IGGuid(new System.Guid("0c36df19-f328-4779-861b-eb43621c5735"))].GetCareerLength(UT)
+
 
 
 */

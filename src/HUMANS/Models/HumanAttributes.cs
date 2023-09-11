@@ -13,6 +13,9 @@ namespace Humans
         public VarietyPreloadInfo Variety => new VarietyPreloadInfo(Value, ValueType, AttachToName);
         public void ApplyAttribute(KerbalInfo kerbal, T value)
         {
+            if (value == null || value.ToString().ToUpperInvariant().Contains("EMPTY"))
+                return;
+
             Value = value;
             kerbal.Attributes.SetAttribute(Key, Variety);
         }
@@ -38,9 +41,9 @@ namespace Humans
         }
     }
 
-    public class HumanTypeAttribute : HumanAttribute<KerbalType>
+    public class KerbalTypeAttribute : HumanAttribute<KerbalType>
     {
-        public HumanTypeAttribute()
+        public KerbalTypeAttribute()
         {
             Key = "TYPE";
             ValueType = typeof(KerbalType);

@@ -58,11 +58,6 @@ namespace Humans
             Experience = KerbalUtility.Experience;
             Biography = KerbalUtility.Biography;
 
-            //HumanType = KerbalUtility.HumanType;
-
-
-            // TODO
-
             Humanize();
         }
 
@@ -73,7 +68,6 @@ namespace Humans
         public Gender Gender { get; set; }
         [JsonProperty]
         public string Nationality { get; set; }
-
 
         [JsonProperty]
         public string NameKey { get; set; }
@@ -115,7 +109,6 @@ namespace Humans
         [JsonProperty]
         public Single Optimism { get; set; }
 
-
         [JsonProperty]
         public bool IsVeteran { get; set; }
         [JsonProperty]
@@ -137,8 +130,6 @@ namespace Humans
         [JsonProperty]
         public string Biography { get; set; }
 
-
-
         /// <summary>
         /// If kerbal with this ID has been initialized with human parameters
         /// </summary>
@@ -146,26 +137,40 @@ namespace Humans
 
         public void Humanize() => Humanize(KerbalInfo);
         public void Humanize(KerbalInfo kerbal)
-        {
-            
+        {            
             KerbalUtility.SetKerbal(kerbal);
 
-            var firstNameAttribute = new FirstNameAttribute();
-            firstNameAttribute.ApplyAttribute(kerbal, FirstName);
+            new FirstNameAttribute().ApplyAttribute(kerbal, FirstName);
+            new SurnameAttribute().ApplyAttribute(kerbal, Surname);
+            new SkinColorAttribute().ApplyAttribute(kerbal, (Color)SkinColor.Color);
+            new HairColorAttribute().ApplyAttribute(kerbal, HairColor.Color);
+            new KerbalTypeAttribute().ApplyAttribute(kerbal, KerbalType);
+            new HeadAttribute().ApplyAttribute(kerbal, Head.Name);
+            new HairStyleAttribute().ApplyAttribute(kerbal, HairStyle);
+            new HelmetAttribute().ApplyAttribute(kerbal, Helmet);
+            new EyesAttribute().ApplyAttribute(kerbal, Eyes);
+            new EyeHeightAttribute().ApplyAttribute(kerbal, EyeHeight);
+            new EyeSymmetryAttribute().ApplyAttribute(kerbal, EyeSymmetry);
+            new FacialHairAttribute().ApplyAttribute(kerbal, FacialHair);
+            new TeamColor1Attribute().ApplyAttribute(kerbal, TeamColor1);
+            new TeamColor2Attribute().ApplyAttribute(kerbal, TeamColor2);
+            new StupidityAttribute().ApplyAttribute(kerbal, Stupidity);
+            new BraveryAttribute().ApplyAttribute(kerbal, Bravery);
+            new ConstitutionAttribute().ApplyAttribute(kerbal, Constitution);
+            new OptimismAttribute().ApplyAttribute(kerbal, Optimism);
+            new IsVeteranAttribute().ApplyAttribute(kerbal, IsVeteran);
+            new VoiceSelectionAttribute().ApplyAttribute(kerbal, VoiceSelection);
+            new VoiceTypeAttribute().ApplyAttribute(kerbal, VoiceType);
+            new BodyAttribute().ApplyAttribute(kerbal, Body);
+            new FacePaintAttribute().ApplyAttribute(kerbal, FacePaint);
+            new RadiationAttribute().ApplyAttribute(kerbal, Radiation);
+            new HappinessAttribute().ApplyAttribute(kerbal, Happiness);
+            new ExperienceAttribute().ApplyAttribute(kerbal, Experience);
+            new BiographyAttribute().ApplyAttribute(kerbal, Biography);
 
-            var surnameAttribute = new SurnameAttribute();
-            surnameAttribute.ApplyAttribute(kerbal, Surname);
+            kerbal._kerbalAttributes._fullName = KerbalUtility.FullName;
 
-            var skinColorAttribute = new SkinColorAttribute();
-            skinColorAttribute.ApplyAttribute(kerbal, (Color)SkinColor.Color);
-
-            var hairColorAttribute = new HairColorAttribute();
-            hairColorAttribute.ApplyAttribute(kerbal, HairColor.Color);
-
-            //KerbalUtility.FullName = $"{FirstName} {Surname}";
-            kerbal._kerbalAttributes._fullName = KerbalUtility.FullName; // = kerbal.Attributes.GetFullName();
-
-            //TODO other attributes
+            IsHumanized = true;
         }
     }
 }
