@@ -15,7 +15,7 @@ namespace Humans
 
         public VisualElement Flag { get; set; }
         public Label Fullname { get; set; }
-        public Label Nationality { get; set; }
+        public Label Nation { get; set; }
 
         public Button Tab1 { get; set; }
         public Button Tab2 { get; set; }
@@ -39,7 +39,7 @@ namespace Humans
             Portrait = Root.Q<VisualElement>("portrait");
             Flag = Root.Q<VisualElement>("flag");
             Fullname = Root.Q<Label>("fullname");
-            Nationality = Root.Q<Label>("nationality");
+            Nation = Root.Q<Label>("nation");
 
             Tab1 = Root.Q<Button>("tab-1");
             Tab2 = Root.Q<Button>("tab-2");
@@ -50,13 +50,13 @@ namespace Humans
             CloseButton = Root.Q<Button>("close-button");
             CloseButton.RegisterCallback<ClickEvent>(OnCloseButton);
 
-            Button addToPortrait = new Button { name = "addToPortrait"};
+            Button addToPortrait = new Button { name = "addToPortrait", text = "addToPortrait" };
             addToPortrait.RegisterCallback<ClickEvent>(evt =>
             {
                 Portrait.style.backgroundImage = Utility.AllKerbals[0].Portrait.texture;
             });
 
-            Button addToPortraitContainer = new Button { name = "addToPortraitContainer" };
+            Button addToPortraitContainer = new Button { name = "addToPortraitContainer", text = "addToPortraitContainer" };
             addToPortraitContainer.RegisterCallback<ClickEvent>(evt =>
             {
                 PortraitContainer.style.backgroundImage = Utility.AllKerbals[1].Portrait.texture;
@@ -64,6 +64,26 @@ namespace Humans
 
             RightBody.Add(addToPortrait);
             RightBody.Add(addToPortraitContainer);
+
+            LoadFirstHumanTemp();
+        }
+
+        private void LoadFirstHumanTemp()
+        {
+            var human = Manager.Instance.LoadedCampaign.Humans[0];
+
+            Fullname.text = human.FirstName + " " + human.Surname;
+            Nation.text = human.Nationality;
+            Portrait.style.backgroundImage = human.KerbalInfo.Portrait.texture;
+
+            var nation = CulturePresets.Instance.Nations.Find(nation => nation.Name == human.Nationality);
+            
+            if (nation != null && nation.Flag != null)
+            {
+                Flag.style.backgroundImage = nation.Flag;
+            }
+
+            Biography.text = human.Biography;           
         }
 
         public void Update()
