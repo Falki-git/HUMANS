@@ -1,11 +1,12 @@
-﻿
-using BepInEx.Logging;
+﻿using BepInEx.Logging;
 using KSP.Game;
 using KSP.OAB;
 using KSP.Sim.impl;
 using Newtonsoft.Json;
-using System.Globalization;
 using System.Reflection;
+using UitkForKsp2.API;
+using UnityEngine.UIElements;
+using UnityEngine;
 
 namespace Humans
 {
@@ -142,6 +143,20 @@ namespace Humans
             {
                 _logger.LogError(ex);
             }
+        }
+
+        /// <summary>
+        /// Centered UITK window on GeometryChangedEvent
+        /// </summary>
+        /// <param name="evt"></param>
+        /// <param name="element">Root element for which width and height will be taken</param>
+        public static void CenterWindow(GeometryChangedEvent evt, VisualElement element)
+        {
+            if (evt.newRect.width == 0 || evt.newRect.height == 0)
+                return;
+
+            element.transform.position = new Vector2((ReferenceResolution.Width - evt.newRect.width) / 2, (ReferenceResolution.Height - evt.newRect.height) / 2);
+            element.UnregisterCallback<GeometryChangedEvent>((evt) => CenterWindow(evt, element));
         }
     }
 }

@@ -43,6 +43,8 @@ namespace Humans
         {
             MainGui = Window.CreateFromUxml(Uxmls.Instance.MainGui, "MainGui", null, true);
             MainGuiController mainGuiController = MainGui.gameObject.AddComponent<MainGuiController>();
+
+            MainGui.rootVisualElement[0].RegisterCallback<GeometryChangedEvent>((evt) => Utility.CenterWindow(evt, MainGui.rootVisualElement[0]));
         }
 
         public void DestroyUi()
