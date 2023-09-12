@@ -30,6 +30,8 @@ Source material
             - Skin type: Black
 
     ## original Kerbal skins - in-game assets
+# Flags from
+    ## https://www.countryflags.com/
 
 
 TODO
@@ -39,6 +41,7 @@ TODO
 - culture flags
 - presets for famous astronauts and people (Lux)
 - humanize on create kerbal
+- add countries: canada, mexico
 
 
 - KSC menu - "Kerbal Space Center (KSC)" - GameManager/Default Game Instance(Clone)/UI Manager(Clone)/Main Canvas/KSCMenu(Clone)/LandingPanel/InteriorWindow/MenuButtons/Content/Menu/Agency
