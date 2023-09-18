@@ -156,29 +156,31 @@ namespace Humans
             new FirstNameAttribute().ApplyAttribute(kerbal, FirstName);
             new SurnameAttribute().ApplyAttribute(kerbal, Surname);
             new SkinColorAttribute().ApplyAttribute(kerbal, (Color)SkinColor.Color);
-            //new HairColorAttribute().ApplyAttribute(kerbal, HairColor.Color);
-            //new KerbalTypeAttribute().ApplyAttribute(kerbal, KerbalType);
-            //new HeadAttribute().ApplyAttribute(kerbal, Head.Name);
-            //new HairStyleAttribute().ApplyAttribute(kerbal, HairStyle);
-            //new EyesAttribute().ApplyAttribute(kerbal, Eyes);
-            //new EyeHeightAttribute().ApplyAttribute(kerbal, EyeHeight);
-            //new EyeSymmetryAttribute().ApplyAttribute(kerbal, EyeSymmetry);
-            //new FacialHairAttribute().ApplyAttribute(kerbal, FacialHair);
-            //new TeamColor1Attribute().ApplyAttribute(kerbal, TeamColor1);
-            //new TeamColor2Attribute().ApplyAttribute(kerbal, TeamColor2);
-            //new StupidityAttribute().ApplyAttribute(kerbal, Stupidity);
-            //new BraveryAttribute().ApplyAttribute(kerbal, Bravery);
-            //new ConstitutionAttribute().ApplyAttribute(kerbal, Constitution);
-            //new OptimismAttribute().ApplyAttribute(kerbal, Optimism);
-            //new IsVeteranAttribute().ApplyAttribute(kerbal, IsVeteran);
-            //new VoiceSelectionAttribute().ApplyAttribute(kerbal, VoiceSelection);
-            //new VoiceTypeAttribute().ApplyAttribute(kerbal, VoiceType);
-            //new BodyAttribute().ApplyAttribute(kerbal, Body);
-            //new FacePaintAttribute().ApplyAttribute(kerbal, FacePaint);
-            //new RadiationAttribute().ApplyAttribute(kerbal, Radiation);
-            //new HappinessAttribute().ApplyAttribute(kerbal, Happiness);
-            //new ExperienceAttribute().ApplyAttribute(kerbal, Experience);
-            //new BiographyAttribute().ApplyAttribute(kerbal, Biography);
+            new HairColorAttribute().ApplyAttribute(kerbal, HairColor.Color);
+            new KerbalTypeAttribute().ApplyAttribute(kerbal, KerbalType);
+            new HeadAttribute().ApplyAttribute(kerbal, Head.Name);
+            new HairStyleAttribute().ApplyAttribute(kerbal, HairStyle);
+            new EyesAttribute().ApplyAttribute(kerbal, Eyes);
+            new EyeHeightAttribute().ApplyAttribute(kerbal, EyeHeight);
+            new EyeSymmetryAttribute().ApplyAttribute(kerbal, EyeSymmetry);
+            new FacialHairAttribute().ApplyAttribute(kerbal, FacialHair);
+            new TeamColor1Attribute().ApplyAttribute(kerbal, TeamColor1);
+            new TeamColor2Attribute().ApplyAttribute(kerbal, TeamColor2);
+            new StupidityAttribute().ApplyAttribute(kerbal, Stupidity);
+            new BraveryAttribute().ApplyAttribute(kerbal, Bravery);
+            new ConstitutionAttribute().ApplyAttribute(kerbal, Constitution);
+            new OptimismAttribute().ApplyAttribute(kerbal, Optimism);
+            new IsVeteranAttribute().ApplyAttribute(kerbal, IsVeteran);
+            new VoiceSelectionAttribute().ApplyAttribute(kerbal, VoiceSelection);
+            new VoiceTypeAttribute().ApplyAttribute(kerbal, VoiceType);
+            new BodyAttribute().ApplyAttribute(kerbal, Body);
+            new FacePaintAttribute().ApplyAttribute(kerbal, FacePaint);
+            new RadiationAttribute().ApplyAttribute(kerbal, Radiation);
+            new HappinessAttribute().ApplyAttribute(kerbal, Happiness);
+            new ExperienceAttribute().ApplyAttribute(kerbal, Experience);
+            new BiographyAttribute().ApplyAttribute(kerbal, Biography);
+
+            // HELMET DOESN'T WORK - TODO find out why
             //new HelmetAttribute().ApplyAttribute(kerbal, Helmet);
 
             // ALMOST WORKED
