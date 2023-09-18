@@ -43,7 +43,6 @@ namespace Humans
             Body = KerbalUtility.Body;
             FacePaint = KerbalUtility.FacePaint;
 
-
             // Single 0 - 1 controls?
             EyeHeight = KerbalUtility.EyeHeight;
             EyeSymmetry = KerbalUtility.EyeSymmetry;
@@ -129,7 +128,7 @@ namespace Humans
         public HeadPreset Head { get; set; }
         [JsonProperty]
         public string FacePaint { get; set; }
-        [JsonProperty]        
+        [JsonProperty]
         public Single Radiation { get; set; }
         [JsonProperty]
         public Single Happiness { get; set; }
@@ -186,32 +185,11 @@ namespace Humans
             // ALMOST WORKED
             kerbal._kerbalAttributes._fullName = $"{FirstName} {Surname}"; //KerbalUtility.FullName;
             //kerbal._nameKey = $"{FirstName} {Surname}";
-
             
-            
-            // TRYING TO MANIPULATE ORIGIN TYPE AND VETERAN STATUS - SUCCESS!
+            // Applying a CUSTOM value to ORIGINTYPE attribute is crucial for the game to generate portraits correctly
             new OriginTypeAttribute().ApplyAttribute(kerbal, "CUSTOM");
-            //new IsVeteranAttribute().ApplyAttribute(kerbal, true);
             var customName = string.Join("_", $"{FirstName} {Surname}".Split(' ')).ToUpper();
             new RawCustomNameAttribute().ApplyAttribute(kerbal, customName);
-
-            /*
-            if ((bool)kerbal.Attributes.Attributes["ISVETERAN"].value != false)
-            {
-                var customName = string.Join("_", $"{FirstName} {Surname}".Split(' ')).ToUpper();
-                new RawCustomNameAttribute().ApplyAttribute(kerbal, customName);
-
-                kerbal._kerbalAttributes._fullName = $"{FirstName} {Surname}"; //KerbalUtility.FullName;
-            }
-            */
-
-            //Utility.AllKerbals[10].Attributes.Attributes.Remove("RAW_CUSTOM_NAME");
-
-
-
-            //Rename(FirstName, Surname);
-
-            //kerbal.Attributes.CustomNameKey = string.Join("_", $"{FirstName} {Surname}".Split(' ')).ToUpper();
 
             IsHumanized = true;
         }
