@@ -300,4 +300,24 @@ namespace Humans
             AttachToName = null;
         }
     }
+
+    public class RawCustomNameAttribute : HumanAttribute<string>
+    {
+        public RawCustomNameAttribute()
+        {
+            Key = "RAW_CUSTOM_NAME";
+            ValueType = typeof(string);
+            AttachToName = null;
+        }
+    }
+
+    public class OriginTypeAttribute : HumanAttribute<string>
+    {
+        public OriginTypeAttribute()
+        {
+            Key = "ORIGINTYPE";
+            ValueType = typeof(string);
+            AttachToName = null;
+        }
+    }
 }

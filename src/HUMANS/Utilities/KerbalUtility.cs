@@ -200,6 +200,8 @@ namespace Humans.Utilities
         public static void TakeKerbalPortraits(List<KerbalInfo> kerbals)
         {
             _logger.LogDebug($"Starting TakeKerbalPortraits. Number of kerbals: {kerbals.Count}.");
+            //Utility.Roster._portraitRenderer._numberOfSimultaneousModels = kerbals.Count;
+            //Utility.Roster._portraitRenderer._modelsInUse.Clear();
 
             foreach (var kerbal in kerbals)
             {

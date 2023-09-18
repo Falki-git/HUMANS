@@ -1,4 +1,5 @@
-﻿using KSP.Game;
+﻿using Humans.Utilities;
+using KSP.Game;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -29,16 +30,29 @@ namespace Humans
         public Button CloseButton { get; set; }
 
         private int _selectedKerbalId = 0;
+        private KerbalInfo _kerbal;
+        private Human _human;
+
+        private TextField _firstName;
+        private TextField _lastName;
+        private ListPresetControl _nationControl;
+        private ListPresetControl _typeControl;
+        private ListPresetControl _skinColorControl;
+        private ListPresetControl _hairColorControl;
+        private ListPresetControl _hairStyleControl;
 
         public MainGuiController()
         { }
 
         public void OnEnable()
         {
+            //KerbalUtility.TakeKerbalPortraits(Utility.AllKerbals);
+
             MainGui = GetComponent<UIDocument>();
             Root = MainGui.rootVisualElement;
             RightBody = Root.Q<VisualElement>("right-body");
 
+            // Left column
             Previous = Root.Q<Button>("prev");
             Previous.RegisterCallback<PointerUpEvent>(OnPrevClicked);
             Next = Root.Q<Button>("next");
@@ -49,6 +63,7 @@ namespace Humans
             Fullname = Root.Q<Label>("fullname");
             Nation = Root.Q<Label>("nation");
 
+            // Tabs
             Tab1_Button = Root.Q<Button>("tab-1__button");
             Tab1_Button.RegisterCallback<PointerUpEvent>(OnTab1Clicked);
             Tab1_Button.AddToClassList("button-tab--clicked");
@@ -57,23 +72,66 @@ namespace Humans
             Tab2_Button.AddToClassList("button-tab--notclicked");
             Tab3_Button = Root.Q<Button>("tab-3__button");
             Tab3_Button.RegisterCallback<PointerUpEvent>(OnTab3Clicked);
-            Tab2_Button.AddToClassList("button-tab--notclicked");
-
-            Tab1_Contents = Root.Q<VisualElement>("tab-1__contents");
-            Tab1_Contents.style.display = DisplayStyle.Flex;
-            Tab2_Contents = Root.Q<VisualElement>("tab-2__contents");
-            Tab2_Contents.style.display = DisplayStyle.None;
-            Tab3_Contents = Root.Q<VisualElement>("tab-3__contents");
-            Tab3_Contents.style.display = DisplayStyle.None;
-
-            Biography = Root.Q<Label>("biography");
+            Tab3_Button.AddToClassList("button-tab--notclicked");
 
             CloseButton = Root.Q<Button>("close-button");
             CloseButton.RegisterCallback<ClickEvent>(OnCloseButton);
 
-            LoadHuman();
+            InitializeTab1();
+            InitializeTab2();
+            InitializeTab3();
 
-            Tab2_Contents.Add(new Label { text = "tab2" });
+            LoadHuman();            
+        }
+
+        public void InitializeTab1()
+        {
+            Tab1_Contents = Root.Q<VisualElement>("tab-1__contents");
+            Tab1_Contents.style.display = DisplayStyle.Flex;
+
+            Biography = Tab1_Contents.Q<Label>("biography");
+        }
+
+        public void InitializeTab2()
+        {
+            Tab2_Contents = Root.Q<VisualElement>("tab-2__contents");
+            Tab2_Contents.style.display = DisplayStyle.None;
+
+            _firstName = Tab2_Contents.Q<TextField>("cust__firstname");
+            _firstName.RegisterValueChangedCallback(evt => { _human.Rename(evt.newValue, _lastName.value); LoadHuman(); });
+            _lastName = Tab2_Contents.Q<TextField>("cust__surname");
+            _lastName.RegisterValueChangedCallback(evt => { _human.Rename(_firstName.value, evt.newValue); LoadHuman(); });
+
+            _nationControl = new ListPresetControl("nation__control", "Nation");
+            _nationControl.PrevButton.clicked += () =>
+            {
+                _human.PreviousNation();
+                LoadHuman();
+            };
+            _nationControl.NextButton.clicked += () =>
+            {
+                _human.NextNation();
+                LoadHuman();
+            };
+            _typeControl = new ListPresetControl("type__control", "Type");
+            _skinColorControl = new ListPresetControl("skin-color__control", "Skin color");
+            _hairColorControl = new ListPresetControl("skin-color__control", "Hair color");
+            _hairStyleControl = new ListPresetControl("hair-style__control", "Hair style");
+
+            Tab2_Contents.Add(_nationControl);
+            Tab2_Contents.Add(_typeControl);
+            Tab2_Contents.Add(_skinColorControl);
+            Tab2_Contents.Add(_hairColorControl);
+            Tab2_Contents.Add(_hairStyleControl);
+
+            // TODO logic
+        }
+
+        public void InitializeTab3()
+        {
+            Tab3_Contents = Root.Q<VisualElement>("tab-3__contents");
+            Tab3_Contents.style.display = DisplayStyle.None;
+
             Tab3_Contents.Add(new Label { text = "tab3" });
         }
 
@@ -119,29 +177,34 @@ namespace Humans
             Tab3_Button.RemoveFromClassList("button-tab--notclicked");
         }
 
-        
-
-        
-
         private void LoadHuman()
         {
-            var kerbal = Utility.AllKerbals?.ElementAt(_selectedKerbalId) ?? null;
-            var human = Manager.Instance.LoadedCampaign.Humans.Find(h => h.Id == kerbal.Id);
+            _kerbal = Utility.AllKerbals?.ElementAt(_selectedKerbalId) ?? null;
+            _human = Manager.Instance.LoadedCampaign.Humans.Find(h => h.Id == _kerbal.Id);
 
-            if (kerbal == null) return;
+            if (_kerbal == null) return;
 
-            Fullname.text = human.FirstName + " " + human.Surname;
-            Nation.text = human.Nationality;
-            Portrait.style.backgroundImage = human.KerbalInfo.Portrait.texture;
+            // Left column
+            Fullname.text = _human.FirstName + " " + _human.Surname;
+            Nation.text = _human.Nationality;
+            Portrait.style.backgroundImage = _human.KerbalInfo.Portrait.texture;
 
-            var nation = CulturePresets.Instance.Nations.Find(nation => nation.Name == human.Nationality);
-
-            if (nation != null && nation.Flag != null)
+            if (_human.Nation != null && _human.Nation.Flag != null)
             {
-                Flag.style.backgroundImage = nation.Flag;
+                Flag.style.backgroundImage = _human.Nation.Flag;
             }
 
-            Biography.text = human.Biography;
+            // Tab1
+            Biography.text = _human.Biography;
+
+            // Tab2
+            _firstName.SetValueWithoutNotify(_human.FirstName);
+            _lastName.SetValueWithoutNotify(_human.Surname);
+            _nationControl.UpdateDisplayValues(_human.Nationality);
+            _typeControl.UpdateDisplayValues(_human.KerbalType.ToString());
+            _skinColorControl.UpdateDisplayValues($"{_human.SkinColor.Type} \n {_human.SkinColor.Name}");
+            _hairColorControl.UpdateDisplayValues($"{_human.HairColor.Type} \n {_human.HairColor.Name}");
+            _hairStyleControl.UpdateDisplayValues($"{_human.HairStyle}");
         }
 
         private void OnPrevClicked(PointerUpEvent evt)

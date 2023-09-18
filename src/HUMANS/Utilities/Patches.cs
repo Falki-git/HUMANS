@@ -44,13 +44,6 @@ namespace Humans
                 }
             }
 
-            /*
-            if (name == "Valentina")
-            {
-                preloadedAttributes["SKINCOLOR"].value = new Color(1, 0, 0, 1);
-            }
-            */
-
             return true;
         }
     }
