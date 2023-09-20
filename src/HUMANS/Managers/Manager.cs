@@ -29,7 +29,7 @@ namespace Humans
         public void Initialize()
         {
             HumanPresets.Instance.Initialize();
-            CulturePresets.Instance.Initialize();
+            CultureNationPresets.Instance.Initialize();
             Campaigns = Utility.LoadCampaigns();
             MessageListener.Instance.SubscribeToMessages();
         }

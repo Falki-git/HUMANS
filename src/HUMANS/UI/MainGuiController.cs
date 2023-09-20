@@ -105,12 +105,14 @@ namespace Humans
             _nationControl = new ListPresetControl("nation__control", "Nation");
             _nationControl.PrevButton.clicked += () =>
             {
-                _human.PreviousNation();
+                _human.Nationality = CultureNationPresets.Instance.PreviousNation(_human);
+                Utility.SaveCampaigns();
                 LoadHuman();
             };
             _nationControl.NextButton.clicked += () =>
             {
-                _human.NextNation();
+                _human.Nationality = CultureNationPresets.Instance.NextNation(_human);
+                Utility.SaveCampaigns();
                 LoadHuman();
             };
             _typeControl = new ListPresetControl("type__control", "Type");

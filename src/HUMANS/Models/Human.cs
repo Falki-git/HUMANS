@@ -77,7 +77,7 @@ namespace Humans
         public KerbalInfo KerbalInfo { get; set; }
         [JsonProperty]
         public string Nationality { get; set; }
-        public Nation Nation { get => CulturePresets.Instance.Nations.Find(n => n.Name == Nationality); }
+        public Nation Nation { get => CultureNationPresets.Instance.Nations.Find(n => n.Name == Nationality); }
         [JsonProperty]
         public string NameKey { get; set; }
         [JsonProperty]
@@ -227,7 +227,7 @@ namespace Humans
 
         public int PreviousNation()
         {
-            var index = CulturePresets.Instance.Nations.FindIndex(n => n == Nation);
+            var index = CultureNationPresets.Instance.Nations.FindIndex(n => n == Nation);
 
             if (index == -1)
             {
@@ -237,7 +237,7 @@ namespace Humans
 
             if (index > 0)
             {
-                Nationality = CulturePresets.Instance.Nations[--index].Name;
+                Nationality = CultureNationPresets.Instance.Nations[--index].Name;
             }
 
             return index;
@@ -245,7 +245,7 @@ namespace Humans
 
         public int NextNation()
         {
-            var index = CulturePresets.Instance.Nations.FindIndex(n => n == Nation);
+            var index = CultureNationPresets.Instance.Nations.FindIndex(n => n == Nation);
 
             if (index == -1)
             {
@@ -253,9 +253,9 @@ namespace Humans
                 return index;
             }
 
-            if (index < CulturePresets.Instance.Nations.Count - 1)
+            if (index < CultureNationPresets.Instance.Nations.Count - 1)
             {
-                Nationality = CulturePresets.Instance.Nations[++index].Name;
+                Nationality = CultureNationPresets.Instance.Nations[++index].Name;
                 Utility.SaveCampaigns();
             }
 

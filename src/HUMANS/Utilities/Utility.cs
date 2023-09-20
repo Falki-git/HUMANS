@@ -72,11 +72,11 @@ namespace Humans
 
             string path2 = Path.Combine(path, "CulturePresetsOutput.json");
 
-            File.WriteAllText(path2, JsonConvert.SerializeObject(CulturePresets.Instance.Cultures));
+            File.WriteAllText(path2, JsonConvert.SerializeObject(CultureNationPresets.Instance.Cultures));
 
             path2 = Path.Combine(path, "NationPresetsOutput.json");
 
-            File.WriteAllText(path2, JsonConvert.SerializeObject(CulturePresets.Instance.Nations));
+            File.WriteAllText(path2, JsonConvert.SerializeObject(CultureNationPresets.Instance.Nations));
         }
 
         public static void LoadCulturePresetsDebug()

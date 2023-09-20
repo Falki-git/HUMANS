@@ -714,7 +714,7 @@ namespace Humans
 
         private void FillCultureSelection(int _)
         {
-            foreach (var culture in CulturePresets.Instance.Cultures)
+            foreach (var culture in CultureNationPresets.Instance.Cultures)
             {
                 GUILayout.BeginHorizontal();
                 {
