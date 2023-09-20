@@ -224,42 +224,5 @@ namespace Humans
             }
             */
         }
-
-        public int PreviousNation()
-        {
-            var index = CultureNationPresets.Instance.Nations.FindIndex(n => n == Nation);
-
-            if (index == -1)
-            {
-                _logger.LogError($"Error retrieving Nation property {Nationality} for kerbal ID {Id}.");
-                return index;
-            }
-
-            if (index > 0)
-            {
-                Nationality = CultureNationPresets.Instance.Nations[--index].Name;
-            }
-
-            return index;
-        }
-
-        public int NextNation()
-        {
-            var index = CultureNationPresets.Instance.Nations.FindIndex(n => n == Nation);
-
-            if (index == -1)
-            {
-                _logger.LogError($"Error retrieving Nation property {Nationality} for kerbal ID {Id}.");
-                return index;
-            }
-
-            if (index < CultureNationPresets.Instance.Nations.Count - 1)
-            {
-                Nationality = CultureNationPresets.Instance.Nations[++index].Name;
-                Utility.SaveCampaigns();
-            }
-
-            return index;
-        }
     }
 }
