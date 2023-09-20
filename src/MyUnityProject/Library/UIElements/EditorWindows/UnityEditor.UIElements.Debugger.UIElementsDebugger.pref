@@ -15,10 +15,10 @@ MonoBehaviour:
   m_Keys:
   - unity-uie-debugger-splitter__UnityEditor.UIElements.Debugger.DebuggerSplitter
   - __PanelContainer__rootVisualContainer__unity-uie-debugger-splitter__unity-tree-view__list-view__UnityEngine.UIElements.ListView
-  - __PanelContainer__rootVisualContainer__unity-uie-debugger-splitter__unity-tree-view__list-view__list-view__scroll-view__VerticalScroller__Slider__UnityEngine.UIElements.Slider
   - __PanelContainer__rootVisualContainer__unity-uie-debugger-splitter__unity-tree-view__list-view__list-view__scroll-view__HorizontalScroller__Slider__UnityEngine.UIElements.Slider
+  - __PanelContainer__rootVisualContainer__unity-uie-debugger-splitter__unity-tree-view__list-view__list-view__scroll-view__VerticalScroller__Slider__UnityEngine.UIElements.Slider
   m_Values:
   - '{"leftPaneWidth":1155.0}'
   - '{"m_ScrollOffset":0.0,"m_ShowAlternatingRowBackgrounds":0}'
-  - '{"m_Value":0.0,"m_LowValue":0.0,"m_HighValue":1566.0}'
   - '{"m_Value":0.0,"m_LowValue":0.0,"m_HighValue":615.0}'
+  - '{"m_Value":0.0,"m_LowValue":0.0,"m_HighValue":0.0}'
