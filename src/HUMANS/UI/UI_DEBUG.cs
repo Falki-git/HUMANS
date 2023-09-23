@@ -690,7 +690,7 @@ namespace Humans
             GUI.DragWindow(new Rect(0, 0, Screen.width, Screen.height));
         }
 
-        private void ApplySkinColor(KerbalInfo kerbal, SkinColorPreset color)
+        private void ApplySkinColor(KerbalInfo kerbal, SkinColor color)
         {
             var skin = new SkinColorAttribute();
             skin.Value = (Color)color.Color;
@@ -704,7 +704,7 @@ namespace Humans
             Utility.Roster._portraitRenderer.TakeKerbalPortrait(kerbal);
         }
 
-        private void ApplyHairColor(KerbalInfo kerbal, HairColorPreset color)
+        private void ApplyHairColor(KerbalInfo kerbal, HairColor color)
         {
             var hair = new HairColorAttribute();
             hair.Value = (Color)color.Color;

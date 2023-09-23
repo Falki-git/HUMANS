@@ -1,4 +1,5 @@
 ﻿using BepInEx.Logging;
+using Humans.Utilities;
 using Newtonsoft.Json;
 using System.Reflection;
 using UnityEngine;
@@ -21,16 +22,16 @@ namespace Humans
             }
         }
 
-        public List<SkinColorPreset> SkinColors;
+        public List<SkinColor> SkinColors;
         public List<string> HairStyles;
         public List<string> Helmets;
-        public List<HairColorPreset> HairColors;
+        public List<HairColor> HairColors;
         public List<string> Eyes;
         public List<string> FacialHairs;
         public List<string> FaceDecorations;
         public List<int> VoiceSelection;
         public List<string> Bodies;
-        public List<HeadPreset> Heads;
+        public List<Head> Heads;
         public List<string> FacePaints;
 
         private static ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("Humans.HumanPresets");
@@ -48,20 +49,20 @@ namespace Humans
 
         public void Initialize()
         {
-            SkinColors = Utility.LoadPresets<List<SkinColorPreset>>(_skinColorsPath);
+            SkinColors = Utility.LoadPresets<List<SkinColor>>(_skinColorsPath);
             HairStyles = Utility.LoadPresets<List<string>>(_hairStylesPath);
             Helmets = Utility.LoadPresets<List<string>>(_helmetsPath);
-            HairColors = Utility.LoadPresets<List<HairColorPreset>>(_hairColorsPath);
+            HairColors = Utility.LoadPresets<List<HairColor>>(_hairColorsPath);
             Eyes = Utility.LoadPresets<List<string>>(_eyesPath);
             FacialHairs = Utility.LoadPresets<List<string>>(_facialHairPath);
             FaceDecorations = Utility.LoadPresets<List<string>>(_faceDecorationsPath);
             VoiceSelection = new() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             Bodies = Utility.LoadPresets<List<string>>(_bodiesPath);
-            Heads = Utility.LoadPresets<List<HeadPreset>>(_headsPath);
+            Heads = Utility.LoadPresets<List<Head>>(_headsPath);
             FacePaints = Utility.LoadPresets<List<string>>(_facePaintsPath);
         }
 
-        public SkinColorPreset GetRandomSkinColor(string skinType)
+        public SkinColor GetRandomSkinColor(string skinType)
         {
             var skinsWithSkinType = SkinColors.FindAll(s => s.Type == skinType);
 
@@ -74,7 +75,7 @@ namespace Humans
             return skinsWithSkinType[Random.Range(0, skinsWithSkinType.Count())];
         }
 
-        public HairColorPreset GetRandomHairColor()
+        public HairColor GetRandomHairColor()
         {
             int totalWeight = 0;
             foreach (var weight in HairColors.Select(hc => hc.Weight).ToList())
@@ -95,52 +96,54 @@ namespace Humans
             return null;
         }
 
+        public SkinColor PreviousSkinColor(Human human)
+        {
+            var index = SkinColors.FindIndex(c => c == human.SkinColor);
+
+            if (index == -1)
+            {
+                _logger.LogError($"Error retrieving SkinColor property {human.SkinColor?.Type ?? "n/a"} : {human.SkinColor?.Name ?? "n/a"} for kerbal ID {human.Id}.");
+                return null;
+            }
+
+            if (index > 0)
+            {
+                human.SkinColor = SkinColors[--index];
+                new SkinColorAttribute().ApplyAttribute(human.KerbalInfo, human.SkinColor.Color);
+                KerbalUtility.TakeKerbalPortrait(human.KerbalInfo);
+                return SkinColors[--index];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public SkinColor NextSkinColor(Human human)
+        {
+            var index = SkinColors.FindIndex(c => c == human.SkinColor);
+
+            if (index == -1)
+            {
+                _logger.LogError($"Error retrieving SkinColor property {human.SkinColor?.Type ?? "n/a"} : {human.SkinColor?.Name ?? "n/a"} for kerbal ID {human.Id}.");
+                return null;
+            }
+
+            if (index < SkinColors.Count - 1)
+            {
+                human.SkinColor = SkinColors[++index];
+                new SkinColorAttribute().ApplyAttribute(human.KerbalInfo, human.SkinColor.Color);
+                KerbalUtility.TakeKerbalPortrait(human.KerbalInfo);
+                return SkinColors[++index];
+            }
+
+            return null;
+
+        }
+
     }
 
-    [JsonObject(MemberSerialization.OptIn)]
-    public class SkinColorPreset
-    {
-        [JsonProperty]        
-        public string Type;
-        [JsonProperty]
-        public string Name;
-        [JsonProperty]
-        public Color32 Color;
-    }
-
-    [JsonObject(MemberSerialization.OptIn)]
-    public class HairColorPreset
-    {
-        [JsonProperty]
-        public HairColorType Type;
-        [JsonProperty]
-        public string Name;
-        [JsonProperty]
-        public Color32 Color;
-        [JsonProperty]
-        public int Weight;
-    }
-
-    /*
-    [JsonObject(MemberSerialization.OptIn)]
-    public class EyesPreset
-    {
-        [JsonProperty]
-        public Gender Gender;
-        [JsonProperty]
-        public string Name;
-    }
-    */
     
-    [JsonObject(MemberSerialization.OptIn)]
-    public class HeadPreset
-    {
-        [JsonProperty]
-        public Gender Gender;
-        [JsonProperty]
-        public string Name;
-    }
 
-
-
+    
 }

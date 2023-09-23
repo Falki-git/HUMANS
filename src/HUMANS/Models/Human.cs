@@ -21,7 +21,7 @@ namespace Humans
 
             // Male kerbals are recognized by having "*_M_*" for Head type and "*_M_*" for Eyes type
             // Female kerbals are recognized by having "*_F_*" for Head type and "*_F_*" for Eyes type
-            Head = new HeadPreset { Name = KerbalUtility.Head, Gender = KerbalUtility.Head.Contains("_M_") ? Gender.Male : Gender.Female };
+            Head = new Head { Name = KerbalUtility.Head, Gender = KerbalUtility.Head.Contains("_M_") ? Gender.Male : Gender.Female };
 
             Nationality = culture.GetRandomNationality();
             FirstName = Nation.GetRandomFirstName(Head.Gender);
@@ -91,7 +91,7 @@ namespace Humans
         [JsonProperty]
         public string Helmet { get; set; }
         [JsonProperty]
-        public HairColorPreset HairColor { get; set; }
+        public HairColor HairColor { get; set; }
         [JsonProperty]
         public string Eyes { get; set; }
         [JsonProperty]
@@ -99,7 +99,7 @@ namespace Humans
         [JsonProperty]
         public Single EyeSymmetry { get; set; }
         [JsonProperty]
-        public SkinColorPreset SkinColor { get; set; }
+        public SkinColor SkinColor { get; set; }
         [JsonProperty]
         public string FacialHair { get; set; }
         [JsonProperty]
@@ -125,7 +125,7 @@ namespace Humans
         [JsonProperty]
         public string Body { get; set; }
         [JsonProperty]
-        public HeadPreset Head { get; set; }
+        public Head Head { get; set; }
         [JsonProperty]
         public string FacePaint { get; set; }
         [JsonProperty]

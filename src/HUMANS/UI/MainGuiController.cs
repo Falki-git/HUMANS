@@ -41,6 +41,8 @@ namespace Humans
         private ListPresetControl _hairColorControl;
         private ListPresetControl _hairStyleControl;
 
+        private float _timeOfLastUpdate;
+
         public MainGuiController()
         { }
 
@@ -117,6 +119,18 @@ namespace Humans
             };
             _typeControl = new ListPresetControl("type__control", "Type");
             _skinColorControl = new ListPresetControl("skin-color__control", "Skin color");
+            _skinColorControl.PrevButton.clicked += () =>
+            {
+                HumanPresets.Instance.PreviousSkinColor(_human);
+                Utility.SaveCampaigns();
+                LoadHuman();
+            };
+            _skinColorControl.NextButton.clicked += () =>
+            {
+                HumanPresets.Instance.NextSkinColor(_human);
+                Utility.SaveCampaigns();                
+                LoadHuman();
+            };
             _hairColorControl = new ListPresetControl("skin-color__control", "Hair color");
             _hairStyleControl = new ListPresetControl("hair-style__control", "Hair style");
 
@@ -229,7 +243,15 @@ namespace Humans
 
         public void Update()
         {
-            return;
+            if (KscSceneController.Instance.ShowMainGui)                
+            {
+                // update portrait every second. Portrait generation is async
+                if (Time.time - _timeOfLastUpdate >= 1.0f)
+                {
+                    Portrait.style.backgroundImage = _human.KerbalInfo.Portrait.texture;
+                    _timeOfLastUpdate = Time.time;
+                }
+            }
         }
 
         private void OnCloseButton(ClickEvent evt)
