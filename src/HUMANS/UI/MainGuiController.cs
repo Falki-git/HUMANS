@@ -226,7 +226,7 @@ namespace Humans
             // Left column
             Fullname.text = _human.FirstName + " " + _human.Surname;
             Nation.text = _human.Nationality;
-            Portrait.style.backgroundImage = _human.KerbalInfo.Portrait.texture;
+            Portrait.style.backgroundImage = _human.KerbalInfo.Portrait?.texture;
 
             if (_human.Nation != null && _human.Nation.Flag != null)
             {
@@ -241,8 +241,8 @@ namespace Humans
             _lastName.SetValueWithoutNotify(_human.Surname);
             _nationControl.UpdateDisplayValues(_human.Nationality);
             //_typeControl.UpdateDisplayValues(_human.KerbalType.ToString());
-            _skinColorControl.UpdateDisplayValues($"{_human.SkinColor.Type} \n {_human.SkinColor.Name}");
-            _hairColorControl.UpdateDisplayValues($"{_human.HairColor.Type} \n {_human.HairColor.Name}");
+            _skinColorControl.UpdateDisplayValues($"{_human.SkinColor.Type}\n{_human.SkinColor.Name}");
+            _hairColorControl.UpdateDisplayValues($"{_human.HairColor.Type}\n{_human.HairColor.Name}");
             _hairStyleControl.UpdateDisplayValues($"{_human.HairStyle}");
         }
 
@@ -271,7 +271,7 @@ namespace Humans
                 // update portrait every second. Portrait generation is async
                 if (Time.time - _timeOfLastUpdate >= 1.0f)
                 {
-                    Portrait.style.backgroundImage = _human.KerbalInfo.Portrait.texture;
+                    Portrait.style.backgroundImage = _human.KerbalInfo.Portrait?.texture;
                     _timeOfLastUpdate = Time.time;
                 }
             }

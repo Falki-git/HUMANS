@@ -11,6 +11,7 @@ namespace Humans
         public static string UssPrevButtonClassName = UssClassName + "__prev-button";
         public static string UssNextButtonClassName = UssClassName + "__next-button";
         public static string UssValueClassName = UssClassName + "__value";
+        public static string UssNavigationButtons = "navigation-buttons";
 
         public Label PresetTypeLabel;
         public Button PrevButton;
@@ -32,8 +33,6 @@ namespace Humans
             get => ValueLabel.text;
             set => ValueLabel.text = value;
         }
-
-        // TODO? Prev and Next buttons
 
         public void UpdateDisplayValues(string typeText, string valueText)
         {
@@ -73,10 +72,11 @@ namespace Humans
             PrevButton = new Button()
             {
                 name = "preset-prev",
-                text = "◄"
+                text = "◀"
             };
             PrevButton.AddToClassList(UssButtonsClassName);
             PrevButton.AddToClassList(UssPrevButtonClassName);
+            PrevButton.AddToClassList(UssNavigationButtons);
             hierarchy.Add(PrevButton);
 
             ValueLabel = new Label()
@@ -90,10 +90,11 @@ namespace Humans
             NextButton = new Button()
             {
                 name = "preset-next",
-                text = "►"
+                text = "▶"
             };
             NextButton.AddToClassList(UssButtonsClassName);
             NextButton.AddToClassList(UssNextButtonClassName);
+            NextButton.AddToClassList(UssNavigationButtons);
             hierarchy.Add(NextButton);
         }
 
