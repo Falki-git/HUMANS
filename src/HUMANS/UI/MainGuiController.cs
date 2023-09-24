@@ -36,7 +36,7 @@ namespace Humans
         private TextField _firstName;
         private TextField _lastName;
         private ListPresetControl _nationControl;
-        private ListPresetControl _typeControl;
+        //private ListPresetControl _typeControl;
         private ListPresetControl _skinColorControl;
         private ListPresetControl _hairColorControl;
         private ListPresetControl _hairStyleControl;
@@ -107,17 +107,17 @@ namespace Humans
             _nationControl = new ListPresetControl("nation__control", "Nation");
             _nationControl.PrevButton.clicked += () =>
             {
-                _human.Nationality = CultureNationPresets.Instance.PreviousNation(_human);
+                CultureNationPresets.Instance.PreviousNation(_human);
                 Utility.SaveCampaigns();
                 LoadHuman();
             };
             _nationControl.NextButton.clicked += () =>
             {
-                _human.Nationality = CultureNationPresets.Instance.NextNation(_human);
+                CultureNationPresets.Instance.NextNation(_human);
                 Utility.SaveCampaigns();
                 LoadHuman();
             };
-            _typeControl = new ListPresetControl("type__control", "Type");
+            //_typeControl = new ListPresetControl("type__control", "Type");
             _skinColorControl = new ListPresetControl("skin-color__control", "Skin color");
             _skinColorControl.PrevButton.clicked += () =>
             {
@@ -132,15 +132,38 @@ namespace Humans
                 LoadHuman();
             };
             _hairColorControl = new ListPresetControl("skin-color__control", "Hair color");
+            _hairColorControl.PrevButton.clicked += () =>
+            {
+                HumanPresets.Instance.PreviousHairColor(_human);
+                Utility.SaveCampaigns();
+                LoadHuman();
+            };
+            _hairColorControl.NextButton.clicked += () =>
+            {
+                HumanPresets.Instance.NextHairColor(_human);
+                Utility.SaveCampaigns();
+                LoadHuman();
+            };
+
             _hairStyleControl = new ListPresetControl("hair-style__control", "Hair style");
+            _hairStyleControl.PrevButton.clicked += () =>
+            {
+                HumanPresets.Instance.PreviousHairStyle(_human);
+                Utility.SaveCampaigns();
+                LoadHuman();
+            };
+            _hairStyleControl.NextButton.clicked += () =>
+            {
+                HumanPresets.Instance.NextHairStyle(_human);
+                Utility.SaveCampaigns();
+                LoadHuman();
+            };
 
             Tab2_Contents.Add(_nationControl);
-            Tab2_Contents.Add(_typeControl);
+            //Tab2_Contents.Add(_typeControl);
             Tab2_Contents.Add(_skinColorControl);
             Tab2_Contents.Add(_hairColorControl);
             Tab2_Contents.Add(_hairStyleControl);
-
-            // TODO logic
         }
 
         public void InitializeTab3()
@@ -148,7 +171,7 @@ namespace Humans
             Tab3_Contents = Root.Q<VisualElement>("tab-3__contents");
             Tab3_Contents.style.display = DisplayStyle.None;
 
-            Tab3_Contents.Add(new Label { text = "tab3" });
+            Tab3_Contents.Add(new Label { text = "<under construction>" });
         }
 
         private void OnTab1Clicked(PointerUpEvent evt)
@@ -217,7 +240,7 @@ namespace Humans
             _firstName.SetValueWithoutNotify(_human.FirstName);
             _lastName.SetValueWithoutNotify(_human.Surname);
             _nationControl.UpdateDisplayValues(_human.Nationality);
-            _typeControl.UpdateDisplayValues(_human.KerbalType.ToString());
+            //_typeControl.UpdateDisplayValues(_human.KerbalType.ToString());
             _skinColorControl.UpdateDisplayValues($"{_human.SkinColor.Type} \n {_human.SkinColor.Name}");
             _hairColorControl.UpdateDisplayValues($"{_human.HairColor.Type} \n {_human.HairColor.Name}");
             _hairStyleControl.UpdateDisplayValues($"{_human.HairStyle}");

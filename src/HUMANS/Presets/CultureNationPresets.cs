@@ -1,4 +1,5 @@
 ﻿using BepInEx.Logging;
+using Humans.Utilities;
 using KSP.Sim.impl;
 using SpaceWarp.API.Assets;
 using System.Reflection;
@@ -53,42 +54,36 @@ namespace Humans
             _logger.LogInfo($"Number of Nations with flags: {Nations.Where(n => n.Flag != null).Count()}");
         }
 
-        public string PreviousNation(Human human)
+        public void PreviousNation(Human human)
         {
-            var index = CultureNationPresets.Instance.Nations.FindIndex(n => n.Name == human.Nationality);
+            var index = Nations.FindIndex(n => n.Name == human.Nationality);
 
             if (index == -1)
             {
                 _logger.LogError($"Error retrieving Nation property {human.Nationality} for kerbal ID {human.Id}.");
-                return string.Empty;
+                return;
             }
 
             if (index > 0)
             {
-                return CultureNationPresets.Instance.Nations[--index].Name;
-            }
-            else
-            {
-                return string.Empty;
+                human.Nationality = Nations[--index].Name;
             }
         }
 
-        public string NextNation(Human human)
+        public void NextNation(Human human)
         {
-            var index = CultureNationPresets.Instance.Nations.FindIndex(n => n.Name == human.Nationality);
+            var index = Nations.FindIndex(n => n.Name == human.Nationality);
 
             if (index == -1)
             {
                 _logger.LogError($"Error retrieving Nation property {human.Nationality} for kerbal ID {human.Id}.");
-                return string.Empty;
+                return;
             }
 
-            if (index < CultureNationPresets.Instance.Nations.Count - 1)
+            if (index < Nations.Count - 1)
             {
-                return CultureNationPresets.Instance.Nations[++index].Name;                
+                human.Nationality = Nations[++index].Name;
             }
-
-            return string.Empty;
         }
     }
 }

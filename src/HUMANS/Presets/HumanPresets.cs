@@ -130,5 +130,75 @@ namespace Humans
                 KerbalUtility.TakeKerbalPortrait(human.KerbalInfo);
             }
         }
+
+        public void PreviousHairColor(Human human)
+        {
+            var index = HairColors.FindIndex(c => c == human.HairColor);
+
+            if (index == -1)
+            {
+                _logger.LogError($"Error retrieving HairColor property {human.HairColor?.Type.ToString() ?? "n/a"} : {human.HairColor?.Name ?? "n/a"} for kerbal ID {human.Id}.");
+                return;
+            }
+
+            if (index > 0)
+            {
+                human.HairColor = HairColors[--index];
+                new HairColorAttribute().ApplyAttribute(human.KerbalInfo, human.HairColor.Color);
+                KerbalUtility.TakeKerbalPortrait(human.KerbalInfo);
+            }
+        }
+
+        public void NextHairColor(Human human)
+        {
+            var index = HairColors.FindIndex(c => c == human.HairColor);
+
+            if (index == -1)
+            {
+                _logger.LogError($"Error retrieving HairColor property {human.HairColor?.Type.ToString() ?? "n/a"} : {human.HairColor?.Name ?? "n/a"} for kerbal ID {human.Id}.");
+            }
+
+            if (index < HairColors.Count - 1)
+            {
+                human.HairColor = HairColors[++index];
+                new HairColorAttribute().ApplyAttribute(human.KerbalInfo, human.HairColor.Color);
+                KerbalUtility.TakeKerbalPortrait(human.KerbalInfo);
+            }
+        }
+
+        public void PreviousHairStyle(Human human)
+        {
+            var index = HairStyles.FindIndex(c => c == human.HairStyle);
+
+            if (index == -1)
+            {
+                _logger.LogError($"Error retrieving HairStyle property {human.HairStyle ?? "n/a"} for kerbal ID {human.Id}.");
+                return;
+            }
+
+            if (index > 0)
+            {
+                human.HairStyle = HairStyles[--index];
+                new HairStyleAttribute().ApplyAttribute(human.KerbalInfo, human.HairStyle);
+                KerbalUtility.TakeKerbalPortrait(human.KerbalInfo);
+            }
+        }
+
+        public void NextHairStyle(Human human)
+        {
+            var index = HairStyles.FindIndex(c => c == human.HairStyle);
+
+            if (index == -1)
+            {
+                _logger.LogError($"Error retrieving HairStyle property {human.HairStyle ?? "n/a"} for kerbal ID {human.Id}.");
+            }
+
+            if (index < HairStyles.Count - 1)
+            {
+                human.HairStyle = HairStyles[++index];
+                new HairStyleAttribute().ApplyAttribute(human.KerbalInfo, human.HairStyle);
+                KerbalUtility.TakeKerbalPortrait(human.KerbalInfo);
+            }
+        }
     }
 }
