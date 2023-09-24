@@ -96,14 +96,14 @@ namespace Humans
             return null;
         }
 
-        public SkinColor PreviousSkinColor(Human human)
+        public void PreviousSkinColor(Human human)
         {
             var index = SkinColors.FindIndex(c => c == human.SkinColor);
 
             if (index == -1)
             {
                 _logger.LogError($"Error retrieving SkinColor property {human.SkinColor?.Type ?? "n/a"} : {human.SkinColor?.Name ?? "n/a"} for kerbal ID {human.Id}.");
-                return null;
+                return;
             }
 
             if (index > 0)
@@ -111,22 +111,16 @@ namespace Humans
                 human.SkinColor = SkinColors[--index];
                 new SkinColorAttribute().ApplyAttribute(human.KerbalInfo, human.SkinColor.Color);
                 KerbalUtility.TakeKerbalPortrait(human.KerbalInfo);
-                return SkinColors[--index];
-            }
-            else
-            {
-                return null;
             }
         }
 
-        public SkinColor NextSkinColor(Human human)
+        public void NextSkinColor(Human human)
         {
             var index = SkinColors.FindIndex(c => c == human.SkinColor);
 
             if (index == -1)
             {
                 _logger.LogError($"Error retrieving SkinColor property {human.SkinColor?.Type ?? "n/a"} : {human.SkinColor?.Name ?? "n/a"} for kerbal ID {human.Id}.");
-                return null;
             }
 
             if (index < SkinColors.Count - 1)
@@ -134,16 +128,7 @@ namespace Humans
                 human.SkinColor = SkinColors[++index];
                 new SkinColorAttribute().ApplyAttribute(human.KerbalInfo, human.SkinColor.Color);
                 KerbalUtility.TakeKerbalPortrait(human.KerbalInfo);
-                return SkinColors[++index];
             }
-
-            return null;
-
         }
-
     }
-
-    
-
-    
 }
