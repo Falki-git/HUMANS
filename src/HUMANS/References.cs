@@ -35,6 +35,7 @@ Source material
 
 
 TODO
+- biography change name
 - skin color type and hair color weights
 - add bald hair type
 - nationality flags
