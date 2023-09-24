@@ -28,10 +28,10 @@ namespace Humans
 
         private static readonly ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("Humans.UI_DEBUG");
 
-#pragma warning disable CS0618 // Type or member is obsolete
+        #pragma warning disable CS0618 // Type or member is obsolete
         private GUIStyle _styleCentered = new GUIStyle(Skins.ConsoleSkin.label) { alignment = TextAnchor.MiddleCenter };
         private GUIStyle _styleSmall = new GUIStyle(Skins.ConsoleSkin.label) { fontSize = 11 };
-#pragma warning restore CS0618 // Type or member is obsolete
+        #pragma warning restore CS0618 // Type or member is obsolete
 
         private List<KerbalInfo> _kerbals => Utility.AllKerbals;
 
@@ -48,7 +48,13 @@ namespace Humans
             get
             {
                 if (_instance == null)
-                    _instance = new UI_DEBUG();
+                {
+                    try
+                    {
+                        _instance = new UI_DEBUG();
+                    }
+                    catch { }
+                }                    
 
                 return _instance;
             }
