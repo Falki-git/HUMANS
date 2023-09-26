@@ -7,10 +7,9 @@ namespace Humans
     public class KscSceneController
     {
         public UIDocument MainGui { get; set; }
+        public UIDocument CultureSelect { get; set; }
 
         private static KscSceneController _instance;
-        private bool _showMainGui;
-
         public static KscSceneController Instance
         {
             get
@@ -22,6 +21,7 @@ namespace Humans
             }
         }
 
+        private bool _showMainGui;
         public bool ShowMainGui
         {
             get => _showMainGui;
@@ -29,6 +29,17 @@ namespace Humans
             {
                 _showMainGui = value;
                 RebuildUI();
+            }
+        }
+
+        private bool _showCultureSelect;
+        public bool ShowCultureSelect
+        {
+            get => _showCultureSelect;
+            set
+            {
+                _showCultureSelect = value;
+                BuildCultureSelect();
             }
         }
 
@@ -52,6 +63,14 @@ namespace Humans
             if (MainGui != null && MainGui.gameObject != null)
                 MainGui.gameObject.DestroyGameObject();
             GameObject.Destroy(MainGui);
+        }
+
+        private void BuildCultureSelect()
+        {
+            CultureSelect = Window.CreateFromUxml(Uxmls.Instance.CultureSelect, "CultureSelect", null, true);
+            CultureSelectController cultureSelectController = CultureSelect.gameObject.AddComponent<CultureSelectController>();
+
+            CultureSelect.rootVisualElement[0].RegisterCallback<GeometryChangedEvent>((evt) => Utility.CenterWindow(evt, CultureSelect.rootVisualElement[0]));
         }
     }
 }

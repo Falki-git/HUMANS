@@ -38,13 +38,13 @@ TODO
 - biography change name
 - skin color type and hair color weights
 - add bald hair type
-- nationality flags
 - culture flags
 - presets for famous astronauts and people (Lux)
 - humanize on create kerbal
 - add countries: canada, mexico
 - bad colors (remove): Real/Russet, Burnt Umber, Caucasian/#ffad60
 - good colors (keep): BeautifulTouch/AntiqueBrass, BeautifulTouch/DesertSand
+- CulturePicture: 780px x 150px
 
 
 - KSC menu - "Kerbal Space Center (KSC)" - GameManager/Default Game Instance(Clone)/UI Manager(Clone)/Main Canvas/KSCMenu(Clone)/LandingPanel/InteriorWindow/MenuButtons/Content/Menu/Agency

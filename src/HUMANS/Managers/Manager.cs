@@ -78,6 +78,7 @@ namespace Humans
             if (!campaign.IsInitialized)
             {
                 UI_DEBUG.Instance.ShowCultureSelection = true;
+                KscSceneController.Instance.ShowCultureSelect = true;
             }
         }
 

@@ -89,7 +89,7 @@ public class HumansPlugin : BaseSpaceWarpPlugin
         );
 
         Appbar.RegisterKSCAppButton(
-            "Humans UITK",
+            "H.U.M.A.N.S.",
             ToolbarKscUitkButtonID,
             AssetManager.GetAsset<Texture2D>($"{SpaceWarpMetadata.ModID}/images/icon.png"),
             () =>

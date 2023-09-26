@@ -34,7 +34,7 @@ namespace Humans
         public void Initialize()
         {
             MainGui = LoadAsset($"{MAIN_GUI_PATH}");
-            //CultureSelect = LoadAsset($"{CULTURE_SELECT_PATH}");
+            CultureSelect = LoadAsset($"{CULTURE_SELECT_PATH}");
         }
 
         private VisualTreeAsset LoadAsset(string path)
