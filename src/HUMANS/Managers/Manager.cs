@@ -77,7 +77,6 @@ namespace Humans
 
             if (!campaign.IsInitialized)
             {
-                UI_DEBUG.Instance.ShowCultureSelection = true;
                 KscSceneController.Instance.ShowCultureSelect = true;
             }
         }
@@ -86,11 +85,11 @@ namespace Humans
         {
             // Hide Culture select window if we're leaving the KSC scene
             if (msg.PreviousState == GameState.KerbalSpaceCenter && UI_DEBUG.Instance.ShowCultureSelection)
-                UI_DEBUG.Instance.ShowCultureSelection = false;
+                KscSceneController.Instance.ShowCultureSelect = false;
 
             // Show Culture select window if we're in KSC scene and the campaign hasn't been initialized yet
             if (msg.CurrentState == GameState.KerbalSpaceCenter && !LoadedCampaign.IsInitialized)
-                UI_DEBUG.Instance.ShowCultureSelection = true;
+                KscSceneController.Instance.ShowCultureSelect = true;
         }
 
         public void OnCultureSelected(Culture culture)

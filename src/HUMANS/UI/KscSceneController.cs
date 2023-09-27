@@ -27,8 +27,15 @@ namespace Humans
             get => _showMainGui;
             set
             {
+                // Override of MainGui activation in case that campaigns hasn't been initialized yet => Culture must be selected first
+                if (value && !Manager.Instance.LoadedCampaign.IsInitialized)
+                {
+                    ShowCultureSelect = true;
+                    return;
+                }
+
                 _showMainGui = value;
-                RebuildUI();
+                MainGui = RebuildUi(MainGui, value, Uxmls.Instance.MainGui, "MainGui", typeof(MainGuiController));
             }
         }
 
@@ -39,38 +46,34 @@ namespace Humans
             set
             {
                 _showCultureSelect = value;
-                BuildCultureSelect();
+                CultureSelect = RebuildUi(CultureSelect, value, Uxmls.Instance.CultureSelect, "CultureSelect", typeof(CultureSelectController));
             }
         }
 
-        public void RebuildUI()
+        private UIDocument RebuildUi(UIDocument uidocument, bool showWindow, VisualTreeAsset visualTree, string windowId, Type controllerType)
         {
-            DestroyUi();
-            if (ShowMainGui)
-                InitializeUi();
+            DestroyObject(uidocument);
+            if (showWindow)
+                return BuildUi(visualTree, windowId, uidocument, controllerType);
+            else
+                return null;
         }
 
-        public void InitializeUi()
+        public void DestroyObject(UIDocument document)
         {
-            MainGui = Window.CreateFromUxml(Uxmls.Instance.MainGui, "MainGui", null, true);
-            MainGuiController mainGuiController = MainGui.gameObject.AddComponent<MainGuiController>();
-
-            MainGui.rootVisualElement[0].RegisterCallback<GeometryChangedEvent>((evt) => Utility.CenterWindow(evt, MainGui.rootVisualElement[0]));
+            if (document != null && document.gameObject != null)
+                document.gameObject.DestroyGameObject();
+            GameObject.Destroy(document);
         }
 
-        public void DestroyUi()
+        private UIDocument BuildUi(VisualTreeAsset visualTree, string windowId, UIDocument uiDocument, Type controllerType)
         {
-            if (MainGui != null && MainGui.gameObject != null)
-                MainGui.gameObject.DestroyGameObject();
-            GameObject.Destroy(MainGui);
-        }
+            uiDocument = Window.CreateFromUxml(visualTree, windowId, null, true);
+            uiDocument.gameObject.AddComponent(controllerType);
 
-        private void BuildCultureSelect()
-        {
-            CultureSelect = Window.CreateFromUxml(Uxmls.Instance.CultureSelect, "CultureSelect", null, true);
-            CultureSelectController cultureSelectController = CultureSelect.gameObject.AddComponent<CultureSelectController>();
+            uiDocument.rootVisualElement[0].RegisterCallback<GeometryChangedEvent>((evt) => Utility.CenterWindow(evt, uiDocument.rootVisualElement[0]));
 
-            CultureSelect.rootVisualElement[0].RegisterCallback<GeometryChangedEvent>((evt) => Utility.CenterWindow(evt, CultureSelect.rootVisualElement[0]));
+            return uiDocument;
         }
     }
 }
