@@ -1,4 +1,5 @@
 ﻿using BepInEx.Logging;
+using UnityEngine;
 
 namespace Humans
 {
@@ -6,6 +7,7 @@ namespace Humans
     {
         public string Name { get; set; }
         public string PicturePath { get; set; }
+        public Texture2D Picture { get; set; }
         public Dictionary<string, int> NationalityWeights { get; set; }
         public Dictionary<string, int> SkinColorTypeWeights { get; set; }
         public override string ToString() => Name;

@@ -1,7 +1,7 @@
 [
 	{
 		"Name": "American",
-		"PicturePath": "some path",
+		"PicturePath": "culture_pictures/american.png",
 		"NationalityWeights": {
 			"USA" : 300,
 			"Russia" : 10,
@@ -74,7 +74,7 @@
 	},
 	{
 		"Name": "European",
-		"PicturePath": "some path",
+		"PicturePath": "culture_pictures/european.png",
 		"NationalityWeights": {
 			"France" : 30,
 			"Germany" : 30,
@@ -147,7 +147,7 @@
 	},
 	{
 		"Name": "Chinese",
-		"PicturePath": "some path",
+		"PicturePath": "culture_pictures/chinese.png",
 		"NationalityWeights": {
 			"China" : 300,
 			"Russia" : 10,
@@ -220,7 +220,7 @@
 	},
 	{
 		"Name": "Russian",
-		"PicturePath": "some path",
+		"PicturePath": "culture_pictures/russian.png",
 		"NationalityWeights": {
 			"Russia" : 150,
 			"China" : 5,

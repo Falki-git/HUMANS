@@ -52,6 +52,21 @@ namespace Humans
                 }
             }
             _logger.LogInfo($"Number of Nations with flags: {Nations.Where(n => n.Flag != null).Count()}");
+
+            string picturePath;
+            foreach (var culture in Cultures)
+            {
+                try
+                {
+                    picturePath = $"{HumansPlugin.Instance.GUID}/images/{culture.PicturePath}";
+                    culture.Picture = AssetManager.GetAsset<Texture2D>(picturePath);
+                    _logger.LogInfo($"Successfully loaded {culture.Name}'s picture.");
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError($"Error loading {culture.Name}'s picture from path \"{HumansPlugin.Instance.GUID}/images/{culture.PicturePath}\"\n" + ex);
+                }
+            }
         }
 
         public void PreviousNation(Human human)

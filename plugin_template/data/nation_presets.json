@@ -1,7 +1,7 @@
 [
  {
   "Name": "Denmark",
-  "FlagPath": "flags/denmark.png",
+  "FlagPath": "nation_flags/denmark.png",
   "FemaleFirstNames": [
    "Aase",
    "Agnete",
@@ -349,7 +349,7 @@
  },
  {
   "Name": "Norway",
-  "FlagPath": "flags/norway.png",
+  "FlagPath": "nation_flags/norway.png",
   "FemaleFirstNames": [
    "Aase",
    "Anita",
@@ -620,7 +620,7 @@
  },
  {
   "Name": "Estonia",
-  "FlagPath": "flags/estonia.png",
+  "FlagPath": "nation_flags/estonia.png",
   "FemaleFirstNames": [
    "Aili",
    "Aime",
@@ -904,7 +904,7 @@
  },
  {
   "Name": "Finland",
-  "FlagPath": "flags/finland.png",
+  "FlagPath": "nation_flags/finland.png",
   "FemaleFirstNames": [
    "Aila",
    "Aili",
@@ -1230,7 +1230,7 @@
  },
  {
   "Name": "USA",
-  "FlagPath": "flags/usa.png",
+  "FlagPath": "nation_flags/usa.png",
   "FemaleFirstNames": [
    "Alex",
    "Alexis",
@@ -1759,7 +1759,7 @@
  },
  {
   "Name": "Israel",
-  "FlagPath": "flags/israel.png",
+  "FlagPath": "nation_flags/israel.png",
   "FemaleFirstNames": [
    "Ada",
    "Adi",
@@ -2109,7 +2109,7 @@
  },
  {
   "Name": "Kazakhstan",
-  "FlagPath": "flags/kazakhstan.png",
+  "FlagPath": "nation_flags/kazakhstan.png",
   "FemaleFirstNames": [
    "Aida",
    "Aigerim",
@@ -2408,7 +2408,7 @@
  },
  {
   "Name": "Arabia",
-  "FlagPath": "flags/arabia.png",
+  "FlagPath": "nation_flags/arabia.png",
   "FemaleFirstNames": [
    "Abeer",
    "Abir",
@@ -2848,7 +2848,7 @@
  },
  {
   "Name": "Bosnia and Herzegovina",
-  "FlagPath": "flags/bosniaandherzegovina.png",
+  "FlagPath": "nation_flags/bosniaandherzegovina.png",
   "FemaleFirstNames": [
    "Adela",
    "Adisa",
@@ -3189,7 +3189,7 @@
  },
  {
   "Name": "Turkey",
-  "FlagPath": "flags/turkey.png",
+  "FlagPath": "nation_flags/turkey.png",
   "FemaleFirstNames": [
    "Alev",
    "Aliye",
@@ -3619,7 +3619,7 @@
  },
  {
   "Name": "Portugal",
-  "FlagPath": "flags/portugal.png",
+  "FlagPath": "nation_flags/portugal.png",
   "FemaleFirstNames": [
    "Adelaide",
    "Albertina",
@@ -3809,7 +3809,7 @@
  },
  {
   "Name": "Greece",
-  "FlagPath": "flags/greece.png",
+  "FlagPath": "nation_flags/greece.png",
   "FemaleFirstNames": [
    "Afroditi",
    "Aglaia",
@@ -3966,7 +3966,7 @@
  },
  {
   "Name": "Germany",
-  "FlagPath": "flags/germany.png",
+  "FlagPath": "nation_flags/germany.png",
   "FemaleFirstNames": [
    "Adelheid",
    "Agnes",
@@ -4330,7 +4330,7 @@
  },
  {
   "Name": "Macedonia",
-  "FlagPath": "flags/macedonia.png",
+  "FlagPath": "nation_flags/macedonia.png",
   "FemaleFirstNames": [
    "Aleksandra",
    "Ana",
@@ -4599,7 +4599,7 @@
  },
  {
   "Name": "Netherlands",
-  "FlagPath": "flags/netherlands.png",
+  "FlagPath": "nation_flags/netherlands.png",
   "FemaleFirstNames": [
    "Adrie",
    "Agnes",
@@ -4999,7 +4999,7 @@
  },
  {
   "Name": "Great Britain",
-  "FlagPath": "flags/greatbritain.png",
+  "FlagPath": "nation_flags/greatbritain.png",
   "FemaleFirstNames": [
    "Ada",
    "Adrian",
@@ -5434,7 +5434,7 @@
  },
  {
   "Name": "Italy",
-  "FlagPath": "flags/italy.png",
+  "FlagPath": "nation_flags/italy.png",
   "FemaleFirstNames": [
    "Ada",
    "Adele",
@@ -5849,7 +5849,7 @@
  },
  {
   "Name": "Iceland",
-  "FlagPath": "flags/iceland.png",
+  "FlagPath": "nation_flags/iceland.png",
   "FemaleFirstNames": [
    "Agnes",
    "Alda",
@@ -6317,7 +6317,7 @@
  },
  {
   "Name": "Poland",
-  "FlagPath": "flags/poland.png",
+  "FlagPath": "nation_flags/poland.png",
   "FemaleFirstNames": [
    "Agata",
    "Agnieszka",
@@ -6488,7 +6488,7 @@
  },
  {
   "Name": "Spain",
-  "FlagPath": "flags/spain.png",
+  "FlagPath": "nation_flags/spain.png",
   "FemaleFirstNames": [
    "Adela",
    "Agustina",
@@ -6741,7 +6741,7 @@
  },
  {
   "Name": "Romania",
-  "FlagPath": "flags/romania.png",
+  "FlagPath": "nation_flags/romania.png",
   "FemaleFirstNames": [
    "Adela",
    "Adina",
@@ -6971,7 +6971,7 @@
  },
  {
   "Name": "Lithuania",
-  "FlagPath": "flags/lithuania.png",
+  "FlagPath": "nation_flags/lithuania.png",
   "FemaleFirstNames": [
    "Adelė",
    "Albina",
@@ -7192,7 +7192,7 @@
  },
  {
   "Name": "Austria",
-  "FlagPath": "flags/austria.png",
+  "FlagPath": "nation_flags/austria.png",
   "FemaleFirstNames": [
    "Adelheid",
    "Agnes",
@@ -7506,7 +7506,7 @@
  },
  {
   "Name": "Kosovo",
-  "FlagPath": "flags/kosovo.png",
+  "FlagPath": "nation_flags/kosovo.png",
   "FemaleFirstNames": [
    "Adelina",
    "Afërdita",
@@ -7735,7 +7735,7 @@
  },
  {
   "Name": "Albania",
-  "FlagPath": "flags/albania.png",
+  "FlagPath": "nation_flags/albania.png",
   "FemaleFirstNames": [
    "Adelina",
    "Adriana",
@@ -8154,7 +8154,7 @@
  },
  {
   "Name": "France",
-  "FlagPath": "flags/france.png",
+  "FlagPath": "nation_flags/france.png",
   "FemaleFirstNames": [
    "Adeline",
    "Agnès",
@@ -8505,7 +8505,7 @@
  },
  {
   "Name": "Azerbaijan",
-  "FlagPath": "flags/azerbaijan.png",
+  "FlagPath": "nation_flags/azerbaijan.png",
   "FemaleFirstNames": [
    "Afa",
    "Afat",
@@ -8748,7 +8748,7 @@
  },
  {
   "Name": "Swiss",
-  "FlagPath": "flags/swiss.png",
+  "FlagPath": "nation_flags/swiss.png",
   "FemaleFirstNames": [
    "Agnes",
    "Alex",
@@ -9135,7 +9135,7 @@
  },
  {
   "Name": "Moldova",
-  "FlagPath": "flags/moldova.png",
+  "FlagPath": "nation_flags/moldova.png",
   "FemaleFirstNames": [
    "Ala",
    "Alexandra",
@@ -9308,7 +9308,7 @@
  },
  {
   "Name": "Ireland",
-  "FlagPath": "flags/ireland.png",
+  "FlagPath": "nation_flags/ireland.png",
   "FemaleFirstNames": [
    "Adrian",
    "Aideen",
@@ -9571,7 +9571,7 @@
  },
  {
   "Name": "Slovakia",
-  "FlagPath": "flags/slovakia.png",
+  "FlagPath": "nation_flags/slovakia.png",
   "FemaleFirstNames": [
    "Adriana",
    "Agnesa",
@@ -9785,7 +9785,7 @@
  },
  {
   "Name": "Luxembourg",
-  "FlagPath": "flags/luxembourg.png",
+  "FlagPath": "nation_flags/luxembourg.png",
   "FemaleFirstNames": [
    "Agnès",
    "Albertine",
@@ -10095,7 +10095,7 @@
  },
  {
   "Name": "Hungary",
-  "FlagPath": "flags/hungary.png",
+  "FlagPath": "nation_flags/hungary.png",
   "FemaleFirstNames": [
    "Adrienn",
    "Andrea",
@@ -10281,7 +10281,7 @@
  },
  {
   "Name": "Korea",
-  "FlagPath": "flags/korea.png",
+  "FlagPath": "nation_flags/korea.png",
   "FemaleFirstNames": [
    "Ae",
    "Ah",
@@ -10767,7 +10767,7 @@
  },
  {
   "Name": "Latvia",
-  "FlagPath": "flags/latvia.png",
+  "FlagPath": "nation_flags/latvia.png",
   "FemaleFirstNames": [
    "Agita",
    "Agnese",
@@ -11071,7 +11071,7 @@
  },
  {
   "Name": "Belgium",
-  "FlagPath": "flags/belgium.png",
+  "FlagPath": "nation_flags/belgium.png",
   "FemaleFirstNames": [
    "Agnes",
    "Agnès",
@@ -11500,7 +11500,7 @@
  },
  {
   "Name": "Sweden",
-  "FlagPath": "flags/sweden.png",
+  "FlagPath": "nation_flags/sweden.png",
   "FemaleFirstNames": [
    "Agneta",
    "Aina",
@@ -11797,7 +11797,7 @@
  },
  {
   "Name": "Japan",
-  "FlagPath": "flags/japan.png",
+  "FlagPath": "nation_flags/japan.png",
   "FemaleFirstNames": [
    "Ai",
    "Aiko",
@@ -12205,7 +12205,7 @@
  },
  {
   "Name": "Montenegro",
-  "FlagPath": "flags/montenegro.png",
+  "FlagPath": "nation_flags/montenegro.png",
   "FemaleFirstNames": [
    "Aida",
    "Aleksandra",
@@ -12439,7 +12439,7 @@
  },
  {
   "Name": "Armenia",
-  "FlagPath": "flags/armenia.png",
+  "FlagPath": "nation_flags/armenia.png",
   "FemaleFirstNames": [
    "Aida",
    "Alesha",
@@ -12760,7 +12760,7 @@
  },
  {
   "Name": "China",
-  "FlagPath": "flags/china.png",
+  "FlagPath": "nation_flags/china.png",
   "FemaleFirstNames": [
    "Ai Hua",
    "Ai Min",
@@ -13192,7 +13192,7 @@
  },
  {
   "Name": "India",
-  "FlagPath": "flags/india.png",
+  "FlagPath": "nation_flags/india.png",
   "FemaleFirstNames": [
    "Alka",
    "Amarjit",
@@ -13465,7 +13465,7 @@
  },
  {
   "Name": "Georgia",
-  "FlagPath": "flags/georgia.png",
+  "FlagPath": "nation_flags/georgia.png",
   "FemaleFirstNames": [
    "Ana",
    "Anna",
@@ -13612,7 +13612,7 @@
  },
  {
   "Name": "Belarus",
-  "FlagPath": "flags/belarus.png",
+  "FlagPath": "nation_flags/belarus.png",
   "FemaleFirstNames": [
    "Aksana",
    "Aleksandra",
@@ -13884,7 +13884,7 @@
  },
  {
   "Name": "Bulgaria",
-  "FlagPath": "flags/bulgaria.png",
+  "FlagPath": "nation_flags/bulgaria.png",
   "FemaleFirstNames": [
    "Albena",
    "Ana",
@@ -14322,7 +14322,7 @@
  },
  {
   "Name": "Malta",
-  "FlagPath": "flags/malta.png",
+  "FlagPath": "nation_flags/malta.png",
   "FemaleFirstNames": [
    "Alexandra",
    "Amanda",
@@ -14487,7 +14487,7 @@
  },
  {
   "Name": "Russia",
-  "FlagPath": "flags/russia.png",
+  "FlagPath": "nation_flags/russia.png",
   "FemaleFirstNames": [
    "Albina",
    "Aleksandra",
@@ -14930,7 +14930,7 @@
  },
  {
   "Name": "Serbia",
-  "FlagPath": "flags/serbia.png",
+  "FlagPath": "nation_flags/serbia.png",
   "FemaleFirstNames": [
    "Aleksandra",
    "Ana",
@@ -15223,7 +15223,7 @@
  },
  {
   "Name": "Slovenia",
-  "FlagPath": "flags/slovenia.png",
+  "FlagPath": "nation_flags/slovenia.png",
   "FemaleFirstNames": [
    "Aleksandra",
    "Alenka",
@@ -15505,7 +15505,7 @@
  },
  {
   "Name": "Ukraine",
-  "FlagPath": "flags/ukraine.png",
+  "FlagPath": "nation_flags/ukraine.png",
   "FemaleFirstNames": [
    "Aleksandra",
    "Alena",
@@ -15827,7 +15827,7 @@
  },
  {
   "Name": "Czechia",
-  "FlagPath": "flags/czechia.png",
+  "FlagPath": "nation_flags/czechia.png",
   "FemaleFirstNames": [
    "Alena",
    "Alice",
@@ -16017,7 +16017,7 @@
  },
  {
   "Name": "Vietnam",
-  "FlagPath": "flags/vietnam.png",
+  "FlagPath": "nation_flags/vietnam.png",
   "FemaleFirstNames": [
    "An",
    "Anh",
@@ -16435,7 +16435,7 @@
  },
  {
   "Name": "Croatia",
-  "FlagPath": "flags/croatia.png",
+  "FlagPath": "nation_flags/croatia.png",
   "FemaleFirstNames": [
    "Ana",
    "Andreja",
