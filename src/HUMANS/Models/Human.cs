@@ -68,6 +68,12 @@ namespace Humans
 
             // Freetext
             Biography = KerbalUtility.Biography;
+            
+            if (!string.IsNullOrEmpty(KerbalUtility.FirstName))
+                Biography = Biography.Replace(KerbalUtility.FirstName, FirstName);
+
+            if (!string.IsNullOrEmpty(KerbalUtility.Surname))
+                Biography = Biography.Replace(KerbalUtility.Surname, Surname);
 
             Humanize();
         }
@@ -179,12 +185,7 @@ namespace Humans
             new ExperienceAttribute().ApplyAttribute(kerbal, Experience);
             new BiographyAttribute().ApplyAttribute(kerbal, Biography);
 
-            // HELMET DOESN'T WORK - TODO find out why
-            //new HelmetAttribute().ApplyAttribute(kerbal, Helmet);
-
-            // ALMOST WORKED
-            kerbal._kerbalAttributes._fullName = $"{FirstName} {Surname}"; //KerbalUtility.FullName;
-            //kerbal._nameKey = $"{FirstName} {Surname}";
+            kerbal._kerbalAttributes._fullName = $"{FirstName} {Surname}";
             
             // Applying a CUSTOM value to ORIGINTYPE attribute is crucial for the game to generate portraits correctly
             new OriginTypeAttribute().ApplyAttribute(kerbal, "CUSTOM");

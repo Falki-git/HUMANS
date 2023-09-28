@@ -271,7 +271,16 @@ namespace Humans
                 // update portrait every second. Portrait generation is async
                 if (Time.time - _timeOfLastUpdate >= 1.0f)
                 {
-                    Portrait.style.backgroundImage = _human.KerbalInfo.Portrait?.texture;
+                    try
+                    {
+                        Portrait.style.backgroundImage = _human.KerbalInfo.Portrait?.texture;
+                    }
+                    catch
+                    {
+                        // Sometimes game doesn't generate the portrait and leaves it as null
+                        // TODO find out why that happens and if it can be fixed
+                    }
+
                     _timeOfLastUpdate = Time.time;
                 }
             }
