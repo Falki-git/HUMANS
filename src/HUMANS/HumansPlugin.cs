@@ -45,6 +45,10 @@ public class HumansPlugin : BaseSpaceWarpPlugin
         Instance = this;
 
         Harmony.CreateAndPatchAll(typeof(Patches));
+        Harmony.CreateAndPatchAll(typeof(ChangeTeamsColorPatch));
+
+        //Harmony harmony = new Harmony("HumansBla"); // Replace "YourModUniqueId" with a unique identifier for your mod
+        //harmony.PatchAll();
 
         Appbar.RegisterAppButton(
             "Humans debug",

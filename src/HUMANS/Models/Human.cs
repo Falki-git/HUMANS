@@ -169,8 +169,13 @@ namespace Humans
             new EyeHeightAttribute().ApplyAttribute(kerbal, EyeHeight);
             new EyeSymmetryAttribute().ApplyAttribute(kerbal, EyeSymmetry);
             new FacialHairAttribute().ApplyAttribute(kerbal, FacialHair);
-            new TeamColor1Attribute().ApplyAttribute(kerbal, TeamColor1);
-            new TeamColor2Attribute().ApplyAttribute(kerbal, TeamColor2);
+
+            // new TeamColor1Attribute().ApplyAttribute(kerbal, TeamColor1);
+            // new TeamColor2Attribute().ApplyAttribute(kerbal, TeamColor2);
+            // TODO logic to change colors
+            new TeamColor1Attribute().ApplyAttribute(kerbal, new Color(1, 0, 0, 1));
+            new TeamColor2Attribute().ApplyAttribute(kerbal, new Color(0, 1, 0, 1));
+
             new StupidityAttribute().ApplyAttribute(kerbal, Stupidity);
             new BraveryAttribute().ApplyAttribute(kerbal, Bravery);
             new ConstitutionAttribute().ApplyAttribute(kerbal, Constitution);
