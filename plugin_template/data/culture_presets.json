@@ -49,7 +49,7 @@
 			"Georgia" : 1,
 			"Belarus" : 1,
 			"Bulgaria" : 1,
-			"Malta" : 1,		
+			"Malta" : 1,
 			"Serbia" : 1,
 			"Slovenia" : 1,
 			"Ukraine" : 1,
@@ -70,7 +70,19 @@
 			"Asian" : 10,
 			"Black" : 5,
 			"Kerbal" : 0
-		}
+		},
+		"SuitColor1": {
+            "r": 150,
+            "g": 150,
+            "b": 150,
+            "a": 255
+		},
+		"SuitColor2": {
+            "r": 0,
+            "g": 30,
+            "b": 130,
+            "a": 255
+		},
 	},
 	{
 		"Name": "European",
@@ -143,7 +155,19 @@
 			"Asian" : 3,
 			"Black" : 3,
 			"Kerbal" : 0
-		}
+		},
+		"SuitColor1": {
+            "r": 0,
+            "g": 50,
+            "b": 150,
+            "a": 255
+		},
+		"SuitColor2": {
+            "r": 200,
+            "g": 200,
+            "b": 200,
+            "a": 255
+		},
 	},
 	{
 		"Name": "Chinese",
@@ -216,7 +240,20 @@
 			"Asian" : 30,
 			"Black" : 0,
 			"Kerbal" : 0
-		}
+		},
+		"SuitColor1": {
+            "r": 200,
+            "g": 40,
+            "b": 0,
+            "a": 255
+		},
+		"SuitColor2": {
+            "r": 200,
+            "g": 200,
+            "b": 200,
+            "a": 255
+		},
+		
 	},
 	{
 		"Name": "Russian",
@@ -289,6 +326,18 @@
 			"Asian" : 5,
 			"Black" : 0,
 			"Kerbal" : 0
-		}		
+		},
+		"SuitColor1": {
+            "r": 150,
+            "g": 150,
+            "b": 150,
+            "a": 255
+		},
+		"SuitColor2": {
+            "r": 250,
+            "g": 100,
+            "b": 25,
+            "a": 255
+		},
 	}
 ]

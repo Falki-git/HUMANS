@@ -10,6 +10,8 @@ namespace Humans
         public Texture2D Picture { get; set; }
         public Dictionary<string, int> NationalityWeights { get; set; }
         public Dictionary<string, int> SkinColorTypeWeights { get; set; }
+        public Color32 SuitColor1 { get; set; }
+        public Color32 SuitColor2 { get; set; }
         public override string ToString() => Name;
 
         private static ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("Humans.Culture");

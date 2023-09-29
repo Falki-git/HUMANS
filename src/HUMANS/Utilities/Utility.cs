@@ -34,6 +34,7 @@ namespace Humans
         public static KerbalPhotoBooth PortraitRenderer => Roster._portraitRenderer;
         public static string SessionGuidString => GameManager.Instance?.Game?.SessionGuidString;
         public static SessionManager SessionManager => GameManager.Instance?.Game?.SessionManager;
+        public static AgencyManager AgencyManager => GameManager.Instance?.Game?.AgencyManager;
 
         public static void SaveCampaigns()
         {
