@@ -35,7 +35,6 @@ Source material
 
 
 TODO
-- team colors per kerbal
 - culture flags
 - humanize on create kerbal
 

@@ -41,6 +41,9 @@ namespace Humans
         private ListPresetControl _hairColorControl;
         private ListPresetControl _hairStyleControl;
 
+        private ColorChangeControl _suitBaseColor;
+        private ColorChangeControl _suitAccentColor;
+
         private float _timeOfLastUpdate;
 
         public MainGuiController()
@@ -128,7 +131,7 @@ namespace Humans
             _skinColorControl.NextButton.clicked += () =>
             {
                 HumanPresets.Instance.NextSkinColor(_human);
-                Utility.SaveCampaigns();                
+                Utility.SaveCampaigns();
                 LoadHuman();
             };
             _hairColorControl = new ListPresetControl("skin-color__control", "Hair color");
@@ -159,11 +162,23 @@ namespace Humans
                 LoadHuman();
             };
 
+            _suitBaseColor = new ColorChangeControl("Suit Color A");
+            _suitBaseColor.RedSlider.RegisterValueChangedCallback(evt => OnSuitBaseColorChanged(new Color32((byte)evt.newValue, (byte)_suitBaseColor.GreenValue, (byte)_suitBaseColor.BlueValue, 255)));
+            _suitBaseColor.GreenSlider.RegisterValueChangedCallback(evt => OnSuitBaseColorChanged(new Color32((byte)_suitBaseColor.RedValue, (byte)evt.newValue, (byte)_suitBaseColor.BlueValue, 255)));
+            _suitBaseColor.BlueSlider.RegisterValueChangedCallback(evt => OnSuitBaseColorChanged(new Color32((byte)_suitBaseColor.RedValue, (byte)_suitBaseColor.GreenValue, (byte)evt.newValue, 255)));
+
+            _suitAccentColor = new ColorChangeControl("Suit Color B");
+            _suitAccentColor.RedSlider.RegisterValueChangedCallback(evt => OnSuitAccentColorChanged(new Color32((byte)evt.newValue, (byte)_suitAccentColor.GreenValue, (byte)_suitAccentColor.BlueValue, 255)));
+            _suitAccentColor.GreenSlider.RegisterValueChangedCallback(evt => OnSuitAccentColorChanged(new Color32((byte)_suitAccentColor.RedValue, (byte)evt.newValue, (byte)_suitAccentColor.BlueValue, 255)));
+            _suitAccentColor.BlueSlider.RegisterValueChangedCallback(evt => OnSuitAccentColorChanged(new Color32((byte)_suitAccentColor.RedValue, (byte)_suitAccentColor.GreenValue, (byte)evt.newValue, 255)));
+
             Tab2_Contents.Add(_nationControl);
             //Tab2_Contents.Add(_typeControl);
             Tab2_Contents.Add(_skinColorControl);
             Tab2_Contents.Add(_hairColorControl);
             Tab2_Contents.Add(_hairStyleControl);
+            Tab2_Contents.Add(_suitBaseColor);
+            Tab2_Contents.Add(_suitAccentColor);
         }
 
         public void InitializeTab3()
@@ -244,6 +259,8 @@ namespace Humans
             _skinColorControl.UpdateDisplayValues($"{_human.SkinColor.Type}\n{_human.SkinColor.Name}");
             _hairColorControl.UpdateDisplayValues($"{_human.HairColor.Type}\n{_human.HairColor.Name}");
             _hairStyleControl.UpdateDisplayValues($"{_human.HairStyle}");
+            _suitBaseColor.UpdateDisplayValues(_human.TeamColor1);
+            _suitAccentColor.UpdateDisplayValues(_human.TeamColor2);
         }
 
         private void OnPrevClicked(PointerUpEvent evt)
@@ -262,6 +279,18 @@ namespace Humans
                 _selectedKerbalId++;
                 LoadHuman();
             }
+        }
+
+        private void OnSuitBaseColorChanged(Color32 newColor)
+        {
+            _human.ChangeSuitBaseColor(newColor);
+            LoadHuman();
+        }
+
+        private void OnSuitAccentColorChanged(Color32 newColor)
+        {
+            _human.ChangeSuitAccentColor(newColor);
+            LoadHuman();
         }
 
         public void Update()

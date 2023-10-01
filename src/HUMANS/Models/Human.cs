@@ -225,5 +225,21 @@ namespace Humans
             }
             */
         }
+
+        public void ChangeSuitBaseColor(Color32 newColor)
+        {
+            TeamColor1 = newColor;
+            new TeamColor1Attribute().ApplyAttribute(KerbalInfo, TeamColor1);
+            Utility.SaveCampaigns();
+            KerbalUtility.TakeKerbalPortrait(KerbalInfo);
+        }
+
+        public void ChangeSuitAccentColor(Color32 newColor)
+        {
+            TeamColor2 = newColor;
+            new TeamColor1Attribute().ApplyAttribute(KerbalInfo, TeamColor2);
+            Utility.SaveCampaigns();
+            KerbalUtility.TakeKerbalPortrait(KerbalInfo);
+        }
     }
 }
