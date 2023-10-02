@@ -26,6 +26,8 @@ namespace Humans
 
         [JsonProperty(Order = 3)]
         public string SelectedCulture;
+        public Culture Culture => String.IsNullOrEmpty(SelectedCulture) ? null : CultureNationPresets.Instance.Cultures.Find(c => c.Name == SelectedCulture);
+
         [JsonProperty(Order = 4)]
         public bool IsInitialized { get; set; }
 

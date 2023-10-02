@@ -111,6 +111,7 @@ namespace Humans
                 human.SkinColor = SkinColors[--index];
                 new SkinColorAttribute().ApplyAttribute(human.KerbalInfo, human.SkinColor.Color);
                 KerbalUtility.TakeKerbalPortrait(human.KerbalInfo);
+                Utility.SaveCampaigns();
             }
         }
 
@@ -128,6 +129,7 @@ namespace Humans
                 human.SkinColor = SkinColors[++index];
                 new SkinColorAttribute().ApplyAttribute(human.KerbalInfo, human.SkinColor.Color);
                 KerbalUtility.TakeKerbalPortrait(human.KerbalInfo);
+                Utility.SaveCampaigns();
             }
         }
 
@@ -146,6 +148,7 @@ namespace Humans
                 human.HairColor = HairColors[--index];
                 new HairColorAttribute().ApplyAttribute(human.KerbalInfo, human.HairColor.Color);
                 KerbalUtility.TakeKerbalPortrait(human.KerbalInfo);
+                Utility.SaveCampaigns();
             }
         }
 
@@ -163,6 +166,7 @@ namespace Humans
                 human.HairColor = HairColors[++index];
                 new HairColorAttribute().ApplyAttribute(human.KerbalInfo, human.HairColor.Color);
                 KerbalUtility.TakeKerbalPortrait(human.KerbalInfo);
+                Utility.SaveCampaigns();
             }
         }
 
@@ -181,6 +185,7 @@ namespace Humans
                 human.HairStyle = HairStyles[--index];
                 new HairStyleAttribute().ApplyAttribute(human.KerbalInfo, human.HairStyle);
                 KerbalUtility.TakeKerbalPortrait(human.KerbalInfo);
+                Utility.SaveCampaigns();
             }
         }
 
@@ -198,6 +203,7 @@ namespace Humans
                 human.HairStyle = HairStyles[++index];
                 new HairStyleAttribute().ApplyAttribute(human.KerbalInfo, human.HairStyle);
                 KerbalUtility.TakeKerbalPortrait(human.KerbalInfo);
+                Utility.SaveCampaigns();
             }
         }
     }

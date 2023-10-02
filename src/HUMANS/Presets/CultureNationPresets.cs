@@ -82,6 +82,7 @@ namespace Humans
             if (index > 0)
             {
                 human.Nationality = Nations[--index].Name;
+                Utility.SaveCampaigns();
             }
         }
 
@@ -98,6 +99,7 @@ namespace Humans
             if (index < Nations.Count - 1)
             {
                 human.Nationality = Nations[++index].Name;
+                Utility.SaveCampaigns();
             }
         }
     }

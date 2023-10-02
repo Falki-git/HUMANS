@@ -41,6 +41,9 @@ namespace Humans
             // Take kerbal portraits when game load is finished
             MessageCenter.Subscribe<GameLoadFinishedMessage>(OnGameLoadFinishedMessage);
             _logger.LogInfo("Subscribed to GameLoadFinishedMessage.");
+
+            MessageCenter.Subscribe<KerbalAddedToRoster>(OnKerbalAddedToRoster);
+            _logger.LogInfo("Subscribed to KerbalAddedToRoster.");
         }
 
         private void ResubscribeToMessages()
@@ -64,6 +67,12 @@ namespace Humans
             }
             catch { _logger.LogDebug("GameLoadFinishedMessage unsubscribe failed."); }
 
+            try
+            {
+                MessageCenter.Unsubscribe<KerbalAddedToRoster>(OnKerbalAddedToRoster);
+            }
+            catch { _logger.LogDebug("KerbalAddedToRoster unsubscribe failed."); }
+
             SubscribeToMessages();
         }
 
@@ -84,10 +93,17 @@ namespace Humans
                 Manager.Instance.OnGameStateChangedMessage(msg);
         }
 
-        private void OnGameLoadFinishedMessage(MessageCenterMessage obj)
+        private void OnGameLoadFinishedMessage(MessageCenterMessage message)
         {
             _logger.LogDebug("GameLoadFinishedMessage triggered.");
-            Manager.Instance.OnGameLoadFinished(obj);
+            Manager.Instance.OnGameLoadFinished(message);
+        }
+
+        private void OnKerbalAddedToRoster(MessageCenterMessage message)
+        {
+            var kerbalMsg = message as KerbalAddedToRoster;
+            _logger.LogInfo($"OnKerbalAddedToRoster triggered. Kerbal name is {kerbalMsg.Kerbal?.NameKey}.");
+            Manager.Instance.OnKerbalAddedToRoster(kerbalMsg);
         }
     }
 }

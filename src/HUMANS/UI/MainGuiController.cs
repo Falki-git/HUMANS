@@ -108,59 +108,22 @@ namespace Humans
             _lastName.RegisterValueChangedCallback(evt => { _human.Rename(_firstName.value, evt.newValue); LoadHuman(); });
 
             _nationControl = new ListPresetControl("nation__control", "Nation");
-            _nationControl.PrevButton.clicked += () =>
-            {
-                CultureNationPresets.Instance.PreviousNation(_human);
-                Utility.SaveCampaigns();
-                LoadHuman();
-            };
-            _nationControl.NextButton.clicked += () =>
-            {
-                CultureNationPresets.Instance.NextNation(_human);
-                Utility.SaveCampaigns();
-                LoadHuman();
-            };
+            _nationControl.PrevButton.clicked += () => { CultureNationPresets.Instance.PreviousNation(_human); LoadHuman(); };
+            _nationControl.NextButton.clicked += () => { CultureNationPresets.Instance.NextNation(_human); LoadHuman(); };
+            
             //_typeControl = new ListPresetControl("type__control", "Type");
+            
             _skinColorControl = new ListPresetControl("skin-color__control", "Skin color");
-            _skinColorControl.PrevButton.clicked += () =>
-            {
-                HumanPresets.Instance.PreviousSkinColor(_human);
-                Utility.SaveCampaigns();
-                LoadHuman();
-            };
-            _skinColorControl.NextButton.clicked += () =>
-            {
-                HumanPresets.Instance.NextSkinColor(_human);
-                Utility.SaveCampaigns();
-                LoadHuman();
-            };
+            _skinColorControl.PrevButton.clicked += () => { HumanPresets.Instance.PreviousSkinColor(_human); LoadHuman(); };
+            _skinColorControl.NextButton.clicked += () => { HumanPresets.Instance.NextSkinColor(_human); LoadHuman(); };
+            
             _hairColorControl = new ListPresetControl("skin-color__control", "Hair color");
-            _hairColorControl.PrevButton.clicked += () =>
-            {
-                HumanPresets.Instance.PreviousHairColor(_human);
-                Utility.SaveCampaigns();
-                LoadHuman();
-            };
-            _hairColorControl.NextButton.clicked += () =>
-            {
-                HumanPresets.Instance.NextHairColor(_human);
-                Utility.SaveCampaigns();
-                LoadHuman();
-            };
+            _hairColorControl.PrevButton.clicked += () => { HumanPresets.Instance.PreviousHairColor(_human); LoadHuman(); };
+            _hairColorControl.NextButton.clicked += () => { HumanPresets.Instance.NextHairColor(_human); LoadHuman(); };
 
             _hairStyleControl = new ListPresetControl("hair-style__control", "Hair style");
-            _hairStyleControl.PrevButton.clicked += () =>
-            {
-                HumanPresets.Instance.PreviousHairStyle(_human);
-                Utility.SaveCampaigns();
-                LoadHuman();
-            };
-            _hairStyleControl.NextButton.clicked += () =>
-            {
-                HumanPresets.Instance.NextHairStyle(_human);
-                Utility.SaveCampaigns();
-                LoadHuman();
-            };
+            _hairStyleControl.PrevButton.clicked += () => { HumanPresets.Instance.PreviousHairStyle(_human); LoadHuman(); };
+            _hairStyleControl.NextButton.clicked += () => { HumanPresets.Instance.NextHairStyle(_human); LoadHuman(); };
 
             _suitBaseColor = new ColorChangeControl("Suit Color A");
             _suitBaseColor.RedSlider.RegisterValueChangedCallback(evt => OnSuitBaseColorChanged(new Color32((byte)evt.newValue, (byte)_suitBaseColor.GreenValue, (byte)_suitBaseColor.BlueValue, 255)));

@@ -1,5 +1,6 @@
 ﻿using BepInEx.Logging;
 using HarmonyLib;
+using Humans.Utilities;
 using KSP.Game;
 using KSP.Modding.Variety;
 using UnityEngine;
@@ -35,8 +36,22 @@ namespace Humans
 
                 if (human != null)
                 {
-                    _logger.LogDebug("Found human!");                    
-                    human.Humanize(__instance.ThisKerbalInfo);
+                    _logger.LogDebug("Found human!");
+
+                    // Newly created kerbals won't have their attributes created on "KerbalAddedToRoster" event
+                    // but they will have them at this point, so we initialize them here
+                    if (!human.IsHumanized)
+                    {
+                        _logger.LogDebug("Human isn't humanized yet. Initializing attributes and humanizing.");
+                        human.InitializeAttributes();
+                        human.Humanize();
+                        KerbalUtility.TakeKerbalPortrait(human.KerbalInfo);
+                        Utility.SaveCampaigns();
+                    }
+                    else
+                    {
+                        human.Humanize(__instance.ThisKerbalInfo);
+                    }
 
                     // Process to have custom kerbal suit colors:
                     // 1. Save current agency colors (prefix)

@@ -12,12 +12,16 @@ namespace Humans
     public class Human
     {
         public Human() { }
-        public Human(KerbalInfo kerbal, Culture culture)
+        public Human(KerbalInfo kerbal)
         {
             KerbalUtility.SetKerbal(kerbal);
+            Id = KerbalUtility.IGGuid;            
+        }
 
-            Id = KerbalUtility.IGGuid;
-            KerbalInfo = kerbal;
+        public void InitializeAttributes()
+        {
+            KerbalUtility.SetKerbal(KerbalInfo);
+            var culture = Manager.Instance.LoadedCampaign.Culture;
 
             // Male kerbals are recognized by having "*_M_*" for Head type and "*_M_*" for Eyes type
             // Female kerbals are recognized by having "*_F_*" for Head type and "*_F_*" for Eyes type
@@ -68,19 +72,17 @@ namespace Humans
 
             // Freetext
             Biography = KerbalUtility.Biography;
-            
+
             if (!string.IsNullOrEmpty(KerbalUtility.FirstName))
                 Biography = Biography.Replace(KerbalUtility.FirstName, FirstName);
 
             if (!string.IsNullOrEmpty(KerbalUtility.Surname))
                 Biography = Biography.Replace(KerbalUtility.Surname, Surname);
-
-            Humanize();
         }
 
         [JsonProperty]
         public IGGuid Id { get; set; }
-        public KerbalInfo KerbalInfo { get; set; }
+        public KerbalInfo KerbalInfo { get => Utility.AllKerbals.Find(k => k.Id == this.Id); }
         [JsonProperty]
         public string Nationality { get; set; }
         public Nation Nation { get => CultureNationPresets.Instance.Nations.Find(n => n.Name == Nationality); }
@@ -146,6 +148,7 @@ namespace Humans
         /// <summary>
         /// If kerbal with this ID has been initialized with human parameters
         /// </summary>
+        [JsonProperty]
         public bool IsHumanized { get; set; }
 
         private static ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("Humans.Human");
@@ -153,9 +156,6 @@ namespace Humans
         public void Humanize() => Humanize(KerbalInfo);
         public void Humanize(KerbalInfo kerbal)
         {
-            if (KerbalInfo == null)
-                KerbalInfo = kerbal;
-
             KerbalUtility.SetKerbal(kerbal);
 
             new FirstNameAttribute().ApplyAttribute(kerbal, FirstName);

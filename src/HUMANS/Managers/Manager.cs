@@ -99,7 +99,9 @@ namespace Humans
 
             foreach (var kerbal in Utility.AllKerbals)
             {
-                Human human = new Human(kerbal, culture);
+                var human = new Human(kerbal);
+                human.InitializeAttributes();
+                human.Humanize();
 
                 LoadedCampaign.Humans.Add(human);
             }
@@ -114,6 +116,27 @@ namespace Humans
         public void OnGameLoadFinished(MessageCenterMessage obj)
         {
             KerbalUtility.TakeKerbalPortraits(Utility.AllKerbals);
+        }
+
+        public void OnKerbalAddedToRoster(KerbalAddedToRoster message)
+        {
+            if (!LoadedCampaign.IsInitialized)
+                return;
+
+            var kerbal = message.Kerbal;
+            var culture = LoadedCampaign.Culture;
+            
+            // Try to find if it's an existing human, then delete him
+            var human = LoadedCampaign.Humans.Find(h => h.Id == kerbal.Id);            
+            if (human != null)
+                LoadedCampaign.Humans.Remove(human);
+
+            // Create new human
+            human = new Human(kerbal);
+            // we intentionally don't initialize attributes here since the game hasn't created them yet
+
+            LoadedCampaign.Humans.Add(human);
+            Utility.SaveCampaigns();
         }
     }
 }

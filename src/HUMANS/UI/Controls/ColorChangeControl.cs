@@ -34,19 +34,19 @@ namespace Humans
         public int RedValue
         {
             get => (int)RedSlider.value;
-            set => RedSlider.value = value;
+            set => RedSlider.SetValueWithoutNotify(value);
         }
 
         public int GreenValue
         {
             get => (int)GreenSlider.value;
-            set => GreenSlider.value = value;
+            set => GreenSlider.SetValueWithoutNotify(value);
         }
 
         public int BlueValue
         {
             get => (int)BlueSlider.value;
-            set => BlueSlider.value = value;
+            set => BlueSlider.SetValueWithoutNotify(value);
         }
 
         public void UpdateDisplayValues(Color32 color)
