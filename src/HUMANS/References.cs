@@ -36,7 +36,7 @@ Source material
 
 TODO
 - culture flags
-- humanize on create kerbal
+- remove debug stuff
 
 - skin color type and hair color weights
 - add bald hair type
