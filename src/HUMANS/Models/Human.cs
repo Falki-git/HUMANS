@@ -15,7 +15,7 @@ namespace Humans
         public Human(KerbalInfo kerbal)
         {
             KerbalUtility.SetKerbal(kerbal);
-            Id = KerbalUtility.IGGuid;            
+            Id = KerbalUtility.IGGuid;
         }
 
         public void InitializeAttributes()

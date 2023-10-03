@@ -50,13 +50,4 @@
         Female,
         Other
     }
-
-    // TODO Culture -> has % of skin types
-    // TODO Nationality -> has culture assigned. Skin type % per nationality, defaults to assigned culture if not set
-    // TODO loading screens
-    // TODO first names and surnames for each nationality
-    // TODO hair color, facial hair color
-
-    // TODO TeamColor1, TeamColor2 ?
-
 }

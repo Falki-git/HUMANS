@@ -1,6 +1,4 @@
 ﻿using BepInEx.Logging;
-using Humans.Utilities;
-using KSP.Sim.impl;
 using SpaceWarp.API.Assets;
 using System.Reflection;
 using UnityEngine;
@@ -13,7 +11,7 @@ namespace Humans
         public List<Nation> Nations = new();
 
         private readonly string _culturesPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "data", "culture_presets.json");
-        private readonly string _nationsPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "data", "nation_presets.json");                
+        private readonly string _nationsPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "data", "nation_presets.json");
         private static CultureNationPresets _instance;
         private readonly ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("Humans.CulturePresets");
 

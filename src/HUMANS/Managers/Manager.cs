@@ -17,7 +17,7 @@ namespace Humans
 
                 return _instance;
             }
-        }        
+        }
 
         private Manager() { }
 
@@ -60,7 +60,6 @@ namespace Humans
 
         }
 
-        // TODO move to controller
         public void OnKSCLoadedMessage(MessageCenterMessage obj)
         {
             var campaignGuid = GameManager.Instance.Game.SessionGuidString;
@@ -84,7 +83,7 @@ namespace Humans
         public void OnGameStateChangedMessage(GameStateChangedMessage msg)
         {
             // Hide Culture select window if we're leaving the KSC scene
-            if (msg.PreviousState == GameState.KerbalSpaceCenter && UI_DEBUG.Instance.ShowCultureSelection)
+            if (msg.PreviousState == GameState.KerbalSpaceCenter)
                 KscSceneController.Instance.ShowCultureSelect = false;
 
             // Show Culture select window if we're in KSC scene and the campaign hasn't been initialized yet
@@ -127,7 +126,7 @@ namespace Humans
             var culture = LoadedCampaign.Culture;
             
             // Try to find if it's an existing human, then delete him
-            var human = LoadedCampaign.Humans.Find(h => h.Id == kerbal.Id);            
+            var human = LoadedCampaign.Humans.Find(h => h.Id == kerbal.Id);
             if (human != null)
                 LoadedCampaign.Humans.Remove(human);
 

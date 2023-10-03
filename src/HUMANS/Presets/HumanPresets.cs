@@ -1,8 +1,6 @@
 ﻿using BepInEx.Logging;
 using Humans.Utilities;
-using Newtonsoft.Json;
 using System.Reflection;
-using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Humans

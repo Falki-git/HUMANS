@@ -10,7 +10,7 @@ namespace Humans
         public const string CULTURE_SELECT_PATH = "/humans/culture_select.uxml";
 
         public VisualTreeAsset MainGui;
-        public VisualTreeAsset CultureSelect;        
+        public VisualTreeAsset CultureSelect;
 
         private static Uxmls _instance;
         private static readonly ManualLogSource _logger = Logger.CreateLogSource("Humans.Uxmls");

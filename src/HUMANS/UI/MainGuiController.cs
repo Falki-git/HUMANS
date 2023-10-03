@@ -258,7 +258,7 @@ namespace Humans
 
         public void Update()
         {
-            if (KscSceneController.Instance.ShowMainGui)                
+            if (KscSceneController.Instance.ShowMainGui)
             {
                 // update portrait every second. Portrait generation is async
                 if (Time.time - _timeOfLastUpdate >= 1.0f)

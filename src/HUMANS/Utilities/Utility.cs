@@ -55,8 +55,13 @@ namespace Humans
             {
                 var json = File.ReadAllText(CampaignsPath);
                 var toReturn = JsonConvert.DeserializeObject<List<CampaignParameters>>(json);
-                _logger.LogInfo($"Loaded Campaigns from path {CampaignsPath}.Number of campaigns: {toReturn.Count}");
+                _logger.LogInfo($"Loaded Campaigns from path {CampaignsPath}. Number of campaigns: {toReturn.Count}");
                 return toReturn;
+            }
+            catch (FileNotFoundException)
+            {
+                _logger.LogWarning($"Campaigns file not found on location {CampaignsPath}. This is normal if this mod was just installed.");
+                return new List<CampaignParameters>();
             }
             catch (Exception ex)
             {
@@ -121,7 +126,7 @@ namespace Humans
                 return toReturn;
             }
             catch (Exception ex)
-            {                
+            {
                 _logger.LogError($"Error loading {typeName} presets from {path}.\n" + ex);
                 return default(T);
             }

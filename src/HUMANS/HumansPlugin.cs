@@ -1,5 +1,4 @@
 ﻿using BepInEx;
-using KSP.UI.Binding;
 using JetBrains.Annotations;
 using SpaceWarp;
 using SpaceWarp.API.Mods;
@@ -9,10 +8,6 @@ using SpaceWarp.API.UI.Appbar;
 using UnityEngine;
 using HarmonyLib;
 using BepInEx.Logging;
-using UnityEngine.UI;
-using System.Collections.Generic;
-using TMPro;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Humans;
 
@@ -29,11 +24,6 @@ public class HumansPlugin : BaseSpaceWarpPlugin
     public string GUID => Info.Metadata.GUID;
 
     public bool _isDebugWindowOpen;
-    public bool _isWindowOpen;
-    private const string ToolbarDebugButtonID = "BTN-Humans-debug";
-    private const string ToolbarButtonID = "BTN-Humans";
-    private const string ToolbarKscButtonID = "BTN-HumansKSC";
-    private const string ToolbarKscDebugButtonID = "BTN-HumansDebugKSC";
     private const string ToolbarKscUitkButtonID = "BTN-HumansUitkKSC";
     private readonly ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("Humans");
 
@@ -46,48 +36,6 @@ public class HumansPlugin : BaseSpaceWarpPlugin
 
         Harmony.CreateAndPatchAll(typeof(Patches));
 
-        Appbar.RegisterAppButton(
-            "Humans debug",
-            ToolbarDebugButtonID,
-            AssetManager.GetAsset<Texture2D>($"{SpaceWarpMetadata.ModID}/images/icon.png"),
-            isOpen =>
-            {
-                _isDebugWindowOpen = isOpen;
-                GameObject.Find(ToolbarDebugButtonID)?.GetComponent<UIValue_WriteBool_Toggle>()?.SetValue(isOpen);
-            }
-        );
-
-        Appbar.RegisterAppButton(
-            "Humans",
-            ToolbarButtonID,
-            AssetManager.GetAsset<Texture2D>($"{SpaceWarpMetadata.ModID}/images/icon.png"),
-            isOpen =>
-            {
-                _isWindowOpen = isOpen;
-                GameObject.Find(ToolbarButtonID)?.GetComponent<UIValue_WriteBool_Toggle>()?.SetValue(isOpen);
-            }
-        );
-
-        Appbar.RegisterKSCAppButton(
-            "Humans",
-            ToolbarKscButtonID,
-            AssetManager.GetAsset<Texture2D>($"{SpaceWarpMetadata.ModID}/images/icon.png"),
-            () =>
-            {
-                _isWindowOpen = !_isWindowOpen;
-            }
-        );
-
-        Appbar.RegisterKSCAppButton(
-            "Humans Debug",
-            ToolbarKscDebugButtonID,
-            AssetManager.GetAsset<Texture2D>($"{SpaceWarpMetadata.ModID}/images/icon.png"),
-            () =>
-            {                
-                _isDebugWindowOpen = !_isDebugWindowOpen;
-            }
-        );
-
         Appbar.RegisterKSCAppButton(
             "H.U.M.A.N.S.",
             ToolbarKscUitkButtonID,
@@ -99,13 +47,6 @@ public class HumansPlugin : BaseSpaceWarpPlugin
         );
 
         Manager.Instance.Initialize();
-
-        //TestBed();
-    }
-
-    private void TestBed()
-    {
-
     }
 
     private void OnGUI()
@@ -119,16 +60,10 @@ public class HumansPlugin : BaseSpaceWarpPlugin
 
         try
         {
-            UI_DEBUG.Instance.OnGui();        
+            UI_DEBUG.Instance.OnGui();
 
         if (_isDebugWindowOpen)
             UI_DEBUG.Instance.DrawDebugUI();
-
-        if (_isWindowOpen)
-            UI_DEBUG.Instance.DrawUI();
-
-        if (UI_DEBUG.Instance.ShowCultureSelection == true)
-            UI_DEBUG.Instance.DrawCultureSelectionWindow();
         }
         catch { }
     }
@@ -138,20 +73,8 @@ public class HumansPlugin : BaseSpaceWarpPlugin
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.H))
             _isDebugWindowOpen = !_isDebugWindowOpen;
 
-        if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKeyDown(KeyCode.H))
-        {
-            _isWindowOpen = !_isWindowOpen;
-
-            //foreach (var kerbal in Manager.Instance.AllKerbals)
-            //{
-            //    Manager.Instance.Roster._portraitRenderer.TakeKerbalPortrait(kerbal);
-            //}
-        }
-
         Manager.Instance.Update();
     }
-
-
 
     //[HarmonyPatch(typeof(VarietyUtils), "ApplyKerbalSkinColor",
     //    new Type[] { typeof(GameObject), typeof(Color) }),
