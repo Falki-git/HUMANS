@@ -57,7 +57,6 @@ namespace Humans
                     campaign.IsLoaded = true;
                 }
             }
-
         }
 
         public void OnKSCLoadedMessage(MessageCenterMessage obj)
@@ -99,8 +98,20 @@ namespace Humans
             foreach (var kerbal in Utility.AllKerbals)
             {
                 var human = new Human(kerbal);
-                human.InitializeAttributes();
-                human.Humanize();
+                human.InitializeUniversalAttributes();
+
+                if (culture.Name == CultureNationPresets.KERBALCULTURE)
+                {
+                    // Kerbal culture picked. Just initialize kerbals attributes; don't covert them to humans
+                    human.InitializeKerbalAttributes();
+                }
+                else
+                {
+                    // Human culture picked. Initialize as humans - skin color, nationality, first and last names, etc.
+                    human.InitializeHumanAttributes();
+                }
+
+                human.ApplyAllAtributes();
 
                 LoadedCampaign.Humans.Add(human);
             }

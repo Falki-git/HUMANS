@@ -22,7 +22,10 @@ namespace Humans
         {
             name = controlName;
             CultureName = cultureName;
-            CulturePictureButton.style.backgroundImage = culturePicture ?? new Texture2D(0, 0);
+            if (culturePicture != null)
+                CulturePictureButton.style.backgroundImage = culturePicture ?? new Texture2D(0, 0);
+            else
+                CulturePictureButton.AddToClassList(UssCulturePictureEmpty);
         }
 
         public CultureControl(string controlName, string cultureName) : this(controlName, cultureName, null)

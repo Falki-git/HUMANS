@@ -158,6 +158,17 @@ namespace Humans.Utilities
                 catch { return Color.black; }
             }
         }
+        public static Color HairColor
+        {
+            get
+            {
+                try
+                {
+                    return (Color)_kerbalInfo.Attributes.GetAttribute("HAIRCOLOR");
+                }
+                catch { return Color.black; }
+            }
+        }
         public static Color TeamColor1 //{ get => (Color)_kerbalInfo.Attributes.GetAttribute("TEAMCOLOR1"); }
         {
             get

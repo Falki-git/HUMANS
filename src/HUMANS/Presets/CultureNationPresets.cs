@@ -7,6 +7,9 @@ namespace Humans
 {
     public class CultureNationPresets
     {
+        public const string KERBALNATION = "Kerbal";
+        public const string KERBALCULTURE = "Kerbalkind";
+
         public List<Culture> Cultures = new();
         public List<Nation> Nations = new();
 
@@ -58,13 +61,55 @@ namespace Humans
                 {
                     picturePath = $"{HumansPlugin.Instance.GUID}/images/{culture.PicturePath}";
                     culture.Picture = AssetManager.GetAsset<Texture2D>(picturePath);
-                    _logger.LogInfo($"Successfully loaded {culture.Name}'s picture.");
+                    _logger.LogInfo($"Successfully loaded {culture.Name} picture.");
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError($"Error loading {culture.Name}'s picture from path \"{HumansPlugin.Instance.GUID}/images/{culture.PicturePath}\"\n" + ex);
+                    _logger.LogError($"Error loading {culture.Name} picture from path \"{HumansPlugin.Instance.GUID}/images/{culture.PicturePath}\"\n" + ex);
                 }
             }
+
+            InitializeKerbalCulture();
+        }
+
+        private void InitializeKerbalCulture()
+        {
+            var kerbalNation = new Nation
+            {
+                Name = KERBALNATION,
+                Flag = new Texture2D(1, 1)
+            };
+
+            Nations.Add(kerbalNation);
+
+            var nationalityWeights = new Dictionary<string, int>
+            {
+                { KERBALNATION, 100 }
+            };
+
+            var skinColorWeights = new Dictionary<string, int>
+            {
+                { KERBALNATION, 100 }
+            };
+
+            var kerbalCulture = new Culture
+            {
+                Name = KERBALCULTURE,
+                NationalityWeights = nationalityWeights,
+                SkinColorTypeWeights = skinColorWeights
+            };
+
+            try
+            {
+                var picturePath = $"{HumansPlugin.Instance.GUID}/images/culture_pictures/{KERBALCULTURE}.png";
+                kerbalCulture.Picture = AssetManager.GetAsset<Texture2D>(picturePath);
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                _logger.LogError($"Error loading Kerbalkind picture from path \"{HumansPlugin.Instance.GUID}/images/culture_pictures/{KERBALCULTURE}.png\"\n" + ex);
+            }
+
+            Cultures.Add(kerbalCulture);
         }
 
         public void PreviousNation(Human human)

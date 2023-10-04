@@ -18,68 +18,6 @@ namespace Humans
             Id = KerbalUtility.IGGuid;
         }
 
-        public void InitializeAttributes()
-        {
-            KerbalUtility.SetKerbal(KerbalInfo);
-            var culture = Manager.Instance.LoadedCampaign.Culture;
-
-            // Male kerbals are recognized by having "*_M_*" for Head type and "*_M_*" for Eyes type
-            // Female kerbals are recognized by having "*_F_*" for Head type and "*_F_*" for Eyes type
-            Head = new Head { Name = KerbalUtility.Head, Gender = KerbalUtility.Head.Contains("_M_") ? Gender.Male : Gender.Female };
-
-            Nationality = culture.GetRandomNationality();
-            FirstName = Nation.GetRandomFirstName(Head.Gender);
-            Surname = Nation.GetRandomLastName();
-            KerbalType = KerbalUtility.KerbalType;
-            NameKey = KerbalUtility.NameKey;
-
-            // list presets
-            // +Head
-            var skinType = culture.GetRandomSkinColorType();
-            SkinColor = HumanPresets.Instance.GetRandomSkinColor(skinType);
-            HairStyle = KerbalUtility.HairStyle;
-            Helmet = KerbalUtility.Helmet;
-            HairColor = HumanPresets.Instance.GetRandomHairColor();
-            Eyes = KerbalUtility.Eyes;
-            FacialHair = KerbalUtility.FacialHair;
-            FaceDecoration = KerbalUtility.FaceDecoration;
-            VoiceSelection = KerbalUtility.VoiceSelection;
-            Body = KerbalUtility.Body;
-            FacePaint = KerbalUtility.FacePaint;
-
-            // Single 0 - 1 controls?
-            EyeHeight = KerbalUtility.EyeHeight;
-            EyeSymmetry = KerbalUtility.EyeSymmetry;
-            Stupidity = KerbalUtility.Stupidity;
-            Bravery = KerbalUtility.Bravery;
-
-            // Colors
-            TeamColor1 = culture.SuitColor1;
-            TeamColor2 = culture.SuitColor2;
-
-            // Floats
-            Constitution = KerbalUtility.Constitution;
-            Optimism = KerbalUtility.Optimism;
-            VoiceType = KerbalUtility.VoiceType;
-            Radiation = KerbalUtility.Radiation;
-            Happiness = KerbalUtility.Happiness;
-
-            // Bools
-            IsVeteran = KerbalUtility.IsVeteran;
-
-            // Ints
-            Experience = KerbalUtility.Experience;
-
-            // Freetext
-            Biography = KerbalUtility.Biography;
-
-            if (!string.IsNullOrEmpty(KerbalUtility.FirstName))
-                Biography = Biography.Replace(KerbalUtility.FirstName, FirstName);
-
-            if (!string.IsNullOrEmpty(KerbalUtility.Surname))
-                Biography = Biography.Replace(KerbalUtility.Surname, Surname);
-        }
-
         [JsonProperty]
         public IGGuid Id { get; set; }
         public KerbalInfo KerbalInfo { get => Utility.AllKerbals.Find(k => k.Id == this.Id); }
@@ -146,15 +84,115 @@ namespace Humans
         public string Biography { get; set; }
 
         /// <summary>
-        /// If kerbal with this ID has been initialized with human parameters
+        /// If kerbal with this ID has been initialized with custom attributes
         /// </summary>
         [JsonProperty]
-        public bool IsHumanized { get; set; }
+        public bool HasCustomAttributesApplied { get; set; }
 
         private static ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("Humans.Human");
 
-        public void Humanize() => Humanize(KerbalInfo);
-        public void Humanize(KerbalInfo kerbal)
+        public void InitializeUniversalAttributes()
+        {
+            KerbalUtility.SetKerbal(KerbalInfo);
+
+            // Male kerbals are recognized by having "*_M_*" for Head type and "*_M_*" for Eyes type
+            // Female kerbals are recognized by having "*_F_*" for Head type and "*_F_*" for Eyes type
+            Head = new Head { Name = KerbalUtility.Head, Gender = KerbalUtility.Head.Contains("_M_") ? Gender.Male : Gender.Female };
+
+            KerbalType = KerbalUtility.KerbalType;
+            NameKey = KerbalUtility.NameKey;
+
+            // list presets
+            // +Head
+            HairStyle = KerbalUtility.HairStyle;
+            Helmet = KerbalUtility.Helmet;
+            Eyes = KerbalUtility.Eyes;
+            FacialHair = KerbalUtility.FacialHair;
+            FaceDecoration = KerbalUtility.FaceDecoration;
+            VoiceSelection = KerbalUtility.VoiceSelection;
+            Body = KerbalUtility.Body;
+            FacePaint = KerbalUtility.FacePaint;
+
+            // Single 0 - 1 controls?
+            EyeHeight = KerbalUtility.EyeHeight;
+            EyeSymmetry = KerbalUtility.EyeSymmetry;
+            Stupidity = KerbalUtility.Stupidity;
+            Bravery = KerbalUtility.Bravery;
+
+            // Floats
+            Constitution = KerbalUtility.Constitution;
+            Optimism = KerbalUtility.Optimism;
+            VoiceType = KerbalUtility.VoiceType;
+            Radiation = KerbalUtility.Radiation;
+            Happiness = KerbalUtility.Happiness;
+
+            // Bools
+            IsVeteran = KerbalUtility.IsVeteran;
+
+            // Ints
+            Experience = KerbalUtility.Experience;
+
+            // Freetext
+            Biography = KerbalUtility.Biography;
+        }
+
+        public void InitializeHumanAttributes()
+        {
+            KerbalUtility.SetKerbal(KerbalInfo);
+            var culture = Manager.Instance.LoadedCampaign.Culture;
+
+            Nationality = culture.GetRandomNationality();
+            FirstName = Nation.GetRandomFirstName(Head.Gender);
+            Surname = Nation.GetRandomLastName();
+
+            // list presets
+            // +Head
+            var skinType = culture.GetRandomSkinColorType();
+            SkinColor = HumanPresets.Instance.GetRandomSkinColor(skinType);
+            HairColor = HumanPresets.Instance.GetRandomHairColor();
+
+            // Colors
+            TeamColor1 = culture.SuitColor1;
+            TeamColor2 = culture.SuitColor2;
+
+            if (!string.IsNullOrEmpty(KerbalUtility.FirstName))
+                Biography = Biography.Replace(KerbalUtility.FirstName, FirstName);
+
+            if (!string.IsNullOrEmpty(KerbalUtility.Surname))
+                Biography = Biography.Replace(KerbalUtility.Surname, Surname);
+        }
+
+        public void InitializeKerbalAttributes()
+        {
+            KerbalUtility.SetKerbal(KerbalInfo);
+
+            Nationality = CultureNationPresets.KERBALNATION;
+            FirstName = KerbalUtility.FirstName;
+            Surname = KerbalUtility.Surname;
+
+            // list presets
+            SkinColor = HumanPresets.Instance.SkinColors.Find(sc => sc.Color == KerbalUtility.SkinColor)
+                ?? HumanPresets.Instance.GetRandomSkinColor("Kerbal")
+                ?? HumanPresets.Instance.GetRandomSkinColor("Human")
+                ?? HumanPresets.Instance.SkinColors.First();
+            
+            HairColor = HumanPresets.Instance.HairColors.Find(hc => hc.Color == KerbalUtility.HairColor)
+                ?? HumanPresets.Instance.GetRandomHairColor()
+                ?? HumanPresets.Instance.HairColors.First();
+            
+            // Colors
+            TeamColor1 = KerbalUtility.TeamColor1;
+            TeamColor2 = KerbalUtility.TeamColor2;            
+
+            if (!string.IsNullOrEmpty(KerbalUtility.FirstName))
+                Biography = Biography.Replace(KerbalUtility.FirstName, FirstName);
+
+            if (!string.IsNullOrEmpty(KerbalUtility.Surname))
+                Biography = Biography.Replace(KerbalUtility.Surname, Surname);
+        }
+
+        public void ApplyAllAtributes() => ApplyAllAttributes(KerbalInfo);
+        public void ApplyAllAttributes(KerbalInfo kerbal)
         {
             KerbalUtility.SetKerbal(kerbal);
 
@@ -192,7 +230,7 @@ namespace Humans
             var customName = string.Join("_", $"{FirstName} {Surname}".Split(' ')).ToUpper();
             new RawCustomNameAttribute().ApplyAttribute(kerbal, customName);
 
-            IsHumanized = true;
+            HasCustomAttributesApplied = true;
         }
 
         public void Rename(string newFirstName, string newLastName)

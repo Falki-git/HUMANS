@@ -40,17 +40,29 @@ namespace Humans
 
                     // Newly created kerbals won't have their attributes created on "KerbalAddedToRoster" event
                     // but they will have them at this point, so we initialize them here
-                    if (!human.IsHumanized)
+                    if (!human.HasCustomAttributesApplied)
                     {
-                        _logger.LogDebug("Human isn't humanized yet. Initializing attributes and humanizing.");
-                        human.InitializeAttributes();
-                        human.Humanize();
+                        _logger.LogDebug("Human doesn't have custom attributes applied yet. Initializing and applying attributes.");
+                        human.InitializeUniversalAttributes();
+
+                        if (Manager.Instance.LoadedCampaign.Culture.Name == CultureNationPresets.KERBALCULTURE)
+                        {
+                            // Kerbal culture picked. Just initialize kerbals attributes; don't covert them to humans
+                            human.InitializeKerbalAttributes();
+                        }
+                        else
+                        {
+                            // Human culture picked. Initialize as humans - skin color, nationality, first and last names, etc.
+                            human.InitializeHumanAttributes();
+                        }
+
+                        human.ApplyAllAtributes();
                         KerbalUtility.TakeKerbalPortrait(human.KerbalInfo);
                         Utility.SaveCampaigns();
                     }
                     else
                     {
-                        human.Humanize(__instance.ThisKerbalInfo);
+                        human.ApplyAllAttributes(__instance.ThisKerbalInfo);
                     }
 
                     // Process to have custom kerbal suit colors:
