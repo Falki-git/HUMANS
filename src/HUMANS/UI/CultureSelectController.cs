@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Humans
+namespace Humans.UI
 {
     public class CultureSelectController : MonoBehaviour
     {
@@ -41,7 +41,7 @@ namespace Humans
         {
             _logger.LogDebug($"Culture selection clicked. Culture: {selectedCulture.Name}.");
             Manager.Instance.OnCultureSelected(selectedCulture);
-            
+
             KscSceneController.Instance.ShowMainGui = true;
             KscSceneController.Instance.ShowCultureSelect = false;
         }
