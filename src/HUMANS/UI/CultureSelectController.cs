@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Humans.UI
+namespace Humans
 {
     public class CultureSelectController : MonoBehaviour
     {
