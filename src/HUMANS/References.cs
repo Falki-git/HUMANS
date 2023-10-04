@@ -34,16 +34,18 @@ Source material
 
 
 TODO
-- remove debug stuff
+for first release:
+- kerbalkind culture that doesn't change anything by default
+- chatgpt provided biographies
+- bad colors (remove): Real/Russet, Burnt Umber, Caucasian/#ffad60
 
+for after:
+- presets for famous astronauts and people (Lux)
 - skin color type and hair color weights
 - add bald hair type
-- presets for famous astronauts and people (Lux)
 - add countries: canada, mexico
-- bad colors (remove): Real/Russet, Burnt Umber, Caucasian/#ffad60
 - good colors (keep): BeautifulTouch/AntiqueBrass, BeautifulTouch/DesertSand
 - CulturePicture: 780px x 150px
-- chatgpt provided biographies
 - hair color weight for skin color
 - loading screens
 
