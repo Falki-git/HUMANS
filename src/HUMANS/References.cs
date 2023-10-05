@@ -35,9 +35,7 @@ Source material
 
 TODO
 for first release:
-- DONE: kerbalkind culture that doesn't change anything by default
-    - add kerbalkind picture
-    - handle kerbal nation flag
+- add kerbalkind picture
 - chatgpt provided biographies
 - bad colors (remove): Real/Russet, Burnt Umber, Caucasian/#ffad60
 
