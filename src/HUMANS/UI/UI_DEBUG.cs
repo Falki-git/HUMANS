@@ -124,6 +124,8 @@ namespace Humans
         GameObject _obj;
         KerbalComponent kerbalComponent;
 
+        private Texture2D defaultFlag = null;
+
         private void FillDebugUI(int _)
         {
             var kerbal = _kerbals[_kerbalIndexDebug];
@@ -190,6 +192,13 @@ namespace Humans
                 KscSceneController.Instance.ShowCultureSelect = !KscSceneController.Instance.ShowCultureSelect;
             }
 
+            if (GUILayout.Button("Load default flag"))
+            {
+                GameManager.Instance.Assets.LoadByLabel("flag_AGY_Default", sprite => LoadDefaultFlag(sprite), delegate (IList<Sprite> _) { });
+            }
+
+            //////////
+
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("<"))
             {
@@ -217,6 +226,11 @@ namespace Humans
                 //Manager.Instance.Roster.GenerateKerbalPortrait(kerbal);
                 GameManager.Instance.Game.SessionManager.KerbalRosterManager._portraitRenderer.TakeKerbalPortrait(kerbal);
                 //Manager.Instance.Roster._portraitRenderer._kerbal3DModelGameObject.Build3DKerbal()
+            }
+
+            if (defaultFlag != null)
+            {
+                GUILayout.Label(defaultFlag);
             }
 
             //var photos = GameManager.Instance.Game.SessionManager.KerbalRosterManager._portraitRenderer._generatedKerbalPhotos;
@@ -303,6 +317,11 @@ namespace Humans
             }
 
             GUI.DragWindow(new Rect(0, 0, Screen.width, Screen.height));
+        }
+
+        private void LoadDefaultFlag(Sprite sprite)
+        {
+            defaultFlag = sprite?.texture;
         }
 
         #endregion

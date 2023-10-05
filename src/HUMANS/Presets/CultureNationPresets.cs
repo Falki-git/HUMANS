@@ -1,4 +1,5 @@
 ﻿using BepInEx.Logging;
+using KSP.Game;
 using SpaceWarp.API.Assets;
 using System.Reflection;
 using UnityEngine;
@@ -77,7 +78,6 @@ namespace Humans
             var kerbalNation = new Nation
             {
                 Name = KERBALNATION,
-                Flag = new Texture2D(1, 1)
             };
 
             Nations.Add(kerbalNation);
@@ -110,6 +110,16 @@ namespace Humans
             }
 
             Cultures.Add(kerbalCulture);
+        }
+
+        public void LoadDefaultKerbalFlag()
+        {
+            GameManager.Instance.Assets.LoadByLabel("flag_AGY_Default", sprite =>
+            {
+                var kerbalNation = Nations.Find(n => n.Name == KERBALNATION);
+                kerbalNation.Flag = sprite?.texture ?? new Texture2D(1, 1);
+            }
+            , delegate (IList<Sprite> _) { });
         }
 
         public void PreviousNation(Human human)

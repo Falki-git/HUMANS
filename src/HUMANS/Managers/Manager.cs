@@ -126,6 +126,8 @@ namespace Humans
         public void OnGameLoadFinished(MessageCenterMessage obj)
         {
             KerbalUtility.TakeKerbalPortraits(Utility.AllKerbals);
+
+            CultureNationPresets.Instance.LoadDefaultKerbalFlag();
         }
 
         public void OnKerbalAddedToRoster(KerbalAddedToRoster message)
