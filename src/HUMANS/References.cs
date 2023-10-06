@@ -35,9 +35,7 @@ Source material
 
 TODO
 for first release:
-- add kerbalkind picture
 - chatgpt provided biographies
-- bad colors (remove): Real/Russet, Burnt Umber, Caucasian/#ffad60
 
 for after:
 - presets for famous astronauts and people (Lux)
