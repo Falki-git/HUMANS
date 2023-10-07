@@ -131,9 +131,6 @@ namespace Humans
 
             // Ints
             Experience = KerbalUtility.Experience;
-
-            // Freetext
-            Biography = KerbalUtility.Biography;
         }
 
         public void InitializeHumanAttributes()
@@ -154,6 +151,10 @@ namespace Humans
             // Colors
             TeamColor1 = culture.SuitColor1;
             TeamColor2 = culture.SuitColor2;
+
+            Biography = culture.GetRandomBiography() ?? KerbalUtility.Biography;
+            Biography = Biography.Replace("<firstname>", FirstName);
+            Biography = Biography.Replace("<lastname>", Surname);
 
             if (!string.IsNullOrEmpty(KerbalUtility.FirstName))
                 Biography = Biography.Replace(KerbalUtility.FirstName, FirstName);
@@ -182,7 +183,10 @@ namespace Humans
             
             // Colors
             TeamColor1 = KerbalUtility.TeamColor1;
-            TeamColor2 = KerbalUtility.TeamColor2;            
+            TeamColor2 = KerbalUtility.TeamColor2;
+
+            // Freetext
+            Biography = KerbalUtility.Biography;
 
             if (!string.IsNullOrEmpty(KerbalUtility.FirstName))
                 Biography = Biography.Replace(KerbalUtility.FirstName, FirstName);
@@ -235,11 +239,15 @@ namespace Humans
 
         public void Rename(string newFirstName, string newLastName)
         {
+            Biography = Biography.Replace(FirstName, newFirstName);
+            Biography = Biography.Replace(Surname, newLastName);
+
             FirstName = newFirstName;
             Surname = newLastName;
             
             new FirstNameAttribute().ApplyAttribute(KerbalInfo, FirstName);
             new SurnameAttribute().ApplyAttribute(KerbalInfo, Surname);
+            new BiographyAttribute().ApplyAttribute(KerbalInfo, Biography);
             new RawCustomNameAttribute().ApplyAttribute(KerbalInfo, string.Join("_", $"{newFirstName} {newLastName}".Split(' ')).ToUpper());
 
             KerbalInfo._kerbalAttributes._fullName = $"{FirstName} {Surname}";

@@ -12,6 +12,7 @@ namespace Humans
         public Dictionary<string, int> SkinColorTypeWeights { get; set; }
         public Color32 SuitColor1 { get; set; }
         public Color32 SuitColor2 { get; set; }
+        public List<string> Biographies { get; set; }
         public override string ToString() => Name;
 
         private static ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("Humans.Culture");
@@ -39,6 +40,20 @@ namespace Humans
             {
                 _logger.LogError("Error generating random skin type. Weights are not properly defined.\n" + ex);
                 return String.Empty;
+            }
+        }
+
+        public string GetRandomBiography()
+        {
+            try
+            {
+                int randomValue = UnityEngine.Random.Range(0, Biographies.Count - 1);
+                return Biographies[randomValue];
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error getting random culture's biography.\n" + ex);
+                return null;
             }
         }
 
