@@ -34,10 +34,6 @@ Source material
 
 
 TODO
-for first release:
-- chatgpt provided biographies
-
-for after:
 - presets for famous astronauts and people (Lux)
 - skin color type and hair color weights
 - add bald hair type
