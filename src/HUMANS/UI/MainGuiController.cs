@@ -51,7 +51,7 @@ namespace Humans
 
         public void OnEnable()
         {
-            //KerbalUtility.TakeKerbalPortraits(Utility.AllKerbals);
+            KerbalUtility.TakeKerbalPortraits(Utility.AllKerbals);
 
             MainGui = GetComponent<UIDocument>();
             Root = MainGui.rootVisualElement;

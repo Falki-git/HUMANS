@@ -57,6 +57,11 @@ namespace Humans
                         }
 
                         human.ApplyAllAtributes();
+                        
+                        //on kerbaladdedtoroster kerbalphotobooth gets stuck with an old model, so we need to clear it
+                        Utility.Roster._portraitRenderer._modelsInUse.Clear();
+                        Utility.Roster._portraitRenderer._waitingForModel.Clear();
+
                         KerbalUtility.TakeKerbalPortrait(human.KerbalInfo);
                         Utility.SaveCampaigns();
                     }
