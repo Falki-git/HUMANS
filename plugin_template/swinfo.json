@@ -5,7 +5,7 @@
 	"name": "HUMANS",
 	"description": "Hue Utility for Mimicking Authentic Natural Skin",
 	"source": "https://github.com/Falki-git/HUMANS",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"version_check": "https://raw.githubusercontent.com/Falki-git/HUMANS/master/plugin_template/swinfo.json",
 	"ksp2_version": {
 		"min": "0.1.4",
@@ -15,7 +15,7 @@
 		{
 			"id": "com.github.x606.spacewarp",
 			"version": {
-				"min": "1.5.0-alpha",
+				"min": "1.5.0",
 				"max": "*"
 			}
 		},
