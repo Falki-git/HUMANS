@@ -71,7 +71,16 @@ public class HumansPlugin : BaseSpaceWarpPlugin
     private void Update()
     {
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.H))
-            _isDebugWindowOpen = !_isDebugWindowOpen;
+        {
+            if (Input.GetKey(KeyCode.LeftAlt))
+            {
+                _isDebugWindowOpen = !_isDebugWindowOpen;    
+            }
+            else
+            {
+                KscSceneController.Instance.ShowMainGui = !KscSceneController.Instance.ShowMainGui;    
+            }
+        }
 
         Manager.Instance.Update();
     }
