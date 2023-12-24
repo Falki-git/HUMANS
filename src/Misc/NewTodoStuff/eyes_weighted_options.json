@@ -1,0 +1,12 @@
+{
+	"Name":"EYES_OPTIONS_WEIGHTED",
+	"Type":"GAMEOBJECT",
+	"WeightedOptionsArray":
+	{
+		"EYES_F_01":44,
+        "EYES_M_01":44,
+        "EYES_M_UNDERLASH":4,
+        "EYES_F_RAVEN":4,
+        "EYES_M_GEAREYE":4
+    }
+}
